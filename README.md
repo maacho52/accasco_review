@@ -1,24 +1,40 @@
-# README
+# <Accasco review>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##　サイト概要
+購入検討楽譜について実際の利用者からの意見がみれるアカペラ楽譜レビューサイト開発
 
-Things you may want to cover:
+### サイトテーマ
+<取り組みたいアカペラ楽譜を購入できるサイトや金額、グループ構成
+　などの楽譜に関する基礎情報と、レビュー投稿者のアカペラ歴や担当パートなどを
+　合わせてみることができるレビューサイト
 
-* Ruby version
+　難易度、金額、歌った時の感想などを踏まえて自分たちに合った楽譜選びができる>
 
-* System dependencies
+### テーマを選んだ理由
+<　楽譜に取り組むと楽譜の難易度が自分たちのレベルに合わず
+　物足りなさを感じたり、未完成のままになってしまったりした時があり、実際に購入し
+　使用した人の意見を元に購入を検討できると、こういったギャップが小さくなるから
 
-* Configuration
+　アマゾン等での楽譜購入ではレビューを見て購入を検討できるが、
+　楽譜販売専門のサイトになるとレビューが見れるサイトがなく不便に感じるため
+　レビュー専用サイトがあったら便利だと思うから>
 
-* Database creation
+### ターゲットユーザ
+<アカペラをやっている学生や社会人、これからアカペラを始めたい人>
 
-* Database initialization
+### 主な利用シーン
+<楽譜購入前の楽譜選定時、購入後取り組んだ楽譜のレビューを投稿するとき>
 
-* How to run the test suite
+## 設計書
+<...>
 
-* Services (job queues, cache servers, search engines, etc.)
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
