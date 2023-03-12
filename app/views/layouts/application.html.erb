@@ -12,6 +12,30 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <div class="header-content">
+        <ul class="flex">
+          <% if admin_signed_in? %>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          <% elsif user_signed_in? %>
+            <li><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %></li>
+            <li></li>
+            <li></li>
+          <% else %>
+            <li></li>
+            <li></li>
+            <li></li>
+          <% end %>  
+        </ul>
+      </div>
+      
+    </header>
+    
+    <main>
+      <%= yield %>
+    </main>  
   </body>
 </html>
