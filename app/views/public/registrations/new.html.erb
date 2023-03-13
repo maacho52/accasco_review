@@ -1,29 +1,70 @@
-<h2>Sign up</h2>
+<section class="inner">
+  <h3 class="section-ttl">新規会員登録</h3>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "publics/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="d-flex justify-content-center">
+    <%= form_with model: User.new, url: registration_path(resource_name), local: true do |f| %>
+      <!--< render 'layouts/error_messages', resource: @user %> -->
+      <table class="usmer_info user_form">
+        <thead>
+          <th></th>
+          <th></th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= f.label :nickname, "ニックネーム", class: "user_nickname" %></td>
+            <td><%= f.text_field :nickname, autofocus: true, :placeholder =>"ニックネーム" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :email, "メールアドレス" %></td>
+            <td colspan="2"><%= f.email_field :email, autocomplete: "email" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :password, "パスワード(#{@minimum_password_length}文字以上)" %></td>
+            <td colspan="2"><%= f.password_field :password, autocomplete: "new-password" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :password_confirmation, "パスワード(確認用)" %></td>
+            <td colspan="2"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+          </tr>
+          <tr>
+            <td>生年月日</td>
+            <td><%= f.date_select :birthday, start_year: 1950, end_year: Time.now.year, include_blank: true, use_two_digit_numbers: true, class: "input-tab birthday-select" %></td>
+          </tr>
+          <tr>
+            <td>性別</td>
+            <td colespan="2">
+              <%= f.radio_button :sex, "man" %> <%= f.label :sex_man, "男性" %>
+              <%= f.radio_button :sex, "woman" %> <%=f.label :sex_woman, "女性" %>
+              <%= f.radio_button :sex, "another" %> <%= f.label :sex_another, "その他" %>
+            </td>
+          </tr>
+          <tr>
+            <td><%= f.label :experience, "アカペラ歴" %></td>
+            <td colespan="2"><%= f.text_field :experience %></td>
+          </tr>
+          <tr>
+            <td>担当パート</td>
+            <td>
+              <%= f.radio_button :experience, :lead %> <%= f.label :experience_lead, "Lead" %>
+              <%= f.radio_button :experience, :top %> <%=f.label :experience_top, "Top" %>
+              <%= f.radio_button :experience, :second %> <%=f.label :experience_second, "2nd" %>
+              <%= f.radio_button :experience, :third %> <%= f.label :experience_third, "3rd" %>
+              <%= f.radio_button :experience, :forth %> <%= f.label :experience_forth, "4th" %>
+              <%= f.radio_button :experience, :bass %> <%= f.label :experience_bass, "Bass" %>
+              <%= f.radio_button :experience, :vp %> <%= f.label :experience_vp, "VoicePercussion" %>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td colspan="2"><%= f.submit "アカウント作成", class: "btn btn-success" %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+  <h2 class="section-ttl">既に登録済みの方</h2>
+  <p><%= link_to "こちら", new_user_session_path, class: "underline" %>からログインしてください。</p>
+</section>
