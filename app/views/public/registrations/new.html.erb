@@ -42,29 +42,28 @@
           </tr>
           <tr>
             <td><%= f.label :experience, "アカペラ歴" %></td>
-            <td colespan="2"><%= f.text_field :experience %></td>
+            <td colespan="2"><%= f.text_field :experience %>年</td>
           </tr>
           <tr>
             <td>担当パート</td>
             <td>
-              <%= f.radio_button :experience, :lead %> <%= f.label :experience_lead, "Lead" %>
-              <%= f.radio_button :experience, :top %> <%=f.label :experience_top, "Top" %>
-              <%= f.radio_button :experience, :second %> <%=f.label :experience_second, "2nd" %>
-              <%= f.radio_button :experience, :third %> <%= f.label :experience_third, "3rd" %>
-              <%= f.radio_button :experience, :forth %> <%= f.label :experience_forth, "4th" %>
-              <%= f.radio_button :experience, :bass %> <%= f.label :experience_bass, "Bass" %>
-              <%= f.radio_button :experience, :vp %> <%= f.label :experience_vp, "VoicePercussion" %>
+              <%= f.check_box :part, {multiple: true}, "lead", nil %>Lead
+              <%= f.check_box :part, {multiple: true}, "top", nil %>Top
+              <%= f.check_box :part, {multiple: true}, "second", nil %>2nd
+              <%= f.check_box :part, {multiple: true}, "third", nil %>3rd
+              <%= f.check_box :part, {multiple: true}, "forth", nil %>4th
+              <%= f.check_box :part, {multiple: true}, "bass", nil %>Bass
+              <%= f.check_box :part, {multiple: true}, "vp", nil %>VoicePercussion
             </td>
           </tr>
           <tr>
             <td></td>
-            <td colspan="2"><%= f.submit "アカウント作成", class: "btn btn-success" %></td>
+            <td colspan="2"><%= f.submit "アカウント作成", class: "btn btn-primary" %></td>
           </tr>
         </tbody>
       </table>
     <% end %>
   </div>
 
-  <h2 class="section-ttl">既に登録済みの方</h2>
-  <p><%= link_to "こちら", new_user_session_path, class: "underline" %>からログインしてください。</p>
+  <p class="text-center">すでにアカウントをお持ちの方は<%= link_to "こちら", new_user_session_path, class: "underline" %>からログインしてください。</p>
 </section>
