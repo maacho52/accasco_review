@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :scores
 
   enum sex: { man: 0, woman: 1, another: 2 }
+  enum part: { lead: 0, top: 1, second: 2, third: 3, forth: 4, bass: 5, voicepercussion: 6  
 
     def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
