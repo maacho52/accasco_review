@@ -1,0 +1,55 @@
+<section class="inner">
+  <% if flash[:notice] %>
+    <p class="text-active"><%= flash[:notice] %></p>
+  <% end %>
+  <h3 class="section-ttl">マイページ</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <%= @user.nickname %><br>
+        <%= @user.id %>
+      </div>
+      <div class="col d-flex">
+        <%= link_to "楽譜投稿", new_score_path, class: "btn btn-warning ml2" %>
+        <%= link_to "レビュー一覧", score_reviews_path, class: "btn btn-warning ml2" %>
+        <%= link_to "投稿一覧", scores_path, class: "btn btn-warning ml2" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+      	<table class="user_info mb3">
+      		<thead>
+      			<th></th>
+      			<th></th>
+      			<th></th>
+      		</thead>
+      		<tbody>
+      			<tr>
+      				<td>メールアドレス</td>
+      				<td colespan="2"><%= @user.email %></td>
+      			</tr>
+      			<tr>
+      				<td>年齢</td>
+      				<td colespan="2"><%= @user.age %></td>
+      			</tr>
+      			<tr>
+      				<td>性別</td></td>
+      				<td colspan="2"><%= @user.sex_i18n %></td>
+      			</tr>
+      			<tr>
+      				<td>アカペラ歴</td>
+      				<td colspan="2"><%= @user.experience %></td>
+      			</tr>
+      			<tr>
+      				<td>主な担当パート</td>
+      				<td colspan="2"><%= @user.part_i18n %></td>
+      			</tr>
+      		</tbody>
+      	</table>
+      </div>
+    </div>
+      	<div class="d-flex justify-content-center">
+      		<%= link_to "ユーザー情報編集", edit_information_path, class: "btn btn-success" %>
+      	</div>
+</section>
