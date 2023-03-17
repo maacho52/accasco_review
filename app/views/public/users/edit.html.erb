@@ -17,30 +17,22 @@
 			<tbody>
 				<tr>
 					<td><%= f.label :email, "メールアドレス" %></td>
-					<td colspan="2"><%= f.email_field :email, autocomplete: "email", :placeholder =>"#{@customer.email}" %></td>
+					<td colspan="2"><%= f.email_field :email, autocomplete: "email", :placeholder =>"#{@user.email}" %></td>
 				</tr>
 				<tr>
 					<td><%= f.label :birthday, "生年月日" %></td>
 					<td colspan="2"><%= f.date_select :birthday, start_year: 1950, end_year: Time.now.year, include_blank: true, use_two_digit_numbers: true, class: "input-tab birthday-select", :placeholder =>"#{@user.birthday}" %></td>
 				</tr>
 				<tr>
-					<td><%= f.label :email, "メールアドレス" %></td>
-					<td colspan="2"><%= f.email_field :email, autocomplete: "email", :placeholder =>"#{@customer.email}" %></td>
+					<td><%= f.label :experience, "アカペラ歴" %></td>
+					<td colspan="2"><%= f.text_field :experience, autocomplete: "experience", :placeholder =>"#{@user.experience}" %></td>
 				</tr>
 				<tr>
-					<td><%= f.label :postal_code, "郵便番号(ハイフンなし7桁)" %></td>
-					<td colspan="2"><%= f.text_field :postal_code, :placeholder =>"#{@customer.postal_code}", class: "jpostal_code" %></td>
+					<td><%= f.label :part, "主な担当パート" %></td>
+					<td colspan="2"><%= f.check_box :part, id: :users_part, checked:true, :placeholder =>"#{@user.part}", class: "part" %></td>
 				</tr>
 				<tr>
-					<td><%= f.label :address, "住所(郵便番号から自動入力)" %></td>
-					<td colspan="2"><%= f.text_field :address, :placeholder =>"#{@customer.address}", class: "jpostal_address" %></td>
-				</tr>
-				<tr>
-					<td><%= f.label :telephone_number, "電話番号(ハイフンなし10or11桁)" %></td>
-					<td colspan="2"><%= f.text_field :telephone_number, :placeholder =>"#{@customer.telephone_number}" %></td>
-				</tr>
-				<tr>
-					<td colspan="2"><%= f.submit "編集内容を保存する", class: "btn btn-primary" %></td>
+					<td colspan="2"><%= f.submit "変更を保存", class: "btn btn-primary ml2" %></td>
 					<td><%= link_to "退会する", confirm_unsubscribe_path, class: "btn btn-danger" %></td>
 				</tr>
 			</tbody>
