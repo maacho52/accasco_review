@@ -20,6 +20,17 @@ class Admin::UsersController < ApplicationController
     redirect_to users_mypage_path
   end
 
+  def unsubscribe
+    @user = current_user
+  end
+
+  def withdraw
+    @user = current_user
+    @user.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
+  end
+
   private
 
   def user_params
