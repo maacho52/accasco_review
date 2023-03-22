@@ -26,21 +26,30 @@
 					<td><%= f.text_field :artist %></td>
 				</tr>
 				<tr>
-					<td><%= f.label :genre_id, "ジャンル" %></td>
-					<td class="select_field"><%= f.collection_select :genre_id, Genre.all, :id, :name %></td>
+					<td><%= f.label :sites_id, "楽譜購入サイト" %></td>
+					<td class="select_field"><%= f.collection_select :sites_id, Sites.all, :id, :name %></td>
 				</tr>
 				<tr>
-					<td><%= f.label :price, "税抜価格" %></td>
-					<td><%= f.number_field :price %> 円</td>
+					<td><%= f.label :member, "グループ構成人数" %></td>
+					<td><%= f.radio_button :member, "three" %></td>
+					<td><%= f.radio_button :member, "four" %></td>
+					<td><%= f.radio_button :member, "five" %></td>
+					<td><%= f.radio_button :member, "six" %></td>
+					<td><%= f.radio_button :member, "seven_or_more" %></td>
+					<td><%= f.radio_button :member, "boys" %></td>
+					<td><%= f.radio_button :member, "girls" %></td>
 				</tr>
 				<tr>
-					<td><%= f.label :sales_status, "販売ステータス" %></td>
-					<td class="select_field">
-						<%= f.radio_button :is_active, true %>
-						<%= f.label :is_active, "販売中", class: "text-active" %>
-						<%= f.radio_button :is_active, false %>
-						<%= f.label :is_active, "販売停止中", class: "text-invalid" %>
-					</td>
+					<td><%= f.label :difficulty, "難易度" %></td>
+					<td><%= f.radio_button :difficulty, "introduction" %></td>
+					<td><%= f.radio_button :difficulty, "biginner" %></td>
+					<td><%= f.radio_button :difficulty, "intermediate" %></td>
+					<td><%= f.radio_button :difficulty, "advanced" %></td>
+					<td><%= f.radio_button :difficulty, "superlative" %></td>
+				</tr>
+				<tr>
+					<td><%= f.label :sales_status, "アレンジ内容" %></td>
+					<td class="select_field"><%= f.collection_select :arranges_id, Arranges.all, :id, :name %></td>
 				</tr>
 			</tbody>
 		</table>
