@@ -1,0 +1,35 @@
+  ja:
+    enums:
+      score:
+        member:
+          three: "3人"
+          four: "4人"
+          five: "5人"
+          six: "6人"
+          seven_or_more: "7人以上"
+          boys: "ヤロバン"
+          girls: "ギャルバン"
+        
+        difficulty:
+          introduction: "入門"
+          biginner: "初心者"
+          intermediate: "中級"
+          advanced: "上級"
+          superlative: "最上級"
+      
+      user:
+        sex:
+          man: "男性"
+          woman: "女性"
+          another: "その他"
+          
+        part:
+          lead: "Lead"
+          top: "Top"
+          chorus2: "2nd"
+          chorus3: "3rd"
+          chorus4: "4th"
+          bass: "Bass"
+          voicepercussion: "VP"
+
+
