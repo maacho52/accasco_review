@@ -1,0 +1,55 @@
+<section class="inner">
+  <h3 class="section-ttl">楽譜編集</h3>
+  <div class="row">
+    <%= form_with(model:[@score, @sites]), url: score_path(@score.id) do |f| %>
+      <div class="col">
+        <%= f.label :image %>
+        <%= f.file_field :image, placeholder: "楽譜画像", accept: "image/*" %>
+      </div>
+      <div class="col">
+        <table class="score_info score_form">
+          <thead>
+            <th></th>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= f.label :artist, "歌手" %></td>
+              <td><%= f.text_field :artist, :placeholder =>"#{@score.artist}" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :, "曲名" %></td>
+              <td><%= f.text_field :name, :placeholder =>"#{@score.name}" %></td>
+            </tr>
+            <tr>
+              <td>楽譜購入サイト</td>
+              <td><%= f.collection_select :site_id, Sites.all, :id, :name %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :member, "グループ構成人数" %></td>
+              <td><%= f.radio_button :member, "three" %></td>
+              <td><%= f.radio_button :member, "four" %></td>
+              <td><%= f.radio_button :member, "five" %></td>
+              <td><%= f.radio_button :member, "six" %></td>
+              <td><%= f.radio_button :member, "seven_or_more" %></td>
+              <td><%= f.radio_button :member, "boys" %></td>
+              <td><%= f.radio_button :member, "girls" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :difficulty, "難易度" %></td>
+              <td><%= f.radio_button :difficulty, "introduction" %></td>
+              <td><%= f.radio_button :difficulty, "biginner" %></td>
+              <td><%= f.radio_button :difficulty, "intermediate" %></td>
+              <td><%= f.radio_button :difficulty, "advanced" %></td>
+              <td><%= f.radio_button :difficulty, "superlative" %></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="flex align-center pl5 btn_submit btn_delete">
+          <%= f.submit "変更を保存" %>
+        </div>
+      </div>
+    <% end %>
+
+</section>
