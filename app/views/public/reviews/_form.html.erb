@@ -1,0 +1,26 @@
+<section class="review_new">
+  <p class="is-size-4 mb-3">レビューを書く</p>
+
+  <div class="star-box mt-3">
+    <%= form_with model: review, url: score_reviews_path(score), local: true, do |f| %>
+      <div class="main-star">
+        <div class="stars mb-3">
+          <span class="fa fa-star-o" id="star"></span>
+          <span class="fa fa-star-o" id="star"></span>
+          <span class="fa fa-star-o" id="star"></span>
+          <span class="fa fa-star-o" id="star"></span>
+          <span class="fa fa-star-o" id="star"></span>
+        </div>
+        <div class="ml-3 star-value-display">
+          <span id="star-value-display">0</span>/5
+        </div>
+      </div>
+      <%= f.hidden_field :score_id, value: score.id %>
+      <%= f.hidde_field :star, id: "star-value" %>
+      <%= f.text_field :title %>
+      <%= f.text_area :body %>
+      <%= f.submit "投稿", class: "button mt-3" %>
+      <%= link_to "他のレビューを見る", score_reviews_path(score), class: "btn light ml-3 mt-3" %>
+    <% end %>
+  </div>
+</section>
