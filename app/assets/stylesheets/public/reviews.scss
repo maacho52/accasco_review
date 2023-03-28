@@ -1,3 +1,22 @@
 // Place all the styles related to the public/reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+ *{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+ }
+
+ .star-box .stars .fa {
+   font-size: 30px;
+   color: #fc0;
+   cursor :pointer;
+ }
+
+ .main-star {
+   display: flex;
+ }
+
+ .star-value-display {
+   font-size: 20px;
+ }
