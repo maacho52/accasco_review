@@ -32,6 +32,7 @@ class Public::ScoresController < ApplicationController
 
   def show
     @score = Score.find(params[:id])
+    @review = Review.new
   end
 
   private
