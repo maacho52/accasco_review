@@ -1,6 +1,17 @@
 <section class="review_new">
   <p class="is-size-4 mb-3">レビューを書く</p>
-
+  
+  <% if review.errors.any? %>
+    <div class="notification is-danger">
+      <h4><%= review.errors.count %>件のエラーがあります。</h4>
+      <ul>
+        <% review.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>  
+      </ul>
+    </div>
+  <% end %>
+  
   <div class="star-box mt-3">
     <%= form_with model: review, url: score_reviews_path(score), local: true, do |f| %>
       <div class="main-star">
