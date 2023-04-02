@@ -33,6 +33,8 @@ class Public::ScoresController < ApplicationController
   def show
     @score = Score.find(params[:id])
     @review = Review.new
+    @reviews = @score.reviews
+    #レビュー全件表示
   end
 
   private
