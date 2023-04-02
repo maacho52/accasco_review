@@ -1,5 +1,11 @@
 class Public::ReviewsController < ApplicationController
 
+  def show
+    @score = Score.find(params[:score_id])
+    @review = @score.review
+    @review.user_id = current_user.id
+  end
+
   def create
     @review = Review.new(review_params)
     @review.user_id = current_user.id
@@ -12,7 +18,9 @@ class Public::ReviewsController < ApplicationController
   end
 
   private
-    def review_params
-      params.require(:review).permit(:score_id, :title, :body, :star)
-    end
+
+  def review_params
+    params.require(:review).permit(:score_id, :title, :body, :star)
+  end
+
 end
