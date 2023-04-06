@@ -17,7 +17,7 @@
           </tr>
           <tr>
             <td>楽譜購入サイト</td>
-            <td><%= @score.@site.name %></td>
+            <td><%= @site.name %></td>
           </tr>
           <tr>
             <td>グループ構成人数</td>
@@ -29,13 +29,17 @@
           </tr>
           <tr>
             <td>アレンジ内容</td>
-            <td><%= @score.@arrange.body %></td>
+            <td>
+              <% @score_arranges.each do |arrange| %>
+                <%= arrange.name%><%="(#{arrange.scores.count})" %>
+              <% end %>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-  
+
   <div class="row">
     <%= render 'reviews/form', review: @review, score: @score %>
   </div>
