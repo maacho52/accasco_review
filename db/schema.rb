@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_28_082505) do
+ActiveRecord::Schema.define(version: 2023_04_06_105250) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 2023_03_28_082505) do
     t.string "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "arranges_tags", force: :cascade do |t|
+    t.integer "score_id", null: false
+    t.integer "arrange_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["arrange_id"], name: "index_arranges_tags_on_arrange_id"
+    t.index ["score_id"], name: "index_arranges_tags_on_score_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -83,4 +92,6 @@ ActiveRecord::Schema.define(version: 2023_03_28_082505) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "arranges_tags", "arranges"
+  add_foreign_key "arranges_tags", "scores"
 end
