@@ -16,6 +16,16 @@ class Public::ReviewsController < ApplicationController
       render "score/show"
     end
   end
+  
+  def edit
+    @review = Review.find(params[:id])
+    
+  end
+  
+  def index
+    @score = Score.find(params[:score_id])
+    @reviews = current_user.reviews
+  end
 
   private
 
