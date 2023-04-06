@@ -10,6 +10,7 @@ class Public::ScoresController < ApplicationController
     @all_scores_count = all_scores.count
     #@user = current_user
     #@user.scores = current_user.scores.all
+    @arrange_list = Arrange.all
   end
 
   def create
@@ -59,7 +60,7 @@ class Public::ScoresController < ApplicationController
     @reviews = @score.reviews
     #レビュー全件表示
     @site = @score.site
-    @arranges = @score.arranges
+    @score_arranges = @score.arranges
   end
 
   private
