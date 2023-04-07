@@ -3,14 +3,14 @@
     <h3 class="review-show-heading">レビュー詳細</h3>
     <div  class="row">
       <div class="col">
-        <%= image_tag @user.get_image, class: "user-profile-image" %><br>
-        <%= @user.nickname %>
+        <%= image_tag @score.user.get_image, class: "user-profile-image" %><br>
+        <%= @score.user.nickname %>
       </div>
     </div>
 
     <div class="row">
       <div class="col">
-        <tale class="review-show">
+        <table class="review-show">
           <thead>
 
           </thead>
@@ -33,12 +33,27 @@
               </td>
             </tr>
           </tbody>
-        </tale>
-        <div class="button d-flex justify-content-center">
-          <%= link_to "編集する", edit_score_review_path(@review), class: "btn btn-sm btn-success" %>
-        </div>
-
+        </table>
+        <% if @user.id == current_user.id %>
+          <div class="button d-flex justify-content-center">
+            <%= link_to "編集する", edit_score_review_path(@review), class: "btn btn-sm btn-success" %>
+          </div>
+        <% end %>
       </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <%=  image_tag @user.get_image, class: "currentuser-profile-image" %>
+      </div>
+      <div class="col">
+        <%=  form_with(model:[@review, @comment]) do |f| %>
+          <%= f.text_field :body %>
+          <div class="d-flex justify-content-center">
+            <%= f.submit "コメントを投稿する", class: "btn btn-sm btn-success" %>
+          </div>
+        <% end %>
+       </div>
     </div>
   </div>
 </section>
