@@ -4,6 +4,7 @@ class Public::ReviewsController < ApplicationController
     @score = Score.find(params[:score_id])
     @review = @score.review
     @review.user_id = current_user.id
+    @user = current_user
     @comments = @review.comments
     @comment = current_user.comments.new
   end
