@@ -4,11 +4,12 @@ class Public::ReviewsController < ApplicationController
     @score = Score.find(params[:score_id])
     @review = @score.review
     @review.user_id = current_user.id
+    @comments = @review.comments
+    @comment = current_user.comments.new
   end
 
   def create
-    @review = Review.new(review_params)
-    @review.user_id = current_user.id
+    @review = current_user.reviews.new(review_params)
     if @review.save
       redirect_to score_path(@review.score)
     else
