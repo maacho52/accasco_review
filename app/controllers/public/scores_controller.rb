@@ -11,6 +11,17 @@ class Public::ScoresController < ApplicationController
     #@user = current_user
     #@user.scores = current_user.scores.all
     @arrange_list = Arrange.all
+    
+    if params[:search].present?
+      scores = Score.scores_serach(params[:search])
+    elsif params[:arrange_id].present?
+      @arrange = arrange.find(params[:arrange_id])
+      scores = @arrange.scores.order(created_at: :desc)
+    else
+      scores = Score.all.order(created_at: :desc)
+    end
+    
+
   end
 
   def create
@@ -26,27 +37,6 @@ class Public::ScoresController < ApplicationController
       @scores = Score.all
       render :index
     end
-
-  end
-  
-  def save_arrange(sent_arrranges)
-  # アレンジが存在していれば、アレンジの名前を配列として全て取得
-    current_arranges = self.arranges.pluck(:name) unless self.arranges.nil?
-    # 現在取得したアレンジから送られてきたアレンジを除いてoldarrangeとする
-    old_arranges = current_arranges - sent_arranges
-    # 送信されてきたアレンジから現在存在するアレンジを除いたアレンジをnewとする
-    new_arranges = sent_arranges - current_arranges
-
-     # 古いアレンジを消す
-    old_arranges.each do |old|
-      self.arranges.delete　Arrange.find_by(name: old)
-    end
-
-    # 新しいアレンジを保存
-    new_arranges.each do |new|
-      new_arrange_tag = Arrange.find_or_create_by(name: new)
-      self.arranges << new_arrange_tag
-    end
   end
 
   def edit
@@ -61,6 +51,20 @@ class Public::ScoresController < ApplicationController
     #レビュー全件表示
     @site = @score.site
     @score_arranges = @score.arranges
+  end
+  
+  def update
+    # scoreのid持ってくる
+    @socre = Score.find(params[:id])
+    # 入力されたタグを受け取る
+    arrange_list = params[:score][:name].split(',')
+    # もしscoreの情報が更新されたら
+    if  @score.update(score_params)
+        @score.save_arrange(arrange_list)
+        redirect_to score_path(@score.id), notice: '更新完了しました:)'
+    else
+      render :edit
+    end
   end
 
   private
