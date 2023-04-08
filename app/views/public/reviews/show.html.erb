@@ -41,6 +41,16 @@
         <% end %>
       </div>
     </div>
+    
+    <div class="row">
+      <div class="col">
+        <h3 class="comments-index-heading">コメント一覧</h3>
+        <% @comments.each do |comment| %>
+          <%= image_tag comment.user.get_image %>
+          <%= comment.body %>
+        <% end %>
+      </div>
+    </div>
 
     <div class="row">
       <div class="col">
