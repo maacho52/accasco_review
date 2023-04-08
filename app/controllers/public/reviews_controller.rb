@@ -5,7 +5,7 @@ class Public::ReviewsController < ApplicationController
     @review = @score.review
     @review.user_id = current_user.id
     @user = current_user
-    @comments = @review.comments
+    @comments = @review.comments.all
     @comment = current_user.comments.new
   end
 
@@ -18,12 +18,12 @@ class Public::ReviewsController < ApplicationController
       render "score/show"
     end
   end
-  
+
   def edit
     @review = Review.find(params[:id])
-    
+
   end
-  
+
   def index
     @score = Score.find(params[:score_id])
     @reviews = current_user.reviews
