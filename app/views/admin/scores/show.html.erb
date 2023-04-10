@@ -1,0 +1,42 @@
+<section class="score-show">
+  <h3 class="section-ttl">楽譜詳細</h3>
+  <div class="row">
+    <div class="col">
+      <%= image_tag @score.get_image, class: "score_image" %>
+    </div>
+    <div class="col">
+      <table class="score_show">
+        <thead>
+          <th></th>
+          <th></th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="font-weight-bold"><%= @score.artist %> / <%= @score.name %></td>
+          </tr>
+          <tr>
+            <td>楽譜購入サイト</td>
+            <td><%= @site.name %></td>
+          </tr>
+          <tr>
+            <td>グループ構成人数</td>
+            <td><%= @score.member_i18n %></td>
+          </tr>
+          <tr>
+            <td>難易度</td>
+            <td><%= @score.difficulty_i18n %></td>
+          </tr>
+          <tr>
+            <td>アレンジ内容</td>
+            <td>
+              <% @score_arranges.each do |arrange| %>
+                <%= arrange.name%><%="(#{arrange.scores.count})" %>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
