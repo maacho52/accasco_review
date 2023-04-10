@@ -26,7 +26,7 @@ class Public::ReviewsController < ApplicationController
 
   def index
     @score = Score.find(params[:score_id])
-    @reviews = current_user.reviews
+    @reviews = current_user.reviews.find_by(score_id: @score.id)
   end
 
   private
