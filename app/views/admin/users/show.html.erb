@@ -1,3 +1,50 @@
 <section class="user-show">
-  
+  <div class="container">
+      <div class="row">
+          <div class="col">
+            <span class="user-heading"><strong>ユーザー情報編集</strong></span>
+            <%= @user.nickname %><br>
+            <%= @user.id %>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col">
+            <table class="table table-borderd">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+                  
+              <tbody>
+                <tr>
+                  <th>メールアドレス</th>
+                  <td><%= @user.email%></td>
+                </tr>
+                <tr>
+                  <th>年齢</th>
+                  <td><%= @user.birthday %></td>
+                </tr>
+                <tr>
+                  <th>性別</th>
+                  <td><%= @user.sex_i18n %></td>
+                </tr>
+                <tr>
+                  <th>アカペラ歴</th>
+                  <td><%= @user.experiece %>年</td>
+                </tr>
+                <tr>
+                  <th>主な担当パート</th>
+                  <td><%= @user.part_i18n %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+  </div>
+  <div class="d-flex justify-contnet-center">
+      <%= link_to "変更を保存", edit_admin_user_path, class: "btn btn-sm btn-success" %>
+  </div>
 </section>
