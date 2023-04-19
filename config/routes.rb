@@ -47,9 +47,11 @@ Rails.application.routes.draw do
     resources :sites, only: [:index, :create, :update, :show]
     resources :arranges, only: [:index, :create, :update, :show]
     resources :users,  only: [:index, :show, :edit, :update]
-    resources :scores, only: [:index, :show, :edit, :update]
-    resources :users, only: [:index, :show, :edit, :update]
-    resources :comments, only: [:index, :show, :destroy]
+    resources :scores, only: [:index, :show, :edit, :update] do
+      resources :reviews, only: [:index, :show, :edit] do
+        resources :comments, only: [:index, :show, :destroy]
+      end
+    end
   end
 
 end
