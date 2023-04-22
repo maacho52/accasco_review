@@ -1,59 +1,60 @@
-<%= form_with model:score, url: url do |f| %>
-  <%= render 'layouts/error_messages', resource: score %>
-  <div class="flex">
-    <div>
-      <%= f.label :image, "画像" %>
-      <div class="image_field">
-        <%= image_tag (score.image.attached? ? score.image : 'no-image.png'), id: "img_prev", class: "admin_score_image" %>
-        <span class="btn btn-file btn-info"><%= f.file_field :image,  accept:'image/*' %>画像選択</span>
-        <p>選択するとプレビューされます。<br>画像未選択のままだと、<br>「画像準備中」になります。</p>
-      </div>
-    </div>
-    <table class="admin_score_info score_form">
-      <thead>
-        <tr>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= f.label :name, "曲名" %></td>
-          <td><%= f.text_field :name %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :artist, "歌手" %></td>
-          <td><%= f.text_field :artist %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :site_id, "楽譜購入サイト" %></td>
-          <td class="select_field"><%= f.collection_select :sites_id, Sites.all, :id, :name %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :member, "グループ構成人数" %></td>
-          <td><%= f.radio_button :member, "three" %></td>
-          <td><%= f.radio_button :member, "four" %></td>
-          <td><%= f.radio_button :member, "five" %></td>
-          <td><%= f.radio_button :member, "six" %></td>
-          <td><%= f.radio_button :member, "seven_or_more" %></td>
-          <td><%= f.radio_button :member, "boys" %></td>
-          <td><%= f.radio_button :member, "girls" %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :difficulty, "難易度" %></td>
-          <td><%= f.radio_button :difficulty, "introduction" %></td>
-          <td><%= f.radio_button :difficulty, "biginner" %></td>
-          <td><%= f.radio_button :difficulty, "intermediate" %></td>
-          <td><%= f.radio_button :difficulty, "advanced" %></td>
-          <td><%= f.radio_button :difficulty, "superlative" %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :sales_status, "アレンジ内容" %></td>
-          <td class="select_field"><%= f.collection_select :arranges_id, Arranges.all, :id, :name %></td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="flex align-center pl5">
+    <div class="d-flex justify-content-center">  
+      <%= form_with model: @score, url: scores_path do |f| %>
+        <table class="admin_score_info score_form">
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th><%= f.label :image, "画像" %></th>
+              <td class="btn btn-file btn-info"><%= f.file_field :image,  accept: 'image/*' %>画像選択</td>
+            </tr>
+            <tr>
+              <th><%= f.label :name, "曲名" %></th>
+              <td><%= f.text_field :name %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :artist, "歌手" %></th>
+              <td><%= f.text_field :artist %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :site_id, "楽譜購入サイト" %></th>
+              <td class="select_field"><%= f.collection_select :sites_id, Site.all, :id, :name %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :member, "グループ構成人数" %></th>
+              <td>
+                <%= f.radio_button :member, Score.members.key(0) %><%= f.label :member, Score.members_i18n[:three], value: Score.members.key(0) %>
+                <%= f.radio_button :member, Score.members.key(1) %><%= f.label :member, Score.members_i18n[:four], value: Score.members.key(1) %>
+                <%= f.radio_button :member, Score.members.key(2) %><%= f.label :member, Score.members_i18n[:five], value: Score.members.key(2) %>
+                <%= f.radio_button :member, Score.members.key(3) %><%= f.label :member, Score.members_i18n[:six], value: Score.members.key(3) %>
+                <%= f.radio_button :member, Score.members.key(4) %><%= f.label :member, Score.members_i18n[:seven_or_more], value: Score.members.key(4) %>
+                <%= f.radio_button :member, Score.members.key(5) %><%= f.label :member, Score.members_i18n[:boys], value: Score.members.key(5) %>
+                <%= f.radio_button :member, Score.members.key(6) %><%= f.label :member, Score.members_i18n[:girls], value: Score.members.key(6) %>
+              </td>
+            </tr>
+            <tr>
+              <th><%= f.label :difficulty, "難易度" %></th>
+              <td>
+                <%= f.radio_button :difficulty, Score.difficulties.key(0) %><%= f.label :difficulty, Score.difficulties_i18n[:introduction], value: Score.difficulties.key(0) %>
+                <%= f.radio_button :difficulty, Score.difficulties.key(1) %><%= f.label :difficulty, Score.difficulties_i18n[:biginner], value: Score.difficulties.key(1) %>
+                <%= f.radio_button :difficulty, Score.difficulties.key(2) %><%= f.label :difficulty, Score.difficulties_i18n[:intermediate], value: Score.difficulties.key(2) %>
+                <%= f.radio_button :difficulty, Score.difficulties.key(3) %><%= f.label :difficulty, Score.difficulties_i18n[:advanced], value: Score.difficulties.key(3) %>
+                <%= f.radio_button :difficulty, Score.difficulties.key(4) %><%= f.label :difficulty, Score.difficulties_i18n[:superlative], value: Score.difficulties.key(4) %>
+              </td>
+            </tr>
+            <tr>
+              <th><%= f.label :sales_status, "アレンジ内容" %></th>
+              <td class="select_field"><%= f.collection_select :arranges_id, Arrange.all, :id, :name %></td>
+            </tr>
+          </tbody>
+        </table>
+    <div class="d-flex justify-content-center pl5">
       <%= f.submit "投稿", class: "btn btn-primary" %>
     </div>
   </div>
