@@ -1,0 +1,22 @@
+<section class="review-index">
+  <h3 class="section-ttl">レビュー一覧</h3>
+  <div class="container">
+    <div class="row">
+      <% @reviews.each do |review| %>
+        <div class="col">
+          <%= image_tag review.user.image %><br>
+          ID <%= link_to admin_user_path(review.user_id) do %>  
+            <%= review.user_id %>
+          <% end %>  
+        </div>
+        <div class="col">
+          <strong><%= review.score.name %> / <%= review.score.aritist %></strong><br>
+          <%= review.star %>
+          <%= link_to admin_score_review_path(:score_id) do %>
+            <%= review.body %>
+          <% end   
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

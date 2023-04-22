@@ -1,0 +1,27 @@
+<section class="admin-review-show">
+  <h3 class="section-ttl">レビュー詳細・編集</h3>
+  <div class="container">
+    <div class="row">
+        <% form_with model: [@score, @review, @comments] do |f| %>
+          <div class="col">
+            <%= image_tag @user.get_image, class: "user-image" %><br>
+            ID <%= @user.user_id %>
+          </div>
+          <div class="col">
+            <%= f.star %><br>
+            <strong class="text-primary">
+              <%= @review.body %>
+              <%= f.hidden_field :body, value: @review.body %>
+            </strong>
+          </div>
+          <%= link_to "レビューを削除", admin_score_review_path[:score_id], class:"btn btn-sm btn-danger" %>
+          <div class="comments">
+            <% @comments.each do |comment| %>
+              ID<%= comment.user_id %>
+              <%= comment.body %>
+              <%= link_to "コメントを削除する", admin_score_review_comment_path[:score_id][:review_id], class:"btn btn-sm btn-danger" %>
+            <% end %>
+          </div>
+    </div>
+  </div>
+</section>
