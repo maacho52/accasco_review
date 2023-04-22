@@ -39,6 +39,15 @@
       </table>
     </div>
   </div>
+  
+  <div class="row">
+    <% @reveiws.each do |review| %>
+      ID <%= review.user_id %>
+      <%= link_to score_review_path(:score_id) do %>
+        <%= review.body %>
+      <% end %>  
+    <% end %>
+  </div>
 
   <div class="row">
     <%= render 'reviews/form', review: @review, score: @score %>
