@@ -1,0 +1,16 @@
+<div class="container">
+  <h3>楽譜購入サイト編集</h3>
+  <div class="row">
+    <div class="col">
+      <%= form_with model: @site, url: admin_genre_path(@site.id), method: :patch do |f| %>
+        <label>楽譜購入サイト</label>
+        <span>
+          <%= f.text_field :name, autofocus: true %>
+        </span>
+        <span>
+          <%= f.submit '変更を保存', class: "btn btn-sm btn-success" %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+</div>

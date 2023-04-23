@@ -1,0 +1,16 @@
+<div class="container">
+  <h3>アレンジ内容編集</h3>
+  <div class="row">
+    <div class="col">
+      <%= form_with model: @arrange, url: admin_arrange_path(@arrange.id), method: :patch do |f| %>
+        <label>アレンジ内容</label>
+        <span>
+          <%= f.text_field :body, autofocus: true %>
+        </span>
+        <span>
+          <%= f.submit '変更を保存', class: "btn btn-sm btn-success" %>
+        </span>
+      <% end %>
+    </div>
+  </div>
+</div>
