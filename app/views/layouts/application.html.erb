@@ -20,7 +20,7 @@
           </li>
           <% if admin_signed_in? %>
             <li><%= link_to "楽譜一覧", admin_scores_path, class: "btn btn-sm btn-outline-danger" %></li>
-            <li><%= link_to "レビュー一覧", admin_score_review_path, class: "btn btn-sm btn-outline-danger" %></li>
+            <li><%= link_to "レビュー一覧", admin_score_reviews_path(:id, :score_id), class: "btn btn-sm btn-outline-danger" %></li>
             <li><%= link_to "ログアウト", destroy_admin_session_path, class: "btn btn-sm btn-outline-danger" %></li>
           <% elsif user_signed_in? %>
             <li class="text-center">
