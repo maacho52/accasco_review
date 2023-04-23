@@ -5,6 +5,7 @@
       <div class ="col">
         <div class="field">
           <%= form_with model: @site_new, url: admin_sites_path do |f| %>
+            <%= f.label :site, "楽譜購入サイト" %>
             <%= f.text_field :name %>
             <%= f.submit "新規登録", class: "btn btn-sm btn-success" %>
           <% end %>  
@@ -29,6 +30,7 @@
       <div class ="col">
         <div class="field">
           <%= form_with model: @arrange_new, url: admin_arranges_path do |f| %>
+            <%= f.label :arrange, "アレンジ内容" %>
             <%= f.text_field :body %>
             <%= f.submit "新規登録", class: "btn btn-sm btn-success" %>
           <% end %>  
