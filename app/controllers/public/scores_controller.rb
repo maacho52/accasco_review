@@ -74,6 +74,6 @@ class Public::ScoresController < ApplicationController
   private
 
   def score_params
-    params.require(:score).permit(:name, :artist, :member, :difficulty, :sites_id)
+    params.require(:score).permit(:name, :artist, :member, :difficulty, :sites_id, :arranges_id)
   end
 end
