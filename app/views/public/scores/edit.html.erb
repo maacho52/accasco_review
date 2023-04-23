@@ -46,7 +46,13 @@
             </tr>
             <tr>
               <th><%= f.label :sales_status, "アレンジ内容" %></th>
-              <td class="select_field"><%= f.collection_check_boxes(:arrange_ids, @score.arranges, :id, :body) %></td>
+              <td class="select_field">
+                <%= f.collection_check_boxes(:arrange_ids, @score.arranges, :id, :body) do |tag| %>
+                  <%= tag.label do %>
+                    <%= tag.check_box + tag.text %>
+                  <% end %>
+                <% end %>
+              </td>
             </tr>
           </tbody>
         </table>
