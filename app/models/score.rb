@@ -11,25 +11,25 @@ class Score < ApplicationRecord
   enum member: { three: 0, four: 1, five: 2, six: 3, seven_or_more: 4, boys: 5, girls: 6 }
   enum difficulty: { introduction: 0, biginner: 1, intermediate: 2, advanced: 3, superlative: 4 }
 
-  def save_arrange(sent_arrranges)
+  #def save_arrange(sent_arrranges)
   # アレンジが存在していれば、アレンジの名前を配列として全て取得
-    current_arranges = self.arranges.pluck(:name) unless self.arranges.nil?
+    #current_arranges = self.arranges.pluck(:name) unless self.arranges.nil?
     # 現在取得したアレンジから送られてきたアレンジを除いてoldarrangeとする
-    old_arranges = current_arranges - sent_arranges
+    #old_arranges = current_arranges - sent_arranges
     # 送信されてきたアレンジから現在存在するアレンジを除いたアレンジをnewとする
-    new_arranges = sent_arranges - current_arranges
+    #new_arranges = sent_arranges - current_arranges
 
      # 古いアレンジを消す
-    old_arranges.each do |old|
-      self.arranges.delete　Arrange.find_by(name: old)
-    end
+    #old_arranges.each do |old|
+      #self.arranges.delete　Arrange.find_by(name: old)
+    #end
 
     # 新しいアレンジを保存
-    new_arranges.each do |new|
-      new_arrange_tag = Arrange.find_or_create_by(name: new)
-      self.arranges << new_arrange_tag
-    end
-  end
+    #new_arranges.each do |new|
+      #new_arrange_tag = Arrange.find_or_create_by(name: new)
+      #self.arranges << new_arrange_tag
+    #end
+  #end
   
   def self.search(search)
     if search != ""

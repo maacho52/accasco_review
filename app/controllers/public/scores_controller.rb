@@ -32,9 +32,10 @@ class Public::ScoresController < ApplicationController
     @score = Score.new(score_params)
     @score.user_id = current_user.id
      # 受け取った値を,で区切って配列にする
-    arrange_list = params[:score][:name].split(',')
-    if @score.save
-      @post.save_tag(arrange_list)
+    #arrange_list = params[:score][:name].split(',')
+    #if @score.save
+      #@post.save_tag(arrange_list)
+    if @score.save  
       flash[:notice] = "楽譜を投稿しました"
       redirect_to score_path(@score.id)
     else
@@ -61,10 +62,10 @@ class Public::ScoresController < ApplicationController
     # scoreのid持ってくる
     @socre = Score.find(params[:id])
     # 入力されたタグを受け取る
-    arrange_list = params[:score][:name].split(',')
+    #arrange_list = params[:score][:name].split(',')
     # もしscoreの情報が更新されたら
     if  @score.update(score_params)
-        @score.save_arrange(arrange_list)
+        #@score.save_arrange(arrange_list)
         redirect_to score_path(@score.id), notice: '更新完了しました:)'
     else
       render :edit
