@@ -1,5 +1,5 @@
-    <div class="d-flex justify-content-center">  
-      <%= form_with model: @score, url: scores_path do |f| %>
+  <div class="d-flex justify-content-center">  
+    <%= form_with model: @score, url: scores_path do |f| %>
         <table class="admin_score_info score_form">
           <thead>
             <tr>
@@ -49,13 +49,20 @@
               </td>
             </tr>
             <tr>
-              <th><%= f.label :sales_status, "アレンジ内容" %></th>
-              <td class="select_field"><%= f.collection_select :arranges_id, Arrange.all, :id, :body %></td>
+              <th>アレンジ内容</th>
+              <td class="select_field">
+                <%= f.collection_check_boxes(:arrange_ids, Arrange.all, :id, :body) do |arrange| %>
+                  <%= arrange.label do %>
+                    <%= arrange.check_box %>
+                    <%= arrange.text %>
+                    <% end %>
+                <% end %>
+              </td>
             </tr>
           </tbody>
         </table>
-    <div class="d-flex justify-content-center pl5">
-      <%= f.submit "投稿", class: "btn btn-primary" %>
-    </div>
-  </div>
-<% end %>
+        <div class="d-flex justify-content-center pl5">
+          <%= f.submit "投稿", class: "btn btn-primary" %>
+        </div>
+    <% end %>
+  </div>  
