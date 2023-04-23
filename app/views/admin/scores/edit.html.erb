@@ -44,6 +44,10 @@
               <td><%= f.radio_button :difficulty, "advanced" %></td>
               <td><%= f.radio_button :difficulty, "superlative" %></td>
             </tr>
+            <tr>
+              <th><%= f.label :sales_status, "アレンジ内容" %></th>
+              <td class="select_field"><%= f.collection_check_boxes(:arrange_ids, @score.arranges, :id, :body) %></td>
+            </tr>
           </tbody>
         </table>
         <div class="flex align-center pl5 btn_submit btn_delete">
