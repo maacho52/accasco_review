@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2023_04_23_114708) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["arrange_id"], name: "index_arranges_tags_on_arrange_id"
+    t.index ["score_id", "arrange_id"], name: "index_arranges_tags_on_score_id_and_arrange_id", unique: true
     t.index ["score_id"], name: "index_arranges_tags_on_score_id"
   end
 

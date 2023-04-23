@@ -8,6 +8,6 @@ class CreateArrangesTags < ActiveRecord::Migration[6.1]
     end
 
     # 同じタグを２回保存するのは出来ないようになる
-    #add_index :arrange_tags, [:score_id, :arrange_id], unique: true
+    add_index :arranges_tags, [:score_id, :arrange_id], unique: true
   end
 end
