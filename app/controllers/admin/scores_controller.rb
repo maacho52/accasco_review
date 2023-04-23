@@ -17,6 +17,6 @@ class Admin::ScoresController < ApplicationController
   private
 
   def score_params
-    params.require(:score).permit(:name, :artist, :member, :difficulty, :user_id)
+    params.require(:score).permit(:name, :artist, :member, :difficulty, :user_id, arrange_ids: [])
   end
 end
