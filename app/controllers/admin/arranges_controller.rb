@@ -5,6 +5,12 @@ class Admin::ArrangesController < ApplicationController
     @arrange = Arrange.find(params[:id])
   end
   
+  def create
+    @arrange = Arrange.new(arrange_params)
+    @arrange.save
+    redirect_to admin_root_path
+  end  
+  
   def update
     @arrange = Arrange.find(params[:id])
     @arrange.update(arrange_params)
