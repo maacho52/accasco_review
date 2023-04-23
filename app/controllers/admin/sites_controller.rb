@@ -20,6 +20,6 @@ class Admin::SitesController < ApplicationController
   private
 
   def site_params
-    params.require(:site).permit(:name, :score_id)
+    params.require(:site).permit(:name)
   end
 end
