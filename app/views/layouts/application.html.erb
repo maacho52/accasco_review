@@ -15,27 +15,40 @@
     <header>
       <div class="header-content">
         <ul class="flex">
+           <li>
+            <h3><%= link_to("AccascoReview", root_path, class: 'text-light') %></h3>
+          </li>
           <% if admin_signed_in? %>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li><%= link_to "楽譜一覧", admin_scores_path, class: "btn btn-sm btn-outline-danger" %></li>
+            <li><%= link_to "レビュー一覧", admin_score_review_path, class: "btn btn-sm btn-outline-danger" %></li>
+            <li><%= link_to "ログアウト", destroy_admin_session_path, class: "btn btn-sm btn-outline-danger" %></li>
           <% elsif user_signed_in? %>
-            <li><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %></li>
-            <li></li>
-            <li></li>
+            <li class="text-center">
+              <%= form_with url: search_scores_path, local: true, method: :get, class: "rootpageSearchForm" do |f| %>
+                <%= f.text_field :keyword, placeholder: "キーワードを入力", id: 'Search_Form', class: "rootpageSearchForm__content" %>
+                <%= f.submit "検索", class: "rootpageSearchForm__bottum" %>
+              <% end %>
+            </li>
+            <li><%= link_to "マイページ", mypage_path, class: "btn btn-sm btn-outine-warning" %></li>
+            <li class="text-right"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-sm btn-outline-primary" %></li>
           <% else %>
-            <li></li>
-            <li></li>
-            <li></li>
-          <% end %>  
+            <li class="text-center">
+              <%= form_with url: search_scores_path, local: true, method: :get, class: "rootpageSearchForm" do |f| %>
+                <%= f.text_field :keyword, placeholder: "キーワードを入力", id: 'Search_Form', class: "rootpageSearchForm__content" %>
+                <%= f.submit "検索", class: "rootpageSearchForm__bottum" %>
+              <% end %>
+            </li>
+            <li class="text-right"><%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "btn btn-sm btn-outline-success" %></li>
+            <li class="text-right"><%= link_to 'ログイン', user_session_path, class: "btn btn-sm btn-outline-info"  %></li>
+            <li class="text-right"><%= link_to '新規登録', new_user_registration_path, class: "btn btn-sm btn-outline-primary" %></li>
+          <% end %>
         </ul>
       </div>
-      
+
     </header>
-    
+
     <main>
       <%= yield %>
-    </main>  
+    </main>
   </body>
 </html>
