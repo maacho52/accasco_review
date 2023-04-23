@@ -22,7 +22,7 @@
   margin: 0;
   box-sizing: border-box;
  }
- 
+
  body {
    min-height: 100vh;
    color: white;
@@ -34,4 +34,44 @@
  .user-login {
    width: 7em;
  }
- 
+
+header {
+ border-bottom: 5px dashed #ffa500;
+ margin-bottom: 2vw;
+ margin-top: 2vw;
+}
+
+ /* 検索窓 */
+ .rootpageSearchForm {
+  width: auto;
+  &__content {
+    width: 30vw;
+    height: 30px;
+    color: #000000;
+    border-radius: 5px;
+    border-color: #008bbb;
+    margin: 0;
+  }
+  &__bottum {
+    margin-left: 0.5vw;
+    height: 30px;
+    width: 130px;
+    border-radius: 20px;
+    background-color: #87cefa;
+    border: none;
+    box-shadow: 0 0 8px gray;
+    color: #ffffff;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+  .rootpageSearchForm__bottum:hover {
+    background-color: #00bfff;
+  }
+}
+
+/* ヘッダーのリスト */
+li {
+ display: inline-block;
+}

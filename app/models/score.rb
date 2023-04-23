@@ -31,5 +31,11 @@ class Score < ApplicationRecord
     end
   end
   
-  
+  def self.search(search)
+    if search != ""
+      Score.joins(:arrange, :site).where('artist LIKE(?) OR name LIKE(?) OR site.name LIKE(?) OR arrange.body', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+    else
+      Score.all
+    end
+  end
 end

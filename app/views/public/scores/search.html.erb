@@ -1,0 +1,13 @@
+<section class="search-result">  
+  <div class="container">
+    <h3 class="section-ttl">検索結果</h3>
+    <div class="row">
+      <% @scores.each do |score| %>
+        <%= image_tag score.get_image %>
+        <%= link_to score_path(score.id) do %>
+          <%= score.name %> / <%= score.artist %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</section>  

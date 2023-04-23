@@ -1,5 +1,9 @@
 class Public::ScoresController < ApplicationController
-
+  
+  def search
+    @scores = Score.search(params[:keyword]).order(created_at: :desc)
+  end
+  
   def new
     @user = current_user
     @score = Score.new
@@ -70,6 +74,6 @@ class Public::ScoresController < ApplicationController
   private
 
   def score_params
-    params.require(:score).permit(:name, :artist, :member, :difficulty)
+    params.require(:score).permit(:name, :artist, :member, :difficulty, :sites_id)
   end
 end
