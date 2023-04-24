@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_23_114708) do
+ActiveRecord::Schema.define(version: 2023_04_24_215152) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,20 +24,20 @@ ActiveRecord::Schema.define(version: 2023_04_23_114708) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "arranges", force: :cascade do |t|
-    t.string "body", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "arranges_tags", force: :cascade do |t|
+  create_table "arrange_tags", force: :cascade do |t|
     t.integer "score_id", null: false
     t.integer "arrange_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["arrange_id"], name: "index_arranges_tags_on_arrange_id"
-    t.index ["score_id", "arrange_id"], name: "index_arranges_tags_on_score_id_and_arrange_id", unique: true
-    t.index ["score_id"], name: "index_arranges_tags_on_score_id"
+    t.index ["arrange_id"], name: "index_arrange_tags_on_arrange_id"
+    t.index ["score_id", "arrange_id"], name: "index_arrange_tags_on_score_id_and_arrange_id", unique: true
+    t.index ["score_id"], name: "index_arrange_tags_on_score_id"
+  end
+
+  create_table "arranges", force: :cascade do |t|
+    t.string "body", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2023_04_23_114708) do
     t.string "difficulty", default: "0", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "site_id", null: false
   end
 
   create_table "sites", force: :cascade do |t|
@@ -93,6 +94,6 @@ ActiveRecord::Schema.define(version: 2023_04_23_114708) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "arranges_tags", "arranges"
-  add_foreign_key "arranges_tags", "scores"
+  add_foreign_key "arrange_tags", "arranges"
+  add_foreign_key "arrange_tags", "scores"
 end
