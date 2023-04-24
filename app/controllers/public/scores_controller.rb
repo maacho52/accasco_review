@@ -1,21 +1,21 @@
 class Public::ScoresController < ApplicationController
-  
+
   def search
     @scores = Score.search(params[:keyword]).order(created_at: :desc)
   end
-  
+
   def new
     @user = current_user
     @score = Score.new
   end
 
   def index
-    @scores = all_scores.page(params[:page]).per(12)
-    @all_scores_count = all_scores.count
+    @scores = Score.all.page(params[:page]).per(12)
+    @all_scores_count = Score.all.count
     #@user = current_user
     #@user.scores = current_user.scores.all
     @arrange_list = Arrange.all
-    
+
     if params[:search].present?
       scores = Score.scores_serach(params[:search])
     elsif params[:arrange_id].present?
@@ -24,7 +24,7 @@ class Public::ScoresController < ApplicationController
     else
       scores = Score.all.order(created_at: :desc)
     end
-    
+
 
   end
 
@@ -35,7 +35,7 @@ class Public::ScoresController < ApplicationController
     #arrange_list = params[:score][:name].split(',')
     #if @score.save
       #@post.save_tag(arrange_list)
-    if @score.save  
+    if @score.save
       flash[:notice] = "楽譜を投稿しました"
       redirect_to score_path(@score.id)
     else
@@ -57,7 +57,7 @@ class Public::ScoresController < ApplicationController
     @site = @score.site
     @score_arranges = @score.arranges
   end
-  
+
   def update
     # scoreのid持ってくる
     @socre = Score.find(params[:id])
@@ -75,6 +75,6 @@ class Public::ScoresController < ApplicationController
   private
 
   def score_params
-    params.require(:score).permit(:name, :artist, :member, :difficulty, :sites_id, arrange_ids: [])
+    params.require(:score).permit(:name, :artist, :member, :difficulty, :site_id, arrange_ids: [])
   end
 end
