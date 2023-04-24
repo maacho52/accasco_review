@@ -30,8 +30,8 @@
           <tr>
             <td>アレンジ内容</td>
             <td>
-              <% @score_arranges.each do |arrange| %>
-                <%= arrange.name%><%="(#{arrange.scores.count})" %>
+              <% @score.arranges.each do |arrange| %>
+                <%= arrange.body %>
               <% end %>
             </td>
           </tr>
