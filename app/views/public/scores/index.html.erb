@@ -5,11 +5,6 @@
     <% else %>
       <h3 class="section-ttl">楽譜一覧 (全<%= @all_scores_count %>件)</h3>
     <% end %>
-      <!--タグリスト-->
-    <% @arrange_list.each do |list|%>
-      <%= list.name %>
-      <%= "(#{list.posts.count})" %>
-    <% end %>
 
     <% if @scores.first %> <!-- @item.existsと同義、SQL1個分削減(?) -->
       <div class="scores">
@@ -18,6 +13,10 @@
             <%= image_tag score.get_image, format: "jpeg", fallback: "no-image.png" %>
             <h5><%= score.name %></h5>
             <p><%= score.artist %></p>
+          <% end %>
+          <!--タグの表示 -->
+          <% score.arranges.each do |arrange| %>
+            <%= arrange.body %>
           <% end %>
         <% end %>
       </div>
