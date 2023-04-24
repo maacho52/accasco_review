@@ -9,3 +9,13 @@ Admin.create!(
    email: 'admin@admin',
    password: 'testtest'
 )
+
+
+Arrange.create([
+    { body: 'ボイパあり' },
+    { body: 'ボイパなし'},
+    { body: 'リードが回る'},
+    { body: '転調あり'},
+    { body: 'ダブルリード'},
+    { body: 'その他'},
+    ])
