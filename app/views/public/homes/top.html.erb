@@ -31,7 +31,11 @@
             </tr>
             <tr>
               <th>アレンジ内容</th>
-              <td></td>
+              <td>
+                  <% @arranges.each do |arrange| %>
+                        <%= arrange.body %>
+                  <% end %>
+              </td>
             </tr>  
           </tbody>
           
