@@ -1,13 +1,29 @@
 <section class="search-result">  
-  <div class="container">
-    <h3 class="section-ttl">検索結果</h3>
-    <div class="row">
-      <% @scores.each do |score| %>
-        <%= image_tag score.get_image %>
-        <%= link_to score_path(score.id) do %>
-          <%= score.name %> / <%= score.artist %>
+  <h3 class="section-ttl">検索結果</h3>
+  <div class="content">
+    <% if params[:sites_id] %>
+      <h3 class="section-ttl">楽譜一覧 (全<%= @all_scores_count %>件)</h3>
+    <% else %>
+      <h3 class="section-ttl">楽譜一覧 (全<%= @all_scores_count %>件)</h3>
+    <% end %>
+
+    <% if @scores.first %> <!-- @item.existsと同義、SQL1個分削減(?) -->
+      <div class="scores">
+        <% @scores.each do |score| %>
+          <%= link_to score_path(score) do %>
+            <%= image_tag score.get_image, format: "jpeg", fallback: "no-image.png" %>
+            <h5><%= score.name %></h5>
+            <p><%= score.artist %></p>
+          <% end %>
+          <!--タグの表示 -->
+          <% score.arranges.each do |arrange| %>
+            <%= arrange.body %>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
+      </div>
+      <%= paginate @scores %>
+    <% else %>
+      <h4>対応する楽譜はありませんでした。</h4>
+    <% end %>
   </div>
 </section>  
