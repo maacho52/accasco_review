@@ -11,40 +11,53 @@
     
     <div class="row">
       <div class="col">
+      <%= form_with url: search_scores_path, local: true, method: :get do |f| %>
         <table>
           <tbody>
             <tr>
-              <th>歌手</th>
-              <td></td>
+              <th><%= f.label :artist, "歌手" %></th>
+              <td><%= f.text_field :artist %></td>
             </tr>
             <tr>
-              <th>曲名</th>
-              <td></td>
+              <th><%= f.label :name, "曲名" %></th>
+              <td><%= f.text_field :name %></td>
             </tr>
             <tr>
               <th>グループ構成人数</th>
-              <td></td>
+              <td>
+                <%= f.radio_button :member, Score.members.key(0) %><%= f.label :member, Score.members_i18n[:three], value: Score.members.key(0) %>
+                <%= f.radio_button :member, Score.members.key(1) %><%= f.label :member, Score.members_i18n[:four], value: Score.members.key(1) %>
+                <%= f.radio_button :member, Score.members.key(2) %><%= f.label :member, Score.members_i18n[:five], value: Score.members.key(2) %>
+                <%= f.radio_button :member, Score.members.key(3) %><%= f.label :member, Score.members_i18n[:six], value: Score.members.key(3) %>
+                <%= f.radio_button :member, Score.members.key(4) %><%= f.label :member, Score.members_i18n[:seven_or_more], value: Score.members.key(4) %>
+                <%= f.radio_button :member, Score.members.key(5) %><%= f.label :member, Score.members_i18n[:boys], value: Score.members.key(5) %>
+                <%= f.radio_button :member, Score.members.key(6) %><%= f.label :member, Score.members_i18n[:girls], value: Score.members.key(6) %>
+              </td>
             </tr>
             <tr>
               <th>難易度</th>
-              <td></td>
+              <td>
+                <%= f.radio_button :difficulty, Score.difficulties.key(0) %><%= f.label :difficulty, Score.difficulties_i18n[:introduction], value: Score.difficulties.key(0) %>
+                <%= f.radio_button :difficulty, Score.difficulties.key(1) %><%= f.label :difficulty, Score.difficulties_i18n[:biginner], value: Score.difficulties.key(1) %>
+                <%= f.radio_button :difficulty, Score.difficulties.key(2) %><%= f.label :difficulty, Score.difficulties_i18n[:intermediate], value: Score.difficulties.key(2) %>
+                <%= f.radio_button :difficulty, Score.difficulties.key(3) %><%= f.label :difficulty, Score.difficulties_i18n[:advanced], value: Score.difficulties.key(3) %>
+                <%= f.radio_button :difficulty, Score.difficulties.key(4) %><%= f.label :difficulty, Score.difficulties_i18n[:superlative], value: Score.difficulties.key(4) %>
+              </td>
             </tr>
             <tr>
               <th>アレンジ内容</th>
               <td>
-                  <% @arranges.each do |arrange| %>
-                        <%= arrange.body %>
-                  <% end %>
+                <%= f.collection_check_boxes :arrange_ids, Arrange.all, :id, :body do |b| %>
+      	          <%= b.check_box %>
+      	          <%= b.label %>
+                <% end %>
+                <%= button_tag type: "submit", class: "border rounded-pill shadow-sm search-btn" do %>
+      	          <i class="fas fa-search"></i>
+                <% end %>
               </td>
-            </tr>  
-          </tbody>
-          
-          <tbody>
-            <tr>
-              
-            </tr>
           </tbody>
         </table>
+      <% end %>
       </div>
     </div>
   </div>
