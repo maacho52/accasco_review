@@ -26,7 +26,11 @@
 				</tr>
 				<tr>
 					<th><%= f.label :sex, "性別" %></th>
-					<td><%= f.text_field :sex, autocomplete: "sex", :placehodler => "#{@user.sex_i18n}" %></td>
+					<td><%#= f.text_field :sex, autocomplete: "sex", :placehodler => "#{@user.sex_i18n}" %>
+					    <%= f.radio_button :sex, "man" %> <%= f.label :sex_man, "男性" %>
+              <%= f.radio_button :sex, "woman" %> <%=f.label :sex_woman, "女性" %>
+              <%= f.radio_button :sex, "another" %> <%= f.label :sex_another, "その他" %>
+					</td>
 				</tr>
 				<tr>
 					<td><%= f.label :experience, "アカペラ歴" %></td>
@@ -35,15 +39,18 @@
 				<tr>
 					<td><%= f.label :part, "主な担当パート" %></td>
 					<td colspan="2">
-						<%= f.collection_check_boxes :part, User.parts, :first, :first do |s| %>
-						  <%= s.check_box :checked: @user.parts.nil? || @user.parts.include?(s.value) %>
-						  <%= s.label "parts.#{s.text}"%>
-						<% end %>  
-						<%= f.check_box :part, id: :users_part, checked:true, :placeholder =>"#{@user.part_i18n}", class: "part" %></td>
+            <%= f.radio_button :part, "lead" %><%= f.label :part_lead, "Lead" %>
+            <%= f.radio_button :part, "top" %><%= f.label :part_top, "Top" %>
+            <%= f.radio_button :part, "chorus2" %><%= f.label :part_chorus2, "2nd" %>
+            <%= f.radio_button :part,  "chorus3" %><%= f.label :part_chorus3, "3rd" %>
+            <%= f.radio_button :part,  "chorus4" %><%= f.label :part_chorus4, "4th" %>
+            <%= f.radio_button :part,  "bass" %><%= f.label :part_bass, "Bass" %>
+            <%= f.radio_button :part, "voicepercussion" %><%= f.label :part_voicepercussion, "VoicePercussion" %>
+           </td>
 				</tr>
 				<tr>
 					<td colspan="2"><%= f.submit "変更を保存", class: "btn btn-primary ml2" %></td>
-					<td><%= link_to "退会する", withdraw_users_path, method: :patch, class: "btn btn-danger" %></td>
+					<td><%= link_to "退会する", confirm_subscribe_path, method: :get, class: "btn btn-danger" %></td>
 				</tr>
 			</tbody>
 		</table>
