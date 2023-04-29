@@ -7,6 +7,16 @@ class Public::UsersController < ApplicationController
   def edit
     @user = current_user
   end
+  
+  def score_index
+    @user = current_user
+    @scores = @user.scores
+  end
+  
+  def review_index
+    @user = current_user
+    @reviews = @user.reviews
+  end
 
   private
 

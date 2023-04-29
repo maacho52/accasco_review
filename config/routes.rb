@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     put 'users/information' => 'users#update'
     get 'users/unsubscribe' => 'users#unsubscribe', as: 'confirm_subscribe'
     patch 'users/withdraw' => 'users#withdraw', as: 'withdraw_users'
+    get 'users/scores' => 'users#scores_index', as: 'user_scores'
+    get 'users/review' => 'users#reviews_index', as: 'user_reviews'
     #post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
 
     resources :scores do
