@@ -47,13 +47,13 @@
           <tr>
             <td>担当パート</td>
             <td>
-              <%= f.check_box :part, {multiple: true}, "lead", nil %>Lead
-              <%= f.check_box :part, {multiple: true}, "top", nil %>Top
-              <%= f.check_box :part, {multiple: true}, "chorus2", nil %>2nd
-              <%= f.check_box :part, {multiple: true}, "chorus3", nil %>3rd
-              <%= f.check_box :part, {multiple: true}, "chorus4", nil %>4th
-              <%= f.check_box :part, {multiple: true}, "bass", nil %>Bass
-              <%= f.check_box :part, {multiple: true}, "voicepercussion", nil %>VoicePercussion
+              <%= f.radio_button :part, "lead" %><%= f.label :part_lead, "Lead" %>
+              <%= f.radio_button :part, "top" %><%= f.label :part_top, "Top" %>
+              <%= f.radio_button :part, "chorus2" %><%= f.label :part_chorus2, "2nd" %>
+              <%= f.radio_button :part,  "chorus3" %><%= f.label :part_chorus3, "3rd" %>
+              <%= f.radio_button :part,  "chorus4" %><%= f.label :part_chorus4, "4th" %>
+              <%= f.radio_button :part,  "bass" %><%= f.label :part_bass, "Bass" %>
+              <%= f.radio_button :part, "voicepercussion" %><%= f.label :part_voicepercussion, "VoicePercussion" %>
             </td>
           </tr>
           <tr>
