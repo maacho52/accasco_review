@@ -20,6 +20,17 @@ class Public::UsersController < ApplicationController
     @reviews = @user.reveiws.page(params[:page]).per(12)
   end
 
+  def confirm
+    @user = current_user
+  end
+
+  def withdraw
+    @user = current_user
+    @user.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
+  end
+
   private
 
   def user_params
