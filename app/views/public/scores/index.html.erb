@@ -5,8 +5,6 @@
     <% else %>
       <h3 class="section-ttl">楽譜一覧 (全<%= @all_scores_count %>件)</h3>
     <% end %>
-
-    <% if @scores.first %> <!-- @item.existsと同義、SQL1個分削減(?) -->
       <div class="scores">
         <% @scores.each do |score| %>
           <%= link_to score_path(score) do %>
@@ -21,8 +19,5 @@
         <% end %>
       </div>
       <%= paginate @scores %>
-    <% else %>
-      <h4>対応する楽譜はありませんでした。</h4>
-    <% end %>
   </div>
 </section>
