@@ -52,7 +52,7 @@ class Public::ScoresController < ApplicationController
       flash[:notice] = "楽譜を投稿しました"
       redirect_to score_path(@score.id)
     else
-      @scores = Score.all
+      @scores = Score.all.page(params[:page]).per(12)
       render :index
     end
   end
@@ -88,6 +88,6 @@ class Public::ScoresController < ApplicationController
   private
 
   def score_params
-    params.require(:score).permit(:name, :artist, :member, :difficulty, :site_id, arrange_ids: [])
+    params.require(:score).permit(:user_id,:name, :artist, :member, :difficulty, :site_id, arrange_ids: [])
   end
 end
