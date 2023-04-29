@@ -12,6 +12,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
+    #byebug
     super
   end
 
@@ -64,4 +65,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :encrypted_password, :nickname, :sex, :part, :birthday, :experience])
+  end
 end
