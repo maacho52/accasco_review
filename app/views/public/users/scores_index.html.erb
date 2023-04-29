@@ -1,0 +1,23 @@
+<section class="wrapper flex">
+  <div class="content">
+      <h3 class="section-ttl">楽譜投稿履歴一覧</h3>
+      <div class="scores">
+        <% @scores.each do |score| %>
+          <div class="col">
+            <%= link_to score_path(score) do %>
+              <%= image_tag score.get_image, format: "jpeg", fallback: "no-image.png" %>
+              <h5><%= score.name %></h5>
+              <p><%= score.artist %></p>
+            <% end %>
+          </div>
+          <div class="col tag-list">
+            <!--タグの表示 -->
+            <% score.arranges.each do |arrange| %>
+              <%= arrange.body %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <%= paginate @scores %>
+  </div>
+</section>

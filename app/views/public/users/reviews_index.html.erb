@@ -1,0 +1,21 @@
+<section class="wrapper flex">
+  <div class="content">
+      <h3 class="section-ttl">楽譜投稿履歴一覧</h3>
+      <div class="reviews">
+        <% @reviews.each do |review| %>
+          <div class="score">
+            <%= link_to score_path(score) do %>
+              <h5><%= review.score.name %></h5>
+              <p><%= review.score.artist %></p>
+            <% end %>
+          </div>
+          <div class="review">
+            <%= review.star %>
+            <%= review.title %><br>
+            <%= review.body %>
+          </div>
+        <% end %>
+      </div>
+      <%= paginate @reviews %>
+  </div>
+</section>
