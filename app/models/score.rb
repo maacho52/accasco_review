@@ -4,6 +4,8 @@ class Score < ApplicationRecord
   belongs_to :user
   belongs_to :site
 
+  has_one_attached :image
+
     #arrange_tagのリレーション記載
   has_many :arrange_tags, dependent: :destroy
   has_many :arrange, through: :arrange_tags
@@ -30,7 +32,7 @@ class Score < ApplicationRecord
       #self.arranges << new_arrange_tag
     #end
   #end
-  
+
   def self.search(search)
     if search != ""
       Score.joins(:arrange, :site).where('artist LIKE(?) OR name LIKE(?) OR site.name LIKE(?) OR arrange.body', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
