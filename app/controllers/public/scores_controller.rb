@@ -2,7 +2,7 @@ class Public::ScoresController < ApplicationController
 
   def search
     @scores = Score.search(params[:keyword]).order(created_at: :desc)
-    
+
   #タグ検索
     @arrange_ids = params[:arrange_ids]&.select(&:present?)
     if @arrange_ids.present?
@@ -12,7 +12,7 @@ class Public::ScoresController < ApplicationController
       end
       @scores = @scores.joins(:arrange_tags).where(arrange_tags: {arrange_id: @arrange_ids}).group("scores.id").having("count(*) = #{@arrange_ids.length}")
     end
-    
+
     # 検索結果件数
     @scores_count = @scores
   end
@@ -88,6 +88,6 @@ class Public::ScoresController < ApplicationController
   private
 
   def score_params
-    params.require(:score).permit(:user_id,:name, :artist, :member, :difficulty, :site_id, arrange_ids: [])
+    params.require(:score).permit(:user_id, :name, :artist, :member, :difficulty, :site_id, :image, arrange_ids: [])
   end
 end
