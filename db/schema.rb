@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_07_044353) do
+ActiveRecord::Schema.define(version: 2023_05_08_123156) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,16 +52,6 @@ ActiveRecord::Schema.define(version: 2023_05_07_044353) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "arrange_tags", force: :cascade do |t|
-    t.integer "score_id", null: false
-    t.integer "arrange_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["arrange_id"], name: "index_arrange_tags_on_arrange_id"
-    t.index ["score_id", "arrange_id"], name: "index_arrange_tags_on_score_id_and_arrange_id", unique: true
-    t.index ["score_id"], name: "index_arrange_tags_on_score_id"
-  end
-
   create_table "arranges", force: :cascade do |t|
     t.string "body", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -83,19 +73,25 @@ ActiveRecord::Schema.define(version: 2023_05_07_044353) do
     t.string "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.float "all_rating", default: 0.0, null: false
-    t.float "rating1", default: 0.0, null: false
-    t.float "rating2", default: 0.0, null: false
-    t.float "rating3", default: 0.0, null: false
-    t.float "rating4", default: 0.0, null: false
+    t.integer "star", null: false
+  end
+
+  create_table "score_arranges", force: :cascade do |t|
+    t.integer "score_id", null: false
+    t.integer "arrange_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["arrange_id"], name: "index_score_arranges_on_arrange_id"
+    t.index ["score_id", "arrange_id"], name: "index_score_arranges_on_score_id_and_arrange_id", unique: true
+    t.index ["score_id"], name: "index_score_arranges_on_score_id"
   end
 
   create_table "scores", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "name", null: false
     t.string "artist", null: false
-    t.string "member", default: "0", null: false
-    t.string "difficulty", default: "0", null: false
+    t.integer "member", default: 0, null: false
+    t.integer "difficulty", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "site_id", null: false
@@ -128,6 +124,6 @@ ActiveRecord::Schema.define(version: 2023_05_07_044353) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "arrange_tags", "arranges"
-  add_foreign_key "arrange_tags", "scores"
+  add_foreign_key "score_arranges", "arranges"
+  add_foreign_key "score_arranges", "scores"
 end
