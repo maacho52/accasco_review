@@ -17,9 +17,15 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-require("jquery")
-window.$ = window.jQuery = require('jquery');
-require('packs/raty')
+// require("jquery")
+// window.$ = window.jQuery = require('jquery');
+
+import Raty from "./raty.js"
+window.raty = function(elem,opt){
+    var raty =  new Raty(elem,opt)
+    raty.init();
+    return raty;
+}
 
 //= require jquery3
 //= require jquery_ujs
