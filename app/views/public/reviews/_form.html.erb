@@ -1,39 +1,53 @@
-<section class="review_new">
-  <p class="is-size-4 mb-3">レビューを書く</p>
-  
+<section class="review_new container">
+  <p class="is-size-4 mb-3 font-weight-bold">レビューを書く</p>
+
   <% if review.errors.any? %>
     <div class="notification is-danger">
       <h4><%= review.errors.count %>件のエラーがあります。</h4>
       <ul>
         <% review.errors.full_messages.each do |message| %>
           <li><%= message %></li>
-        <% end %>  
+        <% end %>
       </ul>
     </div>
   <% end %>
-  
-  <div class="star-box mt-3">
-    <%= form_with model: review, url: score_reviews_path(score), local: true, do |f| %>
-      <div class="main-star">
-        <div class="stars mb-3">
-          <span class="fa fa-star-o" id="star"></span>
-          <span class="fa fa-star-o" id="star"></span>
-          <span class="fa fa-star-o" id="star"></span>
-          <span class="fa fa-star-o" id="star"></span>
-          <span class="fa fa-star-o" id="star"></span>
-        </div>
-        <div class="ml-3 star-value-display">
-          <span id="star-value-display">0</span>/5
-        </div>
+
+    <%= form_with model: review, url: score_reviews_path(score), local: true do |f| %>
+      <div id="star">
+        <%= f.label :star,'評価', class:'col-md-3 col-form-label' %>
+        <%= f.hidden_field :star, id: :review_star %>
       </div>
-      <%= f.hidden_field :score_id, value: score.id %>
-      <%= f.hidde_field :star, id: "star-value" %>
-      <%= f.text_field :title %>
-      <%= f.text_area :body %>
-      <%= f.submit "投稿", class: "button mt-3" %>
+        <%= f.hidden_field :score_id, value: score.id %>
+      <table>
+        <thead></thead>
+        <tbody>
+          <tr>
+            <th><%= f.label :title, "レビュータイトル" %></th>
+            <td><%= f.text_field :title %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :body, "レビュー内容" %></th>
+            <td><%= f.text_area :body %></td>
+          </tr>
+        </tbody>
+      </table>
+            <%= f.submit "投稿", class: "button mt-3" %>
+
+      <!-- 評価javascript -->
+      <script>
+        $('#star').empty();
+        raty(document.querySelector('#star'), {
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+
+          scoreName: 'review[star]',
+          half: false,
+        });
+      </script>
       <%= link_to "他のレビューを見る", score_reviews_path(score), class: "btn light ml-3 mt-3" %>
     <% end %>
   </div>
 </section>
 
-<%= javascript_include_tag "reveiws.js" %>
+<!--<= javascript_include_tag "reveiws.js" %>-->
