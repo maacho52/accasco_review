@@ -66,3 +66,5 @@ gem 'kaminari'
 gem 'pry-rails'
 
 gem 'font-awesome-sass'
+
+gem 'jquery-rails'

@@ -32,7 +32,8 @@ class Public::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:score_id, :title, :body, :all_rating, :rating1, :rating2, :rating3, :rating4)
+    params.require(:review).permit(:score_id, :title, :body, :star)
+    #params.require(:review).permit(:score_id, :title, :body, :all_rating, :rating1, :rating2, :rating3, :rating4)
   end
 
 end

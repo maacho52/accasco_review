@@ -11,8 +11,16 @@ import "channels"
 import "jquery";
 import "popper.js";
 import "bootstrap";
-import "../stylesheets/application" 
+import "../stylesheets/application"
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+require("jquery")
+window.$ = window.jQuery = require('jquery');
+require('packs/raty')
+
+//= require jquery3
+//= require jquery_ujs
+//= require_tree .
