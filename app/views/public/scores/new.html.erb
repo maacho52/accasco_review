@@ -50,12 +50,12 @@
             </tr>
             <tr>
               <th>アレンジ内容</th>
-              <td class="select_field">
-                <%= f.collection_check_boxes(:arrange_ids, Arrange.all, :id, :body) do |arrange| %>
+              <td>
+                <%= f.collection_check_boxes(:arrange_ids, Arrange.all, :id, :body, include_hidden: false) do |arrange| %>
                   <%= arrange.label do %>
                     <%= arrange.check_box %>
                     <%= arrange.text %>
-                    <% end %>
+                  <% end %>
                 <% end %>
               </td>
             </tr>
