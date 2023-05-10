@@ -45,9 +45,12 @@ class Public::ScoresController < ApplicationController
     @score = Score.new(score_params)
     @score.user_id = current_user.id
      # 受け取った値を,で区切って配列にする
-    arrange_list = params[:score][:body].to_s.split(nil)
+    #arrange_list = params[:score][:body].to_s.split(nil)
+    arrange_ids = params[:score][:arrange_ids]
+    #binding.irb
     if @score.save
-      @score.save_arrange(arrange_list)
+      #@score.save_arrange(arrange_list)
+      @score.save_arrange(arrange_ids)
       flash[:notice] = "楽譜を投稿しました"
       redirect_to score_path(@score.id)
     else
@@ -87,7 +90,6 @@ class Public::ScoresController < ApplicationController
   private
 
   def score_params
-    params.require(:score).permit(:user_id, :name, :artist, :member, :difficulty, :site_id, :image, arrange_ids: [])
-    #params.require(:score).permit(:user_id, :name, :artist, :member, :difficulty, :site_id, :image )
+    params.require(:score).permit(:user_id, :name, :artist, :member, :difficulty, :site_id, :image )
   end
 end
