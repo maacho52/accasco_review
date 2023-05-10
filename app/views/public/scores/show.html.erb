@@ -1,8 +1,8 @@
-<section class="score-show">
+<section class="score-show container">
   <h3 class="section-ttl">楽譜詳細</h3>
   <div class="row">
     <div class="col">
-      <%= image_tag @score.get_image, class: "score_image" %>
+      <%= image_tag @score.get_image(100,100), class: "score_image" %>
     </div>
     <div class="col">
       <table class="score_show">
@@ -17,7 +17,7 @@
           </tr>
           <tr>
             <td>楽譜購入サイト</td>
-            <td><%= @site.name %></td>
+            <td><%= @score.site.name %></td>
           </tr>
           <tr>
             <td>グループ構成人数</td>
@@ -39,17 +39,29 @@
       </table>
     </div>
   </div>
-  
-  <div class="row">
-    <% @reveiws.each do |review| %>
+
+  <div>
+    <% @score.reviews.each do |review| %>
       ID <%= review.user_id %>
-      <%= link_to score_review_path(:score_id) do %>
-        <%= review.body %>
-      <% end %>  
+      <%= link_to score_review_path(@score) do %>
+        <%= simple_format(review.body) %>
+      <% end %>
+      <span id="score_review_star_<%= review.id %>"></span>
+      <script>
+        // $('#star').empty();
+            raty(document.querySelector('#score_review_star_<%= review.id %>'), {
+              size     : 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+
+              score: <%= review.star %>,
+              readOnly: true
+            });
+      </script>
     <% end %>
   </div>
 
-  <div class="row">
-    <%= render 'reviews/form', review: @review, score: @score %>
+  <div>
+    <%= render 'public/reviews/form', review: @review, score: @score %>
   </div>
 </section>
