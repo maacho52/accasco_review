@@ -1,18 +1,27 @@
-<section class="wrapper flex">
+<section class="wrapper flex container">
   <div class="content">
-      <h3 class="section-ttl">楽譜投稿履歴一覧</h3>
-      <div class="reviews">
+      <h3 class="section-ttl"><%= @user.nickname %>さんのレビュー履歴一覧</h3>
+      <div class="reviews row">
         <% @reviews.each do |review| %>
-          <div class="score">
-            <%= link_to score_path(score) do %>
+          <div class="score col-md-3">
+            <%= link_to score_path(review.score_id) do %>
               <h5><%= review.score.name %></h5>
               <p><%= review.score.artist %></p>
             <% end %>
-          </div>
-          <div class="review">
-            <%= review.star %>
-            <%= review.title %><br>
-            <%= review.body %>
+            <span id="score_review_star_<%= review.id %>"></span>
+            <script>
+              // $('#star').empty();
+                  raty(document.querySelector('#score_review_star_<%= review.id %>'), {
+                    size     : 36,
+                    starOff:  '<%= asset_path('star-off.png') %>',
+                    starOn : '<%= asset_path('star-on.png') %>',
+        
+                    score: <%= review.star %>,
+                    readOnly: true
+                  });
+            </script><br>
+            レビュータイトル：<%= review.title %><br>
+            レビュー内容：<%= review.body %>
           </div>
         <% end %>
       </div>
