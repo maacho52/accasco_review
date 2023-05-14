@@ -1,20 +1,21 @@
 class Public::ScoresController < ApplicationController
 
   def search
-    @scores = Score.search(params[:keyword]).order(created_at: :desc)
+    @scores = Score.search(params[:keyword]).order(created_at: :desc).page(params[:page]).per(12)
 
   #タグ検索
     @arrange_ids = params[:arrange_ids]&.select(&:present?)
     if @arrange_ids.present?
       @arrange_word = "タグ: "
       @arrange_ids.each do |id|
-        @arrange_word = @arrange_word + ' ' + Arrange.find(id).name if id != ""
+        @arrange_word = @arrange_word + ' ' + Arrange.find(id).body if id != ""
       end
-      @scores = @scores.joins(:arrange_tags).where(arrange_tags: {arrange_id: @arrange_ids}).group("scores.id").having("count(*) = #{@arrange_ids.length}")
+      # @scores = @scores.joins(:arranges).where(arrange_tags: {arrange_id: @arrange_ids}).group("scores.id").having("count(*) = #{@arrange_ids.length}")
+      @scores = @scores.joins(:arranges).where(arranges: { id: @arrange_ids}).page(params[:page]).per(12)
     end
 
     # 検索結果件数
-    @scores_count = @scores
+    @scores_count = @scores.page(params[:page]).per(12)
   end
 
   def new
