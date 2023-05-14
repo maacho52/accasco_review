@@ -19,9 +19,10 @@ class Score < ApplicationRecord
   end
 
 
-  def self.search(search)
+  def self.search(search)#self.はScore.を意味する
     if search != ""
-      Score.joins(:arrange, :site).where('artist LIKE(?) OR name LIKE(?) OR site.name LIKE(?) OR arrange.body', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+      Score.eager_load(:arranges, :site).where('scores.artist LIKE(?) OR scores.name LIKE(?) OR scores.difficulty LIKE(?) OR scores.member LIKE(?) OR sites.name LIKE(?) OR arranges.body LIKE(?)', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+    #検索とartist,name,site.name,arrange.bodyの部分一致を表示。
     else
       Score.all
     end
