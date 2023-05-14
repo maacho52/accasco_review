@@ -10,14 +10,14 @@ class Public::UsersController < ApplicationController
     @user = current_user
   end
 
-  def score_index
+  def scores_index
     @user = current_user
     @scores = @user.scores.page(params[:page]).per(12)
   end
 
-  def review_index
+  def reviews_index
     @user = current_user
-    @reviews = @user.reveiws.page(params[:page]).per(12)
+    @reviews = @user.reviews.page(params[:page]).per(12)
   end
 
   def confirm
