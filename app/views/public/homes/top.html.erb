@@ -47,7 +47,7 @@
             <tr>
               <th>アレンジ内容</th>
               <td>
-                <%= f.collection_check_boxes :arrange_ids, Arrange.all, :id, :body do |b| %>
+                <%= f.collection_check_boxes :arrange_ids, Arrange.all, :id, :body, include_hidden: false do |b| %>
       	          <%= b.check_box %>
       	          <%= b.label %>
                 <% end %>
