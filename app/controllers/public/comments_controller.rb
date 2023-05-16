@@ -1,6 +1,7 @@
 class Public::CommentsController < ApplicationController
   
   def create
+    @review = Review.find(params[:review_id])
     @comment = current_user.comments.new(comment_params)
     if @comment.save
       redirect_back(fallback_location: root_path)  #コメント送信後は、一つ前のページへリダイレクトさせる。
@@ -12,6 +13,6 @@ class Public::CommentsController < ApplicationController
   private
   
   def comment_params
-    params.require(:comment).permit(:body, :review_id)  #formにてpost_idパラメータを送信して、コメントへpost_idを格納するようにする必要がある。
+    params.require(:comment).permit(:body, :review_id).merge(user_id: current_user.id)
   end
 end
