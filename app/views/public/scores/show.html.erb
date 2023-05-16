@@ -43,7 +43,7 @@
   <div>
     <% @score.reviews.each do |review| %>
       ID <%= review.user_id %>
-      <%= link_to score_review_path(@score) do %>
+      <%= link_to score_review_path(score_id: @score.id, id: review.id) do %><!--明示的な方法でpathに引数を渡す-->
         <%= simple_format(review.body) %>
       <% end %>
       <span id="score_review_star_<%= review.id %>"></span>
