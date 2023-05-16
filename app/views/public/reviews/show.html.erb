@@ -1,52 +1,56 @@
 <section class="review-show">
   <div class="container">
-    <h3 class="review-show-heading">レビュー詳細</h3>
-    <div  class="row">
-      <div class="col">
-        <%= image_tag @score.user.get_image, class: "user-profile-image" %><br>
-        <%= @score.user.nickname %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col">
-        <table class="review-show">
-          <thead>
-
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <%= @review.star %>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <%= link_to score_review_path(@review) do %>
-                  <%= @review.title %>
-                <% end %>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <%= @review.body %>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <% if @user.id == current_user.id %>
-          <div class="button d-flex justify-content-center">
-            <%= link_to "編集する", edit_score_review_path(@review), class: "btn btn-sm btn-success" %>
-          </div>
+    <h3 class="review-show-heading">
+      レビュー詳細
+    </h3>
+    <div class="score_info">
+      <div class="d-flex justify-content-center mb-5">
+        <%= image_tag @score.get_image(200,200) %>
+        <h4><%= @score.name %> / <%= @score.artist %></h4>
+        <span>構成人数：</span><%= @score.member_i18n %>,
+        <span>難易度：</span><%= @score.difficulty_i18n %>,
+        <% if @score.arranges.present? %>
+          <span>アレンジ内容：</span>
+        <% end %>
+        <% @score.arranges.each do |arrange| %>
+          <%= arrange.body %>
         <% end %>
       </div>
-    </div>
+      <div class="review_info d-flex justify-content-center">
+        <div>  
+          <%= image_tag @score.user.get_image(100,100), class: "user-profile-image" %><br>
+          <%= @score.user.nickname %>
+            <span id="score_review_star_<%= @review.id %>"></span><br>
+            <script>
+              // $('#star').empty();
+                  raty(document.querySelector('#score_review_star_<%= @review.id %>'), {
+                    size     : 36,
+                    starOff:  '<%= asset_path('star-off.png') %>',
+                    starOn : '<%= asset_path('star-on.png') %>',
+  
+                    score: <%= @review.star %>,
+                    readOnly: true
+                  });
+            </script>
+            <%= link_to score_review_path(@score, @review) do %>
+              <%= @review.title %><br>
+            <% end %>
+              <%= @review.body %>
     
+          <% if @user.id == current_user.id %>
+            <div class="button">
+              <%= link_to "編集する", edit_score_review_path(@review), class: "btn btn-sm btn-success" %>
+            </div>
+          <% end %>
+        </div>  
+      </div>
+    </div>
+
     <div class="row">
       <div class="col">
         <h3 class="comments-index-heading">コメント一覧</h3>
         <% @comments.each do |comment| %>
-          <%= image_tag comment.user.get_image %>
+          <%= image_tag comment.user.get_image(100,100) %>
           <%= comment.body %>
         <% end %>
       </div>
@@ -54,11 +58,12 @@
 
     <div class="row">
       <div class="col">
-        <%=  image_tag @user.get_image, class: "currentuser-profile-image" %>
+        <%=  image_tag @user.get_image(100,100), class: "currentuser-profile-image" %>
       </div>
       <div class="col">
-        <%=  form_with(model:[@review, @comment]) do |f| %>
+        <%=  form_with(model:[@score, @review, @comment]) do |f| %>
           <%= f.text_field :body %>
+          <%= f.hidden_field :review_id, value: @review.id %>
           <div class="d-flex justify-content-center">
             <%= f.submit "コメントを投稿する", class: "btn btn-sm btn-success" %>
           </div>
