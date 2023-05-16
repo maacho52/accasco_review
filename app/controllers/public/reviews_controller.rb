@@ -2,10 +2,10 @@ class Public::ReviewsController < ApplicationController
 
   def show
     @score = Score.find(params[:score_id])
-    @review = @score.review
-    @review.user_id = current_user.id
+    #@review.user_id = current_user.id
     @user = current_user
-    @comments = @review.comments.all
+    @review = @user.reviews.find_by(id: params[:id])
+    @comments = @review.comments
     @comment = current_user.comments.new
   end
 
@@ -14,14 +14,28 @@ class Public::ReviewsController < ApplicationController
     if @review.save
       redirect_to score_path(@review.score)
     else
-      @review = Review.find(params[:id])
-      render "score/show"
+      @score = Score.find(params[:score_id])
+      render "public/scores/show"
     end
   end
 
   def edit
+    @score = Score.find(params[:score_id])
     @review = Review.find(params[:id])
+    @user = current_user
 
+  end
+
+  def update
+    @user = current_user
+    @review = @user.reviews.find(params[:id])
+    #binding.pry
+    if @review.update!(review_params)
+      #flash[:notice] = "review was successfully updated."
+      redirect_to score_review_path(@review.score, @review)
+    else
+      render :edit
+    end
   end
 
   def index
@@ -32,7 +46,8 @@ class Public::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:score_id, :title, :body, :star)
+    #params.require(:review).permit(:score_id, :user_id, :title, :body, :star)
+    params.require(:review).permit(:title, :body, :star, :score_id).merge(user_id: current_user.id)
     #params.require(:review).permit(:score_id, :title, :body, :all_rating, :rating1, :rating2, :rating3, :rating4)
   end
 
