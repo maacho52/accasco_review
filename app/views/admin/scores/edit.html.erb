@@ -1,7 +1,7 @@
-<section class="inner">
+<section class="inner container">
   <h3 class="section-ttl">楽譜編集</h3>
   <div class="row">
-    <%= form_with(model:[@score, @sites]), url: admin_score_path(@score.id) do |f| %>
+    <%= form_with(model: @score, url: admin_score_path(@score.id), method: :patch) do |f| %>
       <div class="col">
         <%= f.label :image %>
         <%= f.file_field :image, placeholder: "楽譜画像", accept: "image/*" %>
@@ -15,43 +15,38 @@
           </thead>
           <tbody>
             <tr>
-              <td><%= f.label :artist, "歌手" %></td>
+              <th><%= f.label :artist, "歌手" %></th>
               <td><%= f.text_field :artist, :placeholder =>"#{@score.artist}" %></td>
             </tr>
             <tr>
-              <td><%= f.label :name "曲名" %></td>
+              <th><%= f.label :name, "曲名" %></th>
               <td><%= f.text_field :name, :placeholder =>"#{@score.name}" %></td>
             </tr>
             <tr>
-              <td>楽譜購入サイト</td>
-              <td><%= f.collection_select :site_id, Sites.all, :id, :name %></td>
+              <th>楽譜購入サイト</th>
+              <td><%= f.collection_select :site_id, Site.all, :id, :name %></td>
             </tr>
             <tr>
-              <td><%= f.label :member, "グループ構成人数" %></td>
-              <td><%= f.radio_button :member, "three" %></td>
-              <td><%= f.radio_button :member, "four" %></td>
-              <td><%= f.radio_button :member, "five" %></td>
-              <td><%= f.radio_button :member, "six" %></td>
-              <td><%= f.radio_button :member, "seven_or_more" %></td>
-              <td><%= f.radio_button :member, "boys" %></td>
-              <td><%= f.radio_button :member, "girls" %></td>
+              <th><%= f.label :member, "グループ構成人数" %></th>
+              <td>
+                <%= f.select :member, Score.members_i18n.invert, {prompt: false}, class:"form-control form-control-sm col-6 order-status form_date_select" %>
+              </td>
             </tr>
             <tr>
-              <td><%= f.label :difficulty, "難易度" %></td>
-              <td><%= f.radio_button :difficulty, "introduction" %></td>
-              <td><%= f.radio_button :difficulty, "biginner" %></td>
-              <td><%= f.radio_button :difficulty, "intermediate" %></td>
-              <td><%= f.radio_button :difficulty, "advanced" %></td>
-              <td><%= f.radio_button :difficulty, "superlative" %></td>
+              <th><%= f.label :difficulty, "難易度" %></th>
+              <td>
+                <%= f.select :difficulty, Score.difficulties_i18n.invert, {prompt: false}, class:"form-control form-control-sm col-6 order-status form_date_select" %>
+              </td>
             </tr>
             <tr>
               <th><%= f.label :sales_status, "アレンジ内容" %></th>
               <td class="select_field">
-                <%= f.collection_check_boxes(:arrange_ids, @score.arranges, :id, :body) do |tag| %>
-                  <%= tag.label do %>
-                    <%= tag.check_box + tag.text %>
+                <%= f.collection_check_boxes(:arrange_ids, Arrange.all, :id, :body, include_hidden: false, checked: @score.arrange_ids ) do |arrange| %>
+                  <%= arrange.label do %>
+                    <%= arrange.check_box %>
+                    <%= arrange.text %>
                   <% end %>
-                <% end %>  
+                <% end %>
               </td>
             </tr>
           </tbody>
@@ -61,5 +56,5 @@
         </div>
       </div>
     <% end %>
-
+  </div>
 </section>
