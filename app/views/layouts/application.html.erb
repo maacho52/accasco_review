@@ -18,18 +18,18 @@
           <div class="nav">
             <ul class="nav navbar-nav ml-auto">
               <div class="d-inline btn group">
-                <h3 class="d-inline text-left">
+                <h3 class="d-inline text-left mr-5">
                   <%= link_to("AccascoReview", root_path, class: 'text-light') %>
-                  <% if user_signed_in? %>
-                    ようこそ、<%= current_user.nickname %>さん！
-                  <% end %>
                 </h3>
+                <% if user_signed_in? %>
+                  <span class="text-light">ようこそ、<%= current_user.nickname %>さん</span>
+                <% end %>
                 <% if admin_signed_in? %>
-                  <li class="nav-item"><%= link_to "楽譜一覧", admin_scores_path, class: "btn btn-sm btn-outline-danger" %></li>
+                  <li class="nav-item ml-5"><%= link_to "楽譜一覧", admin_scores_path, class: "btn btn-sm btn-outline-danger" %></li>
                   <li class="nav-item"><%= link_to "レビュー一覧", admin_score_reviews_path(:id, :score_id), class: "btn btn-sm btn-outline-danger" %></li>
                   <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-sm btn-outline-danger" %></li>
                 <% elsif user_signed_in? %>
-                  <li class="nav-item text-center">
+                  <li class="nav-item text-center ml-5">
                     <%= form_with url: search_scores_path, local: true, method: :get, class: "rootpageSearchForm" do |f| %>
                       <%= f.text_field :keyword, placeholder: "キーワードを入力", id: 'Search_Form', class: "rootpageSearchForm__content" %>
                       <%= f.submit "検索", class: "rootpageSearchForm__bottum" %>
