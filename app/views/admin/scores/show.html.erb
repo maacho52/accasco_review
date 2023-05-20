@@ -1,8 +1,8 @@
-<section class="score-show">
+<section class="score-show container">
   <h3 class="section-ttl">楽譜詳細</h3>
   <div class="row">
-    <div class="col">
-      <%= image_tag @score.get_image, class: "score_image" %>
+    <div class="col-md-2">
+      <%= image_tag @score.get_image(100,100), class: "score_image" %>
     </div>
     <div class="col">
       <table class="score_show">
@@ -30,8 +30,8 @@
           <tr>
             <td>アレンジ内容</td>
             <td>
-              <% @score_arranges.each do |arrange| %>
-                <%= arrange.name%><%="(#{arrange.scores.count})" %>
+              <% @score.arranges.each do |arrange| %>
+                <%= arrange.body %>
               <% end %>
             </td>
           </tr>
