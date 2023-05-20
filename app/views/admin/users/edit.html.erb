@@ -3,7 +3,7 @@
     <h3 class="section-ttl"><%= @user.nickname %>さんの会員情報</h3>
     <div class="row">
       <div class="col">
-        <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f| %>
+        <%= form_with model: @user, url: admin_user_path(@user), method: :patch do |f| %>
           <table>
             <thead>
               <tr>
@@ -16,7 +16,7 @@
             <tbody>
               <tr>
                 <td><%= f.label :email, "メールアドレス" %></td>
-                <td><%= f.email_field :email, autocomplete: "email", :placeholder =>"#{@customer.email}" %></td>
+                <td><%= f.email_field :email, autocomplete: "email", :placeholder =>"#{@user.email}" %></td>
               </tr>
               
               <tr>
@@ -30,7 +30,16 @@
               </tr>
               <tr>
                 <th><%= f.label :part, "主な担当パート" %></th>
-                <td><%= f.check_box :part, id: :users_part, checked:true, :placeholder =>"#{@user.part}", class: "part" %></td>
+                <td>
+                  <%#= f.check_box :part, id: :users_part, checked:true, :placeholder =>"#{@user.part}", class: "part" %>
+                  <%= f.radio_button :part, "lead" %><%= f.label :part_lead, "Lead" %>
+                  <%= f.radio_button :part, "top" %><%= f.label :part_top, "Top" %>
+                  <%= f.radio_button :part, "chorus2" %><%= f.label :part_chorus2, "2nd" %>
+                  <%= f.radio_button :part,  "chorus3" %><%= f.label :part_chorus3, "3rd" %>
+                  <%= f.radio_button :part,  "chorus4" %><%= f.label :part_chorus4, "4th" %>
+                  <%= f.radio_button :part,  "bass" %><%= f.label :part_bass, "Bass" %>
+                  <%= f.radio_button :part, "voicepercussion" %><%= f.label :part_voicepercussion, "VoicePercussion" %>
+                </td>
               </tr>
               <tr>
                 <th>会員ステータス</th>
