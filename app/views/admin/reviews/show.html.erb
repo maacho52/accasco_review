@@ -1,27 +1,44 @@
-<section class="admin-review-show">
-  <h3 class="section-ttl">レビュー詳細・編集</h3>
-  <div class="container">
+<section class="admin-review-show container">
+  <h3 class="section-ttl">レビュー詳細</h3>
     <div class="row">
-        <% form_with model: [@score, @review, @comments] do |f| %>
-          <div class="col">
-            <%= image_tag @user.get_image, class: "user-image" %><br>
-            ID <%= @user.user_id %>
-          </div>
-          <div class="col">
-            <%= f.star %><br>
-            <strong class="text-primary">
-              <%= @review.body %>
-              <%= f.hidden_field :body, value: @review.body %>
-            </strong>
-          </div>
-          <%= link_to "レビューを削除", admin_score_review_path[:score_id], class:"btn btn-sm btn-danger" %>
-          <div class="comments">
-            <% @comments.each do |comment| %>
-              ID<%= comment.user_id %>
-              <%= comment.body %>
-              <%= link_to "コメントを削除する", admin_score_review_comment_path[:score_id][:review_id], class:"btn btn-sm btn-danger" %>
-            <% end %>
-          </div>
+      <div class="col-md-3"></div>
+      <div class="col-md-2">
+        <%= image_tag @user.get_image(100,100), class: "user-image" %><br>
+        ID <%= @user.id %>
+      </div>
+      <div class="col-md-5 mb-4">
+        <div class="review_star mb-4">
+          <span id="score_review_star_<%= @review.id %>"></span><br>
+          <script>
+            // $('#star').empty();
+                raty(document.querySelector('#score_review_star_<%= @review.id %>'), {
+                  size     : 36,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+                  score: <%= @review.star %>,
+                  readOnly: true
+                });
+          </script><br>
+          <strong class="text-light">
+            <span class="border border-info border-4 rounded-pill mr-2 p-2">レビュータイトル</span>
+            <span class="text-primary"><%= @review.title %></span>
+            <span class="border border-info border-4 rounded-pill mr-2 p-2">レビュー内容</span>
+            <span class="text-primary"><%= @review.body %></span>
+          </strong>
+        
+        <div class="d-flex justify-content-center mt-5">  
+          <%= link_to "レビューを削除", admin_score_review_path(score_id: @score, id: @review), method: :delete, data: {confirm: "本当に削除しますか？"}, class:"btn btn-sm btn-danger" %>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
     </div>
-  </div>
+    
+        <% @comments.each do |comment| %>
+          <div class="row d-flex justify-content-center">
+            ID<%= comment.user_id %>
+            <%= comment.body %>
+            <%= link_to "コメントを削除する", admin_score_review_comment_path(score_id: comment.review.score.id, review_id: comment.review.id, id: comment.id), class:"btn btn-sm btn-danger" %>
+          </div>
+        <% end %>
+
 </section>
