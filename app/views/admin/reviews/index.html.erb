@@ -5,7 +5,7 @@
       <% @reviews.each do |review| %>
         <div class="col-md-4">
           <%= image_tag review.user.image %><br>
-          ユーザーID <%= link_to admin_user_path(review.user_id) do %>
+          ユーザーID <%= link_to admin_user_path(review.user.id) do %>
             <%= review.user_id %><br>
           <% end %>
           <strong><%= review.score.name %> / <%= review.score.artist %></strong><br>
