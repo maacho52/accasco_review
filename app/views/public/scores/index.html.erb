@@ -1,14 +1,15 @@
-<section class="wrapper flex">
+<section class="wrapper flex container">
   <div class="content">
     <% if params[:sites_id] %>
       <h3 class="section-ttl">楽譜一覧 (全<%= @all_scores_count %>件)</h3>
     <% else %>
       <h3 class="section-ttl">楽譜一覧 (全<%= @all_scores_count %>件)</h3>
     <% end %>
-      <div class="scores">
-        <% @scores.each do |score| %>
+    <div class="row">
+      <% @scores.each do |score| %>
+        <div class="col-md-3">
           <%= link_to score_path(score) do %>
-            <%= image_tag score.get_image, format: "jpeg", fallback: "no-image.png" %>
+            <%= image_tag score.get_image(100,100) %>
             <h5><%= score.name %></h5>
             <p><%= score.artist %></p>
           <% end %>
@@ -16,8 +17,9 @@
           <% score.arranges.each do |arrange| %>
             <%= arrange.body %>
           <% end %>
-        <% end %>
-      </div>
+        </div>  
+      <% end %>
+    </div>  
       <%= paginate @scores %>
   </div>
 </section>
