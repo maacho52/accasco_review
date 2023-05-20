@@ -41,7 +41,7 @@
             <tr>
               <th><%= f.label :sales_status, "アレンジ内容" %></th>
               <td class="select_field">
-                <%= f.collection_check_boxes(:arrange_ids, Arrange.all, :id, :body, include_hidden: false, checked: @score.arrange_ids ) do |arrange| %>
+                <%= f.collection_check_boxes(:arrange_ids, Arrange.all, :id, :body, include_hidden: false) do |arrange| %>
                   <%= arrange.label do %>
                     <%= arrange.check_box %>
                     <%= arrange.text %>
