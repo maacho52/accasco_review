@@ -1,5 +1,4 @@
 class Admin::UsersController < ApplicationController
-  before_action :authenticate_user!
 
   def new
     @user = User.new
@@ -7,7 +6,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = current_user
-    @user.age = (Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000
+    @user.birthday = (Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000
   end
 
   def edit
@@ -17,7 +16,7 @@ class Admin::UsersController < ApplicationController
   def update
     @user = current_user
     @user.update(user_params)
-    redirect_to users_mypage_path
+    redirect_to admin_user_path
   end
 
   def unsubscribe
