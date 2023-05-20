@@ -54,7 +54,7 @@ Rails.application.routes.draw do
     resources :arranges
     resources :users,  only: [:index, :show, :edit, :update]
     resources :scores, only: [:index, :show, :edit, :update] do
-      resources :reviews, only: [:index, :show, :edit, :destroy] do
+      resources :reviews, only: [:index, :show, :edit, :update, :destroy] do
         resources :comments, only: [:index, :show, :destroy]
       end
     end
