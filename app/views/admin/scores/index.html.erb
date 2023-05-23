@@ -1,22 +1,19 @@
-<section class="admin-score-index">
-  <div class="container">
+<section class=" container admin-score-index">
     <h3 class="score-index-heading">楽譜投稿一覧</h3>
-    <div class="row">
-      <div class="col">
-        <% @scores.each do |score| %>
+    <div class="row mt-5">
+      <% @scores.each do |score| %>
+        <div class="col-md-3 mb-5">
           <%= link_to admin_score_path(score.id) do %>
             <%= image_tag score.image, size: '150x100'%>
           <% end %><br>
-          <p>曲名</p><%= score.name %><br>
-          <p>歌手</p><%= score.artist %>
-        <% end %>
-      </div>
+          <span>曲名:<%= score.name %></span><br>
+          <span>歌手:<%= score.artist %></span>
+        </div>
+      <% end %>
     </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-9">
+
+  <div class="row mt-5">
+    <div class="col d-flex justify-content-center">
       <div class="pagination">
         <%= paginate @scores %>
       </div>

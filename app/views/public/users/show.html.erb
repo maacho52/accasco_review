@@ -1,24 +1,22 @@
-<section class="inner">
+<section class="inner container">
   <% if flash[:notice] %>
     <p class="text-active"><%= flash[:notice] %></p>
   <% end %>
-  <h3 class="section-ttl">マイページ</h3>
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <%= @user.nickname %><br>
-        <%= @user.id %>
-      </div>
-      <div class="col d-flex">
-        <%= link_to "楽譜投稿", new_score_path, class: "btn btn-warning ml2" %>
-        <%= link_to "レビュー一覧", user_reviews_path, class: "btn btn-warning ml2" %>
-        <%= link_to "投稿一覧", user_scores_path, class: "btn btn-warning ml2" %>
-      </div>
-    </div>
+  <div class="col d-flex">
+    <h3 class="section-ttl d-inline mr-5"><%= @user.nickname %>さんのマイページ</h3>
+    <%= link_to "楽譜投稿", new_score_path, class: "btn btn-outline-success ml-2 d-flex align-items-center" %>
+    <%= link_to "レビュー一覧", user_reviews_path, class: "btn btn-outline-primary ml-2 d-flex align-items-center" %>
+    <%= link_to "投稿一覧", user_scores_path, class: "text-light btn btn-outline-warning ml-2 d-flex align-items-center" %>
+  </div>
 
+  <div class="row">
+    <div class="col">
+      
+    </div>
+  </div>
     <div class="row">
       <div class="col">
-      	<table class="user_info mb3">
+      	<table cellspacing="5", class="user-info-table mb3">
       		<thead>
       			<th></th>
       			<th></th>

@@ -31,8 +31,9 @@
           </tr>
         </tbody>
       </table>
-            <%= f.submit "投稿", class: "button mt-3" %>
-
+      <span>
+        <%= f.submit "投稿", class: "button btn-sm btn-outline-success mt-3" %>
+      </span>
       <!-- 評価javascript -->
       <script>
         $('#star').empty();
@@ -45,7 +46,7 @@
           half: false,
         });
       </script>
-      <%= link_to "他のレビューを見る", score_reviews_path(score), class: "btn light ml-3 mt-3" %>
+      <%= link_to "他のレビューを見る", score_reviews_path(score), class: "btn btn-sm btn-primary ml-3 mt-3" %>
     <% end %>
   </div>
 </section>

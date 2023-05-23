@@ -1,18 +1,17 @@
-<section class="top">
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <h3 class="text-align">
-          アカペラ楽譜レビューサイトへようこそ！<br>
-          難易度やアレンジ等自分が求めている楽譜が見つかります！
-        </h3>
-      </div>
+<section class="top container">
+  <div class="row mb-5">
+    <div class="col text-center">
+      <h3>
+        アカペラ楽譜レビューサイトへようこそ！<br>
+        難易度やアレンジ等自分が求めている楽譜が見つかります！
+      </h3>
     </div>
+  </div>
     
-    <div class="row">
-      <div class="col">
+  <div class="row">
+    <div class="col">
       <%= form_with url: search_scores_path, local: true, method: :get do |f| %>
-        <table>
+        <table class="search-table">
           <tbody>
             <tr>
               <th><%= f.label :artist, "歌手" %></th>
@@ -48,17 +47,18 @@
               <th>アレンジ内容</th>
               <td>
                 <%= f.collection_check_boxes :arrange_ids, Arrange.all, :id, :body, include_hidden: false do |b| %>
-      	          <%= b.check_box %>
-      	          <%= b.label %>
-                <% end %>
-                <%= button_tag type: "submit", class: "border rounded-pill shadow-sm search-btn" do %>
-      	          <i class="fas fa-search"></i>
+                  <%= b.check_box %>
+                  <%= b.label %>
                 <% end %>
               </td>
           </tbody>
         </table>
+        <div class="text-center">
+          <%= button_tag type: "submit", class: "border rounded-pill shadow-l search-btn btn btn-info mx-auto" do %>
+	          <i class="fas fa-search"><span class="text-light">楽譜を検索する</span></i>
+          <% end %>
+        </div>  
       <% end %>
-      </div>
     </div>
   </div>
 </section>

@@ -1,58 +1,61 @@
-<section class="inner">
-	<h3 class="section-ttl">会員情報編集</h3>
-	<%= form_with model:@user, url: update_information_path do |f| %>
-		<%= render 'devise/shared/error_messages', resource: @user %>
-		<div class="col">
-		  <!--ユーザー画像 -->
-		</div>
-		<div class="col">
-			<%= f.label :nickname, "ニックネーム" %>
-		  <%= f.text_field :nickname, :placeholder =>"#{@user.nickname}" %>
-		</div>
-		<table class="customer_info customer_form">
-			<thead>
-				<th></th>
-				<th></th>
-				<th></th>
-			</thead>
-			<tbody>
-				<tr>
-					<td><%= f.label :email, "メールアドレス" %></td>
-					<td colspan="2"><%= f.email_field :email, autocomplete: "email", :placeholder =>"#{@user.email}" %></td>
-				</tr>
-				<tr>
-					<td><%= f.label :birthday, "生年月日" %></td>
-					<td colspan="2"><%= f.date_select :birthday, start_year: 1950, end_year: Time.now.year, include_blank: true, use_two_digit_numbers: true, class: "input-tab birthday-select", :placeholder =>"#{@user.birthday}" %></td>
-				</tr>
-				<tr>
-					<th><%= f.label :sex, "性別" %></th>
-					<td><%#= f.text_field :sex, autocomplete: "sex", :placehodler => "#{@user.sex_i18n}" %>
-					    <%= f.radio_button :sex, "man" %> <%= f.label :sex_man, "男性" %>
+<section class="inner container">
+  <h3 class="section-ttl">会員情報編集</h3>
+  <%= form_with model:@user, url: update_information_path do |f| %>
+  <%= render 'devise/shared/error_messages', resource: @user %>
+  <div class="row">
+    <div class="col md-1">
+    <!--ユーザー画像 -->
+    </div>
+    <div class="col-md-11">
+      <table class="user-info-edit-table user_form">
+        <thead>
+          <th></th>
+          <th></th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr>
+            <th><%= f.label :nickname, "ニックネーム" %></th>
+            <td><%= f.text_field :nickname, :placeholder =>"#{@user.nickname}" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :email, "メールアドレス" %></th>
+            <td colspan="2"><%= f.email_field :email, autocomplete: "email", :placeholder =>"#{@user.email}" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :birthday, "生年月日" %></th>
+            <td colspan="2"><%= f.date_select :birthday, start_year: 1950, end_year: Time.now.year, include_blank: true, use_two_digit_numbers: true, class: "input-tab birthday-select", :placeholder =>"#{@user.birthday}" %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :sex, "性別" %></th>
+            <td><%#= f.text_field :sex, autocomplete: "sex", :placehodler => "#{@user.sex_i18n}" %>
+              <%= f.radio_button :sex, "man" %> <%= f.label :sex_man, "男性" %>
               <%= f.radio_button :sex, "woman" %> <%=f.label :sex_woman, "女性" %>
               <%= f.radio_button :sex, "another" %> <%= f.label :sex_another, "その他" %>
-					</td>
-				</tr>
-				<tr>
-					<td><%= f.label :experience, "アカペラ歴" %></td>
-					<td colspan="2"><%= f.text_field :experience, autocomplete: "experience", :placeholder =>"#{@user.experience}" %>年</td>
-				</tr>
-				<tr>
-					<td><%= f.label :part, "主な担当パート" %></td>
-					<td colspan="2">
-            <%= f.radio_button :part, "lead" %><%= f.label :part_lead, "Lead" %>
-            <%= f.radio_button :part, "top" %><%= f.label :part_top, "Top" %>
-            <%= f.radio_button :part, "chorus2" %><%= f.label :part_chorus2, "2nd" %>
-            <%= f.radio_button :part,  "chorus3" %><%= f.label :part_chorus3, "3rd" %>
-            <%= f.radio_button :part,  "chorus4" %><%= f.label :part_chorus4, "4th" %>
-            <%= f.radio_button :part,  "bass" %><%= f.label :part_bass, "Bass" %>
-            <%= f.radio_button :part, "voicepercussion" %><%= f.label :part_voicepercussion, "VoicePercussion" %>
-           </td>
-				</tr>
-				<tr>
-					<td colspan="2"><%= f.submit "変更を保存", class: "btn btn-primary ml2" %></td>
-					<td><%= link_to "退会する", confirm_subscribe_path, method: :get, class: "btn btn-danger" %></td>
-				</tr>
-			</tbody>
-		</table>
-	<% end %>
+            </td>
+          <tr>
+          <tr>
+            <th><%= f.label :experience, "アカペラ歴" %></th>
+            <td colspan="2"><%= f.text_field :experience, autocomplete: "experience", :placeholder =>"#{@user.experience}" %>年</td>
+           </tr>
+          <tr>
+            <th><%= f.label :part, "主な担当パート" %></th>
+            <td colspan="2">
+              <%= f.radio_button :part, "lead" %><%= f.label :part_lead, "Lead" %>
+              <%= f.radio_button :part, "top" %><%= f.label :part_top, "Top" %>
+              <%= f.radio_button :part, "chorus2" %><%= f.label :part_chorus2, "2nd" %>
+              <%= f.radio_button :part,  "chorus3" %><%= f.label :part_chorus3, "3rd" %>
+              <%= f.radio_button :part,  "chorus4" %><%= f.label :part_chorus4, "4th" %>
+              <%= f.radio_button :part,  "bass" %><%= f.label :part_bass, "Bass" %>
+              <%= f.radio_button :part, "voicepercussion" %><%= f.label :part_voicepercussion, "VoicePercussion" %>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2"><%= f.submit "変更を保存", class: "btn btn-primary ml2" %></td>
+            <td><%= link_to "退会する", confirm_subscribe_path, method: :get, class: "btn btn-danger" %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>  
+  <% end %>
 </section>
