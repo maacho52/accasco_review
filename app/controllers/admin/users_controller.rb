@@ -1,34 +1,20 @@
 class Admin::UsersController < ApplicationController
 
-  def new
-    @user = User.new
-  end
-
   def show
-    @user = current_user
-    @user.birthday = (Date.today.strftime("%Y%m%d").to_i - @user.birthday.strftime("%Y%m%d").to_i) / 10000
+    @user = User.find(params[:id])
+    @user.birthday = (Date.today.strftime('%Y%m%d').to_i - @user.birthday.strftime('%Y%m%d').to_i) / 10000
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def update
-    @user = current_user
+    @user = User.find(params[:id])
     @user.update(user_params)
     redirect_to admin_user_path
   end
 
-  def unsubscribe
-    @user = current_user
-  end
-
-  def withdraw
-    @user = current_user
-    @user.update(is_deleted: true)
-    reset_session
-    redirect_to root_path
-  end
 
   private
 
