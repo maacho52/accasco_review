@@ -1,4 +1,11 @@
   ja:
+    views:
+      pagination:
+        first: "≪"
+        previous: "<"
+        next: ">"
+        last: "≫"
+
     enums:
       score:
         member:
