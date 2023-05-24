@@ -6,16 +6,16 @@
       <%= form_with model: @admin, url: admin_session_path do |f| %>
         <div class="field d-flex">
           <%= f.label :"メールアドレス" %>
-          <%= f.email_field :email, autofocus: true, style: "width:60%", autocomplete: "email" %>
+          <%= f.email_field :email, autofocus: true, style: "width:60%", autocomplete: "email", class: "ml-3" %>
         </div>
 
         <div class="field d-flex">
           <%= f.label :"パスワード" %>
-          <%= f.password_field :password, style: "width:60%", autocomplete: "current-password" %>
+          <%= f.password_field :password, style: "width:60%", autocomplete: "current-password", class: "ml-5" %>
         </div>
 
-          <div class="submit-button">
-            <%= f.submit "ログイン", class: "btn btn-lg btn-primary" %>
+          <div class="submit-button text-center mt-5">
+            <%= f.submit "ログイン", class: "btn btn-lg btn-primary mx-auto" %>
           </div>
       <% end %>
 
