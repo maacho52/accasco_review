@@ -5,8 +5,6 @@ class Public::ReviewsController < ApplicationController
     #@review.user_id = current_user.id
     @user = current_user
     @review = @user.reviews.find_by(id: params[:id])
-    @comments = @review.comments
-    @comment = current_user.comments.new
   end
 
   def create
@@ -38,16 +36,26 @@ class Public::ReviewsController < ApplicationController
     end
   end
 
+  def destroy
+    @user = current_user
+    @review = Review.find(params[:id])
+    if @review.destroy
+      redirect_to score_path(@review.score)
+    else
+      render :edit
+    end  
+  end
+  
   def index
     @score = Score.find(params[:score_id])
-    @reviews = current_user.reviews.find_by(score_id: @score.id)
+    @reviews = @score.reviews
   end
 
   private
 
   def review_params
     #params.require(:review).permit(:score_id, :user_id, :title, :body, :star)
-    params.require(:review).permit(:title, :body, :star).merge(user_id: current_user.id)
+    params.require(:review).permit(:title, :body, :star, :score_id).merge(user_id: current_user.id)
     #params.require(:review).permit(:score_id, :title, :body, :all_rating, :rating1, :rating2, :rating3, :rating4)
   end
 
