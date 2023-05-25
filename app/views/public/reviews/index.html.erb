@@ -1,0 +1,31 @@
+<section class="review-index container">
+  <h3 class="section-ttl">レビュー一覧</h3>
+  <div class="container">
+    <div class="row">
+      <% @reviews.each do |review| %>
+        <div class="col-md-4">
+          <%= image_tag review.user.image %><br>
+          ユーザーID <%= link_to admin_user_path(review.user.id) do %>
+            <%= review.user_id %><br>
+          <% end %>
+          <strong><%= review.score.name %> / <%= review.score.artist %></strong><br>
+          <span id="score_review_star_<%= review.id %>"></span><br>
+          <script>
+            raty(document.querySelector('#score_review_star_<%= review.id %>'), {
+              size     : 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              score: <%= review.star %>,
+              readOnly: true
+            });
+          </script>
+          <p>レビュー内容：
+            <%= link_to score_review_path(review.score.id, review.id) do %>
+              <%= review.body %>
+          </p>    
+            <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
