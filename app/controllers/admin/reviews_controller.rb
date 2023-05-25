@@ -4,7 +4,6 @@ class Admin::ReviewsController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     @score = Score.find_by(id: params[:score_id])
     @review = Review.find(params[:id])
     @comments = @review.comments
