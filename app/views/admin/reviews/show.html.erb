@@ -1,12 +1,12 @@
 <section class="admin-review-show container">
   <h3 class="section-ttl">レビュー詳細</h3>
     <div class="row">
-      <div class="col-md-3"></div>
+      <div class="col-md-2"></div>
       <div class="col-md-2">
-        <%= image_tag @user.get_image(100,100), class: "user-image" %><br>
-        ID <%= @user.id %>
+        <%= image_tag @review.user.get_image(100,100), class: "user-profile-image" %><br>
+        ID <%= @review.user.id %>
       </div>
-      <div class="col-md-5 mb-4">
+      <div class="col-md-6 mb-4">
         <div class="review_star mb-4">
           <span id="score_review_star_<%= @review.id %>"></span><br>
           <script>
@@ -20,25 +20,26 @@
                 });
           </script><br>
           <strong class="text-light">
-            <span class="border border-info border-4 rounded-pill mr-2 p-2">レビュータイトル</span>
+            <span class="border border-info border-4 rounded-pill mr-2 p-2 bg-info">レビュータイトル</span>
             <span class="text-primary"><%= @review.title %></span>
-            <span class="border border-info border-4 rounded-pill mr-2 p-2">レビュー内容</span>
+            <span class="border border-info border-4 rounded-pill mr-2 p-2 bg-info">レビュー内容</span>
             <span class="text-primary"><%= @review.body %></span>
           </strong>
-        
-        <div class="d-flex justify-content-center mt-5">  
+
+        <div class="d-flex justify-content-center mt-5">
           <%= link_to "レビューを削除", admin_score_review_path(score_id: @score, id: @review), method: :delete, data: {confirm: "本当に削除しますか？"}, class:"btn btn-sm btn-danger" %>
         </div>
         <div class="col-md-2"></div>
       </div>
     </div>
       <div class="d-flex flex-column comments-index", style="height: 150px;">
+        <h5><i class="fa-solid fa-comment"><span class="ml-2">コメント</span></i></h5>
         <% @comments.each do |comment| %>
-          <div class="flex-fill">
+          <div class="flex-fill mb-4">
             ID<%= comment.user_id %>
             <%= comment.body %>
-            <%= link_to "コメントを削除する", admin_score_review_comment_path(score_id: comment.review.score.id, review_id: comment.review.id, id: comment.id), class:"btn btn-sm btn-danger" %>
+            <%= link_to "コメントを削除する", admin_score_review_comment_path(score_id: comment.review.score.id, review_id: comment.review.id, id: comment.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class:"btn btn-sm btn-danger" %>
           </div>
         <% end %>
-      </div>  
+      </div>
 </section>

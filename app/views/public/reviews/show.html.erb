@@ -1,24 +1,30 @@
 <section class="review-show container">
-    <h3 class="review-show-heading">
-      レビュー詳細
-    </h3>
-    <div class="score_info">
-      <div class="d-flex justify-content-center mb-5">
-        <%= image_tag @score.get_image(200,200) %>
-        <h4><%= @score.name %> / <%= @score.artist %></h4>
-        <span>構成人数：</span><%= @score.member_i18n %>,
-        <span>難易度：</span><%= @score.difficulty_i18n %>,
-        <% if @score.arranges.present? %>
-          <span>アレンジ内容：</span>
-        <% end %>
-        <% @score.arranges.each do |arrange| %>
-          <%= arrange.body %>
-        <% end %>
-      </div>
-      <div class="review_info d-flex justify-content-center">
-        <div>  
+  <h3 class="review-show-heading">
+    レビュー詳細
+  </h3>
+  <div class="row score_info">
+    <div class="col-md-3 d-flex justify-content-center mb-5">
+      <%= image_tag @score.get_image(200,200) %>
+    </div>
+    <div class="col-md-9">
+      <h4 class="ml-2 mb-5"><%= @score.name %> / <%= @score.artist %></h4>
+       <span class="border border-info border-4 rounded-pill mr-2 p-2 bg-info">購入サイト</span><%= @score.site.name %>
+      <span class="border border-info border-4 rounded-pill mr-2 p-2 bg-info">構成人数</span><%= @score.member_i18n %>
+      <span class="border border-info border-4 rounded-pill mr-2 p-2 bg-info">難易度</span><%= @score.difficulty_i18n %>
+      <% if @score.arranges.present? %>
+        <span class="border border-info border-4 rounded-pill mr-2 p-2 bg-info">アレンジ内容</span>
+      <% end %>
+      <% @score.arranges.each do |arrange| %>
+        <%= arrange.body %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+      <div class="review_info col-md-3 text-center">
           <%= image_tag @score.user.get_image(100,100), class: "user-profile-image" %><br>
           <%= @score.user.nickname %>
+      </div>
+        <div class="col-md-9">
             <span id="score_review_star_<%= @review.id %>"></span><br>
             <script>
               // $('#star').empty();
@@ -26,7 +32,7 @@
                     size     : 36,
                     starOff:  '<%= asset_path('star-off.png') %>',
                     starOn : '<%= asset_path('star-on.png') %>',
-  
+
                     score: <%= @review.star %>,
                     readOnly: true
                   });
@@ -35,38 +41,27 @@
               <%= @review.title %><br>
             <% end %>
               <%= @review.body %>
-    
+
           <% if @user.id == current_user.id %>
             <div class="button">
               <%= link_to "編集する", edit_score_review_path(@review), class: "btn btn-sm btn-success" %>
             </div>
           <% end %>
-        </div>  
+        </div>
+  </div>
+  <h4 class="comments-index-heading ml-5">コメント一覧</h4>
+  <div class="d-flex row mb-5">
+    <% @review.comments.each do |comment| %>
+      <div class="col-md-4 mb-3">
+        <%= image_tag comment.user.get_image(50,50), class: "user-profile-image" %>
+        <%= comment.body %>
       </div>
-    </div>
+    <% end %>
+  </div>
 
-    <div class="row">
-      <div class="col">
-        <h3 class="comments-index-heading">コメント一覧</h3>
-        <% @comments.each do |comment| %>
-          <%= image_tag comment.user.get_image(100,100) %>
-          <%= comment.body %>
-        <% end %>
-      </div>
+  <div class="row">
+    <div class="col text-center">
+      <%= link_to "コメントを投稿する", new_score_review_comment_path(@score, @review), class: "btn btn-sm btn-outline-info" %>
     </div>
-
-    <div class="row">
-      <div class="col">
-        <%=  image_tag @user.get_image(100,100), class: "currentuser-profile-image" %>
-      </div>
-      <div class="col">
-        <%=  form_with(model:[@score, @review, @comment]) do |f| %>
-          <%= f.text_field :body %>
-          <%= f.hidden_field :review_id, value: @review.id %>
-          <div class="d-flex justify-content-center">
-            <%= f.submit "コメントを投稿する", class: "btn btn-sm btn-success" %>
-          </div>
-        <% end %>
-       </div>
-    </div>
+  </div>
 </section>
