@@ -9,11 +9,14 @@ class Public::ReviewsController < ApplicationController
 
   def create
     @review = current_user.reviews.new(review_params)
-    if @review.save
+    if @review.score.user_id != current_user.id
+      @review.save
       redirect_to score_path(@review.score)
     else
       @score = Score.find(params[:score_id])
+      flash[:notice] = "自身が投稿した楽譜にレビューはできません。"
       render "public/scores/show"
+      
     end
   end
 
