@@ -15,7 +15,7 @@ class Public::ScoresController < ApplicationController
     end
 
     # 検索結果件数
-    @scores_count = @scores.page(params[:page]).per(12)
+    @scores_count = @scores.all.count
   end
 
   def new
