@@ -64,4 +64,8 @@
   <div>
     <%= render 'public/reviews/form', review: @review, score: @score %>
   </div>
+  
+  <div class="row d-flex justify-content-center">
+    <strong class="text-danger"><%= flash[:notice] %></strong>
+  </div>  
 </section>
