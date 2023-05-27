@@ -61,4 +61,25 @@
       <% end %>
     </div>
   </div>
+ <div class="newscore-heading">
+    <h4><strong>新着楽譜</strong></h4>
+  </div>
+
+  </div>
+
+  <div class="row">
+      <% @scores.each do |score| %>
+        <div class="col-md-3">
+          <%= link_to score_path(score.id) do %>
+            <%= image_tag score.get_image(150,100) %>
+            <p><strong class="text-light"><%= score.name %>/</strong>
+            <strong class="text-light"><%= score.artist %></strong></p>
+          <% end %>  
+        </div>  
+      <% end %>
+  </div>
+
+  <div class="row link-all-scores d-flex justify-content-center">
+      <%= link_to '全ての楽譜を見る＞', scores_path, class: "border rounded-pill shadow-l search-btn btn btn-primary mx-auto text-light" %>
+  </div>
 </section>
