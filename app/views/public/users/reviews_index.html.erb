@@ -3,11 +3,8 @@
       <h3 class="section-ttl"><%= @user.nickname %>さんのレビュー履歴一覧</h3>
       <div class="reviews row">
         <% @reviews.each do |review| %>
-          <div class="score col-md-3">
-            <%= link_to score_path(review.score_id) do %>
-              <h5><%= review.score.name %></h5>
-              <p><%= review.score.artist %></p>
-            <% end %>
+          <div class="score col-md-3 mb-3">
+            <h6 class="text-light"><%= review.score.name %>/<%= review.score.artist %></h6>
             <span id="score_review_star_<%= review.id %>"></span>
             <script>
               // $('#star').empty();
@@ -20,8 +17,10 @@
                     readOnly: true
                   });
             </script><br>
-            レビュータイトル：<%= review.title %><br>
-            レビュー内容：<%= review.body %>
+            <%= link_to score_review_path(review.score_id, review.id) do %>
+              レビュータイトル：<%= review.title %><br>
+              レビュー内容：<%= review.body %>
+            <% end %>  
           </div>
         <% end %>
       </div>
