@@ -4,14 +4,16 @@
   <% end %>
   <div class="col d-flex">
     <h3 class="section-ttl d-inline mr-5"><%= @user.nickname %>さんのマイページ</h3>
-    <%= link_to "楽譜投稿", new_score_path, class: "btn btn-outline-success ml-2 d-flex align-items-center" %>
-    <%= link_to "レビュー一覧", user_reviews_path, class: "btn btn-outline-primary ml-2 d-flex align-items-center" %>
-    <%= link_to "投稿一覧", user_scores_path, class: "text-light btn btn-outline-warning ml-2 d-flex align-items-center" %>
+    <% if @user.email != 'guest@example.com' %>
+      <%= link_to "楽譜投稿", new_score_path, class: "btn btn-outline-success ml-2 d-flex align-items-center" %>
+      <%= link_to "レビュー一覧", user_reviews_path, class: "btn btn-outline-primary ml-2 d-flex align-items-center" %>
+      <%= link_to "投稿一覧", user_scores_path, class: "text-light btn btn-outline-warning ml-2 d-flex align-items-center" %>
+    <% end %>
   </div>
 
   <div class="row">
     <div class="col">
-      
+
     </div>
   </div>
     <div class="row">
@@ -48,6 +50,10 @@
       </div>
     </div>
       	<div class="d-flex justify-content-center">
-      		<%= link_to "ユーザー情報編集", edit_information_path, class: "btn btn-success" %>
+          <% if @user.email != 'guest@example.com' %>
+            <%= link_to "ユーザー情報編集", edit_information_path, class: "btn btn-success" %>
+          <% else %>
+            <p class="mt-5">※ゲストユーザーはユーザー情報の編集ができません。</p>
+          <% end %>
       	</div>
 </section>
