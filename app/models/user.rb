@@ -21,10 +21,10 @@ class User < ApplicationRecord
   has_one_attached :image
   
   def self.guest
-    find_or_create_by!(email: 'aaa@aaa.com') do |user|
+    find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.password_confirmation = user.password
-      user.nickname = 'サンプル'
+      user.nickname = 'ゲストユーザー'
       user.birthday = '2000-01-01'
     end
   end
