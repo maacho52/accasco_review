@@ -21,7 +21,7 @@ class Admin::ScoresController < ApplicationController
       redirect_to admin_score_path
     else
       render :edit
-    end  
+    end
   end
 
   private
