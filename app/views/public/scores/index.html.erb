@@ -1,10 +1,6 @@
 <section class="wrapper flex container">
+  <h3 class="section-ttl">楽譜一覧 (全<%= @all_scores_count %>件)</h3>
   <div class="content">
-    <% if params[:sites_id] %>
-      <h3 class="section-ttl">楽譜一覧 (全<%= @all_scores_count %>件)</h3>
-    <% else %>
-      <h3 class="section-ttl">楽譜一覧 (全<%= @all_scores_count %>件)</h3>
-    <% end %>
     <div class="row">
       <% @scores.each do |score| %>
         <div class="col-md-3">
@@ -19,7 +15,10 @@
           <% end %>
         </div>  
       <% end %>
-    </div>  
-      <%= paginate @scores %>
+    </div>
+  </div>
+  
+  <div class="row d-flex justify-content-center">
+    <%= paginate @scores %>
   </div>
 </section>
