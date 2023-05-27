@@ -1,29 +1,37 @@
 <section class="search-result container">
-  <h3 class="section-ttl">検索結果</h3>
-  <div class="content">
+  <h3 class="section-ttl d-flex">
     <% if params[:sites_id] %>
-      <h3 class="section-ttl">楽譜一覧 (全<%= @all_scores_count %>件)</h3>
+      検索結果 楽譜一覧 (全<%= @scores_count %>件)
     <% else %>
-      <h3 class="section-ttl">楽譜一覧 (全<%= @all_scores_count %>件)</h3>
+      検索結果 楽譜一覧 (全<%= @scores_count %>件)
     <% end %>
-
+  </h3>
+  <div class="content row">
     <% if @scores.present? %>
-      <div class="scores">
-        <% @scores.each do |score| %>
+      <% @scores.each do |score| %>
+        <div class="col-md-4 mb-5">
           <%= link_to score_path(score) do %>
             <%= image_tag score.get_image(100,100), format: "jpeg", fallback: "no-image.png" %>
-            <h5><%= score.name %></h5>
-            <p><%= score.artist %></p>
+            <h5><%= score.name %>/<%= score.artist %></h5>
           <% end %>
-          <!--タグの表示 -->
-          <% score.arranges.each do |arrange| %>
-            <%= arrange.body %>
+          <!--アレンジ内容の表示 -->
+          <% if score.arranges.present? %>
+            <p class="border border-info border-4 rounded-pill mr-2 p-2 bg-info d-inline">アレンジ内容</p><br>
           <% end %>
-        <% end %>
-      </div>
-      <%= paginate @scores %>
+          <div class="mt-3 ml-2">
+            <% score.arranges.each do |arrange| %>
+              <%= arrange.body %>
+            <% end %>
+          </div>  
+        </div>  
+      <% end %>
     <% else %>
       <h4>対応する楽譜はありませんでした。</h4>
     <% end %>
+  </div>
+  <div class="row">
+    <div class="col  d-flex justify-content-center">
+      <%= paginate @scores %>
+    </div>
   </div>
 </section>
