@@ -1,6 +1,6 @@
 <section class="inner container">
   <h3 class="section-ttl">会員情報編集</h3>
-  <%= form_with model:@user, url: update_information_path do |f| %>
+  <%= form_with model: @user, url: update_information_path, method: :patch do |f| %>
   <%= render 'devise/shared/error_messages', resource: @user %>
   <div class="row">
     <div class="col md-1">
@@ -14,6 +14,10 @@
           <th></th>
         </thead>
         <tbody>
+          <tr>
+            <th><%= f.label :image, "画像" %></th>
+            <td class="btn btn-file btn-info"><%= f.file_field :image,  accept: 'image/*' %>画像選択</td>
+          </tr>
           <tr>
             <th><%= f.label :nickname, "ニックネーム" %></th>
             <td><%= f.text_field :nickname, :placeholder =>"#{@user.nickname}" %></td>
