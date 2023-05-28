@@ -11,14 +11,13 @@
     <% end %>
   </div>
 
-  <div class="row">
-    <div class="col">
-
+    <div class="row mt-3">
+    <div class="col-md-1"></div>
+    <div class="col-md-2">
+      <%= image_tag @user.get_image(100,100), class: "user-profile-image" %>
     </div>
-  </div>
-    <div class="row">
-      <div class="col">
-      	<table cellspacing="5", class="user-info-table mb3">
+      <div class="col-md-9 text-left">
+      	<table align="left", cellspacing="5", class="user-info-table mb3 ">
       		<thead>
       			<th></th>
       			<th></th>
