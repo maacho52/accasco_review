@@ -26,8 +26,14 @@
  body {
    min-height: 100vh;
    color: white;
-   background-image: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
    font-family: sans-serif;
+  background-image: image-url("accasco_bg.jpg");
+  //白色を貼り付けて、透過させる。これは青や、緑でも対応可能
+  background-color:rgba(0, 0, 0, 0.26);
+  //混合モードの指定になります。
+  background-blend-mode:lighten;
+  //ついでに画像をページ全体に表示する
+  background-size: 100%;
  }
 
  /* ユーザーログイン */
@@ -36,11 +42,17 @@
  }
 
 header {
- border-bottom: 5px dashed #ffa500;
+ border-bottom: 5px double #ffcc33;
  margin-bottom: 2vw;
  margin-top: 2vw;
 }
 
+footer {
+ border-top: 5px double #ffcc33;
+ margin-top: 2vw;
+ padding-top: 1vw;
+ margin-top: 2vw;
+}
  /* 検索窓 */
  .rootpageSearchForm {
   width: auto;
