@@ -21,8 +21,8 @@
   </div>
   <div class="row">
       <div class="review_info col-md-3 text-center">
-          <%= image_tag @score.user.get_image(100,100), class: "user-profile-image" %><br>
-          <%= @score.user.nickname %>
+          <%= image_tag @review.user.get_image(100,100), class: "user-profile-image" %><br>
+          <%= @review.user.nickname %>
       </div>
         <div class="col-md-9">
             <span id="score_review_star_<%= @review.id %>"></span><br>
@@ -44,7 +44,7 @@
 
           <% if @user.id == current_user.id %>
             <div class="button">
-              <%= link_to "編集する", edit_score_review_path(@review), class: "btn btn-sm btn-success" %>
+              <%= link_to "編集する", edit_score_review_path(@review.score_id, @review), class: "btn btn-sm btn-success" %>
             </div>
           <% end %>
         </div>
