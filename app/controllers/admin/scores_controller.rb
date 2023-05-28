@@ -23,6 +23,15 @@ class Admin::ScoresController < ApplicationController
       render :edit
     end
   end
+  
+  def destroy
+    @score = Score.find(params[:id])
+    if @score.destroy
+      redirect_to admin_scores_path
+    else
+      render :edit
+    end  
+  end
 
   private
 
