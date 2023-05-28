@@ -13,7 +13,7 @@ class Admin::ScoresController < ApplicationController
     @score = Score.find(params[:id])
     @sites = Site.all
   end
-  
+
   def update
     @score = Score.find(params[:id])
     @sites = Site.all
@@ -23,19 +23,19 @@ class Admin::ScoresController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     @score = Score.find(params[:id])
     if @score.destroy
       redirect_to admin_scores_path
     else
       render :edit
-    end  
+    end
   end
 
   private
 
   def score_params
-    params.require(:score).permit(:name, :artist, :member, :difficulty, :user_id, arrange_ids: [])
+    params.require(:score).permit(:name, :artist, :member, :difficulty, :user_id, :site_id, arrange_ids: [])
   end
 end
