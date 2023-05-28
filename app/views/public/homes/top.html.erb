@@ -7,10 +7,10 @@
       </h3>
     </div>
   </div>
-    
+
   <div class="row">
     <div class="col">
-      <%= form_with url: search_scores_path, local: true, method: :get do |f| %>
+      <%= form_with url: search_detail_scores_path, local: true, method: :get do |f| %>
         <table class="search-table">
           <tbody>
             <tr>
@@ -24,23 +24,23 @@
             <tr>
               <th>グループ構成人数</th>
               <td>
-                <%= f.radio_button :member, Score.members.key(0) %><%= f.label :member, Score.members_i18n[:three], value: Score.members.key(0) %>
-                <%= f.radio_button :member, Score.members.key(1) %><%= f.label :member, Score.members_i18n[:four], value: Score.members.key(1) %>
-                <%= f.radio_button :member, Score.members.key(2) %><%= f.label :member, Score.members_i18n[:five], value: Score.members.key(2) %>
-                <%= f.radio_button :member, Score.members.key(3) %><%= f.label :member, Score.members_i18n[:six], value: Score.members.key(3) %>
-                <%= f.radio_button :member, Score.members.key(4) %><%= f.label :member, Score.members_i18n[:seven_or_more], value: Score.members.key(4) %>
-                <%= f.radio_button :member, Score.members.key(5) %><%= f.label :member, Score.members_i18n[:boys], value: Score.members.key(5) %>
-                <%= f.radio_button :member, Score.members.key(6) %><%= f.label :member, Score.members_i18n[:girls], value: Score.members.key(6) %>
+                <%= f.radio_button :member, Score.members.values[0] %><%= f.label :member, Score.members_i18n[:three], value: Score.members.values[0] %>
+                <%= f.radio_button :member, Score.members.values[1] %><%= f.label :member, Score.members_i18n[:four], value: Score.members.values[1] %>
+                <%= f.radio_button :member, Score.members.values[2] %><%= f.label :member, Score.members_i18n[:five], value: Score.members.values[2] %>
+                <%= f.radio_button :member, Score.members.values[3] %><%= f.label :member, Score.members_i18n[:six], value: Score.members.values[3] %>
+                <%= f.radio_button :member, Score.members.values[4] %><%= f.label :member, Score.members_i18n[:seven_or_more], value: Score.members.values[4] %>
+                <%= f.radio_button :member, Score.members.values[5] %><%= f.label :member, Score.members_i18n[:boys], value: Score.members.values[5] %>
+                <%= f.radio_button :member, Score.members.values[6] %><%= f.label :member, Score.members_i18n[:girls], value: Score.members.values[6] %>
               </td>
             </tr>
             <tr>
               <th>難易度</th>
               <td>
-                <%= f.radio_button :difficulty, Score.difficulties.key(0) %><%= f.label :difficulty, Score.difficulties_i18n[:introduction], value: Score.difficulties.key(0) %>
-                <%= f.radio_button :difficulty, Score.difficulties.key(1) %><%= f.label :difficulty, Score.difficulties_i18n[:biginner], value: Score.difficulties.key(1) %>
-                <%= f.radio_button :difficulty, Score.difficulties.key(2) %><%= f.label :difficulty, Score.difficulties_i18n[:intermediate], value: Score.difficulties.key(2) %>
-                <%= f.radio_button :difficulty, Score.difficulties.key(3) %><%= f.label :difficulty, Score.difficulties_i18n[:advanced], value: Score.difficulties.key(3) %>
-                <%= f.radio_button :difficulty, Score.difficulties.key(4) %><%= f.label :difficulty, Score.difficulties_i18n[:superlative], value: Score.difficulties.key(4) %>
+                <%= f.radio_button :difficulty, Score.difficulties.values[0] %><%= f.label :difficulty, Score.difficulties_i18n[:introduction], value: Score.difficulties.values[0] %>
+                <%= f.radio_button :difficulty, Score.difficulties.values[1] %><%= f.label :difficulty, Score.difficulties_i18n[:biginner], value: Score.difficulties.values[1] %>
+                <%= f.radio_button :difficulty, Score.difficulties.values[2] %><%= f.label :difficulty, Score.difficulties_i18n[:intermediate], value: Score.difficulties.values[2] %>
+                <%= f.radio_button :difficulty, Score.difficulties.values[3] %><%= f.label :difficulty, Score.difficulties_i18n[:advanced], value: Score.difficulties.values[3] %>
+                <%= f.radio_button :difficulty, Score.difficulties.values[4] %><%= f.label :difficulty, Score.difficulties_i18n[:superlative], value: Score.difficulties.values[4] %>
               </td>
             </tr>
             <tr>
@@ -57,7 +57,7 @@
           <%= button_tag type: "submit", class: "border rounded-pill shadow-l search-btn btn btn-info mx-auto" do %>
 	          <i class="fas fa-search"><span class="text-light">楽譜を検索する</span></i>
           <% end %>
-        </div>  
+        </div>
       <% end %>
     </div>
   </div>
@@ -74,8 +74,8 @@
             <%= image_tag score.get_image(150,100) %>
             <p><strong class="text-light"><%= score.name %>/</strong>
             <strong class="text-light"><%= score.artist %></strong></p>
-          <% end %>  
-        </div>  
+          <% end %>
+        </div>
       <% end %>
   </div>
 

@@ -21,7 +21,7 @@ class Score < ApplicationRecord
 
   def self.search(search)#self.はScore.を意味する
     if search != ""
-      Score.eager_load(:arranges, :site).where('scores.artist LIKE(?) OR scores.name LIKE(?) OR scores.difficulty LIKE(?) OR scores.member LIKE(?) OR sites.name LIKE(?) OR arranges.body LIKE(?)', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+      Score.eager_load(:arranges, :site).where('scores.artist LIKE(?) OR scores.name LIKE(?) OR sites.name LIKE(?) OR arranges.body LIKE(?)', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
     #検索とartist,name,site.name,arrange.bodyの部分一致を表示。
     else
       Score.all
@@ -35,5 +35,4 @@ class Score < ApplicationRecord
    end
     image.variant(resize_to_limit: [width, height]).processed
   end
-
 end

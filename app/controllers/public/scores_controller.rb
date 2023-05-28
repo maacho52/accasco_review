@@ -2,8 +2,16 @@ class Public::ScoresController < ApplicationController
 
   def search
     @scores = Score.search(params[:keyword]).order(created_at: :desc).page(params[:page]).per(12)
+  end
 
-  #タグ検索
+  def search_detail
+    @scores = Score.all
+    @scores = @scores.where(name: params[:name]) if params[:name].present?
+    @scores = @scores.where(member: params[:member]) if params[:member].present?
+    @scores = @scores.where(artist: params[:artist]) if params[:artist].present?
+    @scores = @scores.where(difficulty: params[:difficulty]) if params[:difficulty].present?
+    @scores = @scores.order(created_at: :desc).page(params[:page]).per(12)
+    #タグ検索
     @arrange_ids = params[:arrange_ids]&.select(&:present?)
     if @arrange_ids.present?
       @arrange_word = "タグ: "
@@ -16,6 +24,8 @@ class Public::ScoresController < ApplicationController
 
     # 検索結果件数
     @scores_count = @scores.all.count
+
+    render :search
   end
 
   def new
