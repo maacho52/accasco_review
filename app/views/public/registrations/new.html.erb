@@ -13,27 +13,31 @@
         </thead>
         <tbody>
           <tr>
-            <td><%= f.label :nickname, "ニックネーム", class: "user_nickname" %></td>
+            <th><%= f.label :image, "画像" %></th>
+            <td class="btn btn-file btn-info"><%= f.file_field :image,  accept: 'image/*' %>画像選択</td>
+          </tr>
+          <tr>
+            <th><%= f.label :nickname, "ニックネーム", class: "user_nickname" %></th>
             <td><%= f.text_field :nickname, autofocus: true, :placeholder =>"ニックネーム" %></td>
           </tr>
           <tr>
-            <td><%= f.label :email, "メールアドレス" %></td>
+            <th><%= f.label :email, "メールアドレス" %></th>
             <td colspan="2"><%= f.email_field :email, autocomplete: "email" %></td>
           </tr>
           <tr>
-            <td><%= f.label :password, "パスワード(#{@minimum_password_length}文字以上)" %></td>
+            <th><%= f.label :password, "パスワード(#{@minimum_password_length}文字以上)" %></th>
             <td colspan="2"><%= f.password_field :password, autocomplete: "new-password" %></td>
           </tr>
           <tr>
-            <td><%= f.label :password_confirmation, "パスワード(確認用)" %></td>
+            <th><%= f.label :password_confirmation, "パスワード(確認用)" %></th>
             <td colspan="2"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
           </tr>
           <tr>
-            <td>生年月日</td>
+            <th>生年月日</th>
             <td><%= f.date_select :birthday, use_month_numbers: true, start_year: 1950, end_year: Time.now.year, default: Date.new(1989, 1, 1), include_blank: true, use_two_digit_numbers: true, class: "input-tab birthday-select" %></td>
           </tr>
           <tr>
-            <td>性別</td>
+            <th>性別</th>
             <td colespan="2">
               <%= f.radio_button :sex, "man" %> <%= f.label :sex_man, "男性" %>
               <%= f.radio_button :sex, "woman" %> <%=f.label :sex_woman, "女性" %>
@@ -41,11 +45,11 @@
             </td>
           </tr>
           <tr>
-            <td><%= f.label :experience, "アカペラ歴" %></td>
+            <th><%= f.label :experience, "アカペラ歴" %></th>
             <td colespan="2"><%= f.text_field :experience %>年</td>
           </tr>
           <tr>
-            <td>担当パート</td>
+            <th>担当パート</th>
             <td>
               <%= f.radio_button :part, "lead" %><%= f.label :part_lead, "Lead" %>
               <%= f.radio_button :part, "top" %><%= f.label :part_top, "Top" %>
@@ -57,7 +61,7 @@
             </td>
           </tr>
           <tr>
-            <td></td>
+            <th></th>
             <td colspan="2"><%= f.submit "アカウント作成", class: "btn btn-primary" %></td>
           </tr>
         </tbody>
