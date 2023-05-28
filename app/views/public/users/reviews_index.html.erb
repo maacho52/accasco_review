@@ -18,8 +18,8 @@
                   });
             </script><br>
             <%= link_to score_review_path(review.score_id, review.id) do %>
-              レビュータイトル：<%= review.title %><br>
-              レビュー内容：<%= review.body %>
+              <span class="text-light">レビュータイトル：<%= review.title %></span><br>
+              <span class="text-light">レビュー内容：<%= review.body %></span>
             <% end %>  
           </div>
         <% end %>
