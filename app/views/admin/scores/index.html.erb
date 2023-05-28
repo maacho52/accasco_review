@@ -3,11 +3,28 @@
     <div class="row mt-5">
       <% @scores.each do |score| %>
         <div class="col-md-3 mb-5">
-          <%= link_to admin_score_path(score.id) do %>
-            <%= image_tag score.image, size: '150x100'%>
-          <% end %><br>
-          <span>曲名:<%= score.name %></span><br>
-          <span>歌手:<%= score.artist %></span>
+          <div>
+            <% if score.site.name == "アカペラ本舗" %>
+              <%= link_to asset_url("https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG_omiYkNVym1Sd6g5T38MuTBDc4e9p3cTQ3M1cJm6kfTuitexCuBj1N0kIYMSiPh4uju4KrP8eZQfGEze7KR8YgXg4AX6ibGdJwAqBzN_V3fRpXI8zagw7M7s6pqkyURoNtEBa1uLar3vNFb-CCICfGNJ6g6aGJLt-uJqmg_oIyi94IFkUCLbBhPSFPWp5b4hmBt0ouQUyW-mBf9fuJvgo0ucZcnl9nFAaQx4uB5ICpl/6Xr1RAma_400x400.jpg?errorImage=false") do %>
+                <%= image_tag "https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG_omiYkNVym1Sd6g5T38MuTBDc4e9p3cTQ3M1cJm6kfTuitexCuBj1N0kIYMSiPh4uju4KrP8eZQfGEze7KR8YgXg4AX6ibGdJwAqBzN_V3fRpXI8zagw7M7s6pqkyURoNtEBa1uLar3vNFb-CCICfGNJ6g6aGJLt-uJqmg_oIyi94IFkUCLbBhPSFPWp5b4hmBt0ouQUyW-mBf9fuJvgo0ucZcnl9nFAaQx4uB5ICpl/6Xr1RAma_400x400.jpg?errorImage=false", class: "score-image" %>
+              <% end %>
+            <% elsif score.site.name == "kingscore" %>
+              <%= link_to asset_url("https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG7BTWOaxwwBCJKtdYdxots0g9whvrp4B8hwvvvde070kkAAksGKiLlvjd3mPc6J24RiwiobguTd2Yg5ZW0MddUbe2IEsJF_T_2gTabcOOQDOruyhYtPMKN9cl1Ymiz7IK0sMFCk_H6IXylJ9N8Iz9vguWRWa0roc552HRXiKhDJngxIu-mi8AbFst24xpAh0fOW_VBvnIXBnByZ2oMXG8N22hHaY6cJe-Vr1MLG3yW0Ssn4GUkUkoGAhzfVgK14xD4Nk1FqJ9eE0Kz8G6BZUDmg=/kingscore_card.png?errorImage=false") do %>
+                <%= image_tag "https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG7BTWOaxwwBCJKtdYdxots0g9whvrp4B8hwvvvde070kkAAksGKiLlvjd3mPc6J24RiwiobguTd2Yg5ZW0MddUbe2IEsJF_T_2gTabcOOQDOruyhYtPMKN9cl1Ymiz7IK0sMFCk_H6IXylJ9N8Iz9vguWRWa0roc552HRXiKhDJngxIu-mi8AbFst24xpAh0fOW_VBvnIXBnByZ2oMXG8N22hHaY6cJe-Vr1MLG3yW0Ssn4GUkUkoGAhzfVgK14xD4Nk1FqJ9eE0Kz8G6BZUDmg=/kingscore_card.png?errorImage=false", class: "score-image" %>
+              <% end %>
+            <% elsif score.site.name == "Piascore"%>
+              <%= link_to asset_url("https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqGygSacSmZfxx6LzR4eH474p8MhQtUnfclPlQd7NME-tG0l4dA0J8GWupDY7J8BsqH3LcTdqSVSsIZXoYyf16ivgwZ7-xjHfY_cG8AioMPkvXWBe4te9E1FdMlqmB2iO93F3jiGA51PySJ9cvKfJyRJUCGGUhaYvcOmmnv3ECyu4j/default.png?errorImage=false") do %>
+                <%= image_tag "https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqGygSacSmZfxx6LzR4eH474p8MhQtUnfclPlQd7NME-tG0l4dA0J8GWupDY7J8BsqH3LcTdqSVSsIZXoYyf16ivgwZ7-xjHfY_cG8AioMPkvXWBe4te9E1FdMlqmB2iO93F3jiGA51PySJ9cvKfJyRJUCGGUhaYvcOmmnv3ECyu4j/default.png?errorImage=false", class: "score-image" %>
+              <% end %>
+            <% elsif %>
+              <%= image_tag score.get_image(100,100), class: "score_image" %>
+            <% end %>
+          </div>  
+          
+          <%= link_to admin_score_path(score.id), class: "link" do %>
+            <span class="text-light font-weight-bold">曲名:<%= score.name %></span><br>
+            <span class="text-light font-weight-bold">歌手:<%= score.artist %></span>
+          <% end %>  
         </div>
       <% end %>
     </div>
