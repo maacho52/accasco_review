@@ -9,14 +9,11 @@ class Public::ReviewsController < ApplicationController
 
   def create
     @review = current_user.reviews.new(review_params)
-    if @review.score.user_id != current_user.id
-      @review.save
+    if @review.save
       redirect_to score_path(@review.score)
     else
       @score = Score.find(params[:score_id])
-      flash[:notice] = "自身が投稿した楽譜にレビューはできません。"
       render "public/scores/show"
-      
     end
   end
 
@@ -30,9 +27,8 @@ class Public::ReviewsController < ApplicationController
   def update
     @user = current_user
     @review = @user.reviews.find(params[:id])
-    #binding.pry
     if @review.update!(review_params)
-      #flash[:notice] = "review was successfully updated."
+      flash[:notice] = "レビューが更新されました"
       redirect_to score_review_path(@review.score, @review)
     else
       render :edit

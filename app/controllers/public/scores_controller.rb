@@ -83,16 +83,13 @@ class Public::ScoresController < ApplicationController
     @site = @score.site
     @score_arranges = @score.arranges
   end
-
+  
   def update
-    # scoreのid持ってくる
-    @socre = Score.find(params[:id])
-    # 入力されたタグを受け取る
-    #arrange_list = params[:score][:name].split(',')
-    # もしscoreの情報が更新されたら
-    if  @score.update(score_params)
-        #@score.save_arrange(arrange_list)
-        redirect_to score_path(@score.id), notice: '更新完了しました:)'
+    @score = Score.find(params[:id])
+    @sites = Site.all
+    if @score.update(score_params)
+      redirect_to score_path(@score)
+      flash[:notice] = "楽譜が更新されました"
     else
       render :edit
     end
