@@ -19,3 +19,9 @@ Arrange.create([
     { body: 'ダブルリード'},
     { body: 'その他'},
     ])
+
+Site.create([
+    { name: "アカペラ本舗" },
+    { name: "Piascore" },
+    { name: "kingscore" },
+    ])
