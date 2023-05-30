@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(version: 2023_05_08_123156) do
     t.string "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "star", null: false
   end
 
   create_table "score_arranges", force: :cascade do |t|
