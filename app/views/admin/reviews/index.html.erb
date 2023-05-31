@@ -4,7 +4,7 @@
     <div class="row">
       <% @reviews.each do |review| %>
         <div class="col-md-4">
-          <%= image_tag review.user.image %><br>
+          <%= image_tag review.user.profile_image %><br>
           ユーザーID <%= link_to admin_user_path(review.user.id) do %>
             <%= review.user_id %><br>
           <% end %>

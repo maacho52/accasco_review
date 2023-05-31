@@ -53,7 +53,7 @@
   <div class="d-flex row mb-5">
     <% @review.comments.each do |comment| %>
       <div class="col-md-4 mb-3">
-        <%= image_tag comment.user.get_image(50,50), class: "user-profile-image" %>
+        <%= image_tag comment.user.profile_image, size: "150x100", class: "user-profile-image" %>
         <%= comment.body %>
       </div>
     <% end %>

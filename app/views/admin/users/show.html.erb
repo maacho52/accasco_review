@@ -6,7 +6,7 @@
       </div>
       <div class="row">
         <div class="col-md-2">
-          <%= image_tag @user.get_image(100,100), class: "user-profile-image" %><br>
+          <%= image_tag @user.profile_image, size: "150x100", class: "user-profile-image" %><br>
             <strong><span><%= @user.nickname %>さん</span><br>
             <span>ID：<%= @user.id %></span></strong>
         </div>
