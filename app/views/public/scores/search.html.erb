@@ -3,7 +3,7 @@
     <% if params[:sites_id] %>
       検索結果 楽譜一覧 (全<%= @scores_count %>件)
     <% else %>
-      検索結果 楽譜一覧 (全<%= @scores_count %>件)
+      検索結果 楽譜一覧 (0件)
     <% end %>
   </h3>
   <div class="content row">
@@ -25,7 +25,7 @@
         <% elsif %>
           <%= image_tag score.get_image(100,100), class: "score_image" %>
         <% end %>
-        
+
           <%= link_to score_path(score) do %>
             <h5><%= score.name %>/<%= score.artist %></h5>
           <% end %>
@@ -37,8 +37,8 @@
             <% score.arranges.each do |arrange| %>
               <%= arrange.body %>
             <% end %>
-          </div>  
-        </div>  
+          </div>
+        </div>
       <% end %>
     <% else %>
       <h4>対応する楽譜はありませんでした。</h4>
