@@ -18,8 +18,8 @@ class User < ApplicationRecord
       # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
   #  end
   #end
-  has_one_attached :image
-  
+  has_one_attached :profile_image
+
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
@@ -28,12 +28,15 @@ class User < ApplicationRecord
       user.birthday = '2000-01-01'
     end
   end
-  
+
   def get_image(width, height)
-   unless image.attached?
+    #binding.pry
+   if !profile_image.attached?
     file_path = Rails.root.join('app/assets/images/no_image.jpg')
-    image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    #binding.pry
+    profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+   else
+    profile_image.variant(resize_to_limit: [width, height]).processed
    end
-    image.variant(resize_to_limit: [width, height]).processed
   end
 end
