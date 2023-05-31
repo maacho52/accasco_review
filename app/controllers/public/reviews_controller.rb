@@ -8,7 +8,8 @@ class Public::ReviewsController < ApplicationController
   end
 
   def create
-    @review = current_user.reviews.new(review_params)
+    #@review = current_user.reviews.new(review_params)
+    @review = current_user.review.new(review_params)
     if @review.save
       redirect_to score_path(@review.score)
     else
