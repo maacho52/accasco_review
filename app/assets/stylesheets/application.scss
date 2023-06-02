@@ -27,13 +27,15 @@
    min-height: 100vh;
    color: white;
    font-family: sans-serif;
-  background-image: image-url("accasco_bg.jpg");
+  //background-image: image-url("bg_image.jpg");
+  backgorund-color: green;
   //白色を貼り付けて、透過させる。これは青や、緑でも対応可能
-  background-color:rgba(0, 0, 0, 0.26);
+  //background-color:rgba(0, 0, 0, 0.26);
   //混合モードの指定になります。
   background-blend-mode:lighten;
   //ついでに画像をページ全体に表示する
   background-size: 100%;
+  height: 100%;
  }
 
  /* ユーザーログイン */
@@ -45,6 +47,7 @@ header {
  border-bottom: 5px double #ffcc33;
  margin-bottom: 2vw;
  margin-top: 2vw;
+ height: 50px;
 }
 
 footer {
