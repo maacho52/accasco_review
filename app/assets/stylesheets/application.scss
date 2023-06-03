@@ -24,14 +24,14 @@
  }
 
  body {
-   min-height: 100vh;
-   color: white;
-   font-family: sans-serif;
+  min-height: 100vh;
+  color: white;
+  font-family: sans-serif;
   background-image: image-url("accasco_bg.jpg");
-  //白色を貼り付けて、透過させる。これは青や、緑でも対応可能
-  //background-color:rgba(0, 0, 0, 0.26);
-  //混合モードの指定になります。
-  background-blend-mode:lighten;
+  //白色を貼り付け透過
+  background-color: rgba(255, 255, 255, 0.2);
+  //混合モードの指定
+  background-blend-mode: color;
   //ついでに画像をページ全体に表示する
   background-size: 100%;
   height: 100%;
