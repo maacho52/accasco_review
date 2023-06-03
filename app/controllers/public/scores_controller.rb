@@ -2,6 +2,14 @@ class Public::ScoresController < ApplicationController
 
   def search
     @scores = Score.search(params[:keyword]).order(created_at: :desc).page(params[:page]).per(12)
+    if params[:search].present?
+      scores = Score.scores_serach(params[:search])
+    elsif params[:arrange_id].present?
+      @arrange = arrange.find(params[:arrange_id])
+      scores = @arrange.scores.order(created_at: :desc)
+    else
+      scores = Score.all.order(created_at: :desc)
+    end
   end
 
   def search_detail
@@ -39,17 +47,6 @@ class Public::ScoresController < ApplicationController
     #@user = current_user
     #@user.scores = current_user.scores.all
     @arrange_list = Arrange.all
-
-    if params[:search].present?
-      scores = Score.scores_serach(params[:search])
-    elsif params[:arrange_id].present?
-      @arrange = arrange.find(params[:arrange_id])
-      scores = @arrange.scores.order(created_at: :desc)
-    else
-      scores = Score.all.order(created_at: :desc)
-    end
-
-
   end
 
   def create
