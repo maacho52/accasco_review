@@ -36,10 +36,26 @@
             <% end %>
 
             <% if admin_signed_in? %>
-              <li class="nav-item"><%= link_to "楽譜一覧", admin_scores_path, class: "btn btn-sm btn-outline-danger" %></li>
-              <li class="nav-item"><%= link_to "レビュー一覧", admin_score_reviews_path(:id, :score_id), class: "btn btn-sm btn-outline-danger" %></li>
-              <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: "btn btn-sm btn-outline-danger" %></li>
-              <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-sm btn-outline-danger" %></li>
+              <li class="nav-item mr-2">
+                <%= link_to  admin_scores_path, class: "btn btn-sm btn-outline-danger" do %>
+                  <i class="fa-solid fa-music">楽譜一覧</i>
+                <% end %>  
+              </li>
+              <li class="nav-item mr-2">
+                <%= link_to  admin_score_reviews_path(:id, :score_id), class: "btn btn-sm btn-outline-danger" do %>
+                  <i class="fa-solid fa-star-sharp">レビュー一覧</i>
+                <% end %>
+              </li>
+              <li class="nav-item mr-2">
+                <%= link_to  admin_users_path, class: "btn btn-sm btn-outline-danger" do %>
+                  <i class="fa-solid fa-users">ユーザー一覧</i>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_admin_session_path, method: :delete, class: "btn btn-sm btn-outline-danger" do %>
+                  <i class="fa-solid fa-right-from-bracket">ログアウト</i>
+                <% end %>
+              </li>
             <% elsif user_signed_in? %>
               <li class="nav-item text-center ml-5">
                 <%= form_with url: search_scores_path, local: true, method: :get, class: "rootpageSearchForm" do |f| %>
@@ -47,8 +63,16 @@
                   <%= f.submit "検索", class: "rootpageSearchForm__bottum" %>
                 <% end %>
               </li>
-              <li class="nav-item ml-2"><%= link_to "マイページ", mypage_path, class: "btn btn-sm btn-outline-success" %></li>
-              <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-sm btn-outline-primary" %></li>
+              <li class="nav-item ml-2">
+                <%= link_to mypage_path, class: "btn btn-sm btn-outline-success" do %>
+                  <i class="fa-duotone fa-user-pen">マイページ</i>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to  destroy_user_session_path, method: :delete, class: "btn btn-sm btn-outline-primary" do %>
+                  <i class="fa-solid fa-right-from-bracket">ログアウト</i>
+                <% end %>
+              </li>
             <% else %>
               <li class="nav-item text-center">
                 <%= form_with url: search_scores_path, local: true, method: :get, class: "rootpageSearchForm" do |f| %>
