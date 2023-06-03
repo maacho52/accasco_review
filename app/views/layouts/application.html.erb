@@ -15,13 +15,14 @@
     <!-- コード追加　Bootstrap JavaScript読み込みコード-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4/js/bootstrap.min.js"></script>
   </head>
-  
+
+  <body class="text-light">
     <header>
       <!-- ナビゲーションバー -->
-      <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+      <nav class="navbar navbar-expand-md navbar-light fixed-top">
         <!-- タイトル -->
         <h3 class="navbar-brand d-inline text-left mr-5 ml-2">
-          <%= link_to("AccascoReview", root_path, class: 'text-light') %>
+          <%= link_to("AccascoReview", root_path, class: 'text-light top-header') %>
         </h3>
         <!-- ハンバーガーメニュー -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,15 +77,14 @@
       </nav>
     </header>
 
-  <body class="text-light">
     <main>
       <%= yield %>
     </main>
-  </body>
 
-  <footer>
-    <p class="d-flex copylight justify-content-center">
-        © 2023 Maho Osada
-    </p>
-  </footer>
+    <footer>
+      <p class="d-flex copylight justify-content-center">
+          © 2023 Maho Osada
+      </p>
+    </footer>
+  </body>
 </html>
