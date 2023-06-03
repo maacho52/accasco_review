@@ -18,19 +18,21 @@
           <strong><%= review.score.name %> / <%= review.score.artist %></strong><br>
           <span id="score_review_star_<%= review.id %>"></span><br>
           <script>
-            raty(document.querySelector('#score_review_star_<%= review.id %>'), {
-              size     : 36,
-              starOff:  '<%= asset_path('star-off.png') %>',
-              starOn : '<%= asset_path('star-on.png') %>',
-              score: <%= review.star %>,
-              readOnly: true
-            });
-          </script>
+            // $('#star').empty();
+                raty(document.querySelector('#score_review_star_<%= review.id %>'), {
+                  size     : 36,
+                  starOff:  '<%= asset_path('star-off.png') %>',
+                  starOn : '<%= asset_path('star-on.png') %>',
+          
+                  score: <%= review.star %>,
+                  readOnly: true
+                });
+          </script><br>
           <p>レビュー内容：
             <%= link_to admin_score_review_path(review.score.id, review.id) do %>
               <%= review.body %>
+            <% end %>  
           </p>    
-            <% end %>
         </div>
       <% end %>
     </div>

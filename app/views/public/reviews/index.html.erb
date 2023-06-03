@@ -4,25 +4,16 @@
     <div class="row">
       <% @reviews.each do |review| %>
         <div class="col-md-4">
-          <%= image_tag review.user.image %><br>
+          <%= render "public/reviews/review_user_profile" %>
           ユーザーID <%= link_to admin_user_path(review.user.id) do %>
             <%= review.user_id %><br>
           <% end %>
           <strong><%= review.score.name %> / <%= review.score.artist %></strong><br>
-          <span id="score_review_star_<%= review.id %>"></span><br>
-          <script>
-            raty(document.querySelector('#score_review_star_<%= review.id %>'), {
-              size     : 36,
-              starOff:  '<%= asset_path('star-off.png') %>',
-              starOn : '<%= asset_path('star-on.png') %>',
-              score: <%= review.star %>,
-              readOnly: true
-            });
-          </script>
+          <%= render "public/reviews/review_show_star" %>
           <p>レビュー内容：
             <%= link_to score_review_path(review.score.id, review.id) do %>
               <%= review.body %>
-          </p>    
+          </p>
             <% end %>
         </div>
       <% end %>

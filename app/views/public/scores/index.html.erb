@@ -19,7 +19,6 @@
           <% elsif %>
             <%= image_tag score.get_image(100,100), class: "score_image" %>
           <% end %>
-          
           <%= link_to score_path(score) do %>
             <h5><%= score.name %></h5>
             <p><%= score.artist %></p>

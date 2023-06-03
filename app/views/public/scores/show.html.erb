@@ -57,18 +57,18 @@
       <%= link_to score_review_path(score_id: @score.id, id: review.id) do %><!--明示的な方法でpathに引数を渡す-->
         <%= simple_format(review.body) %>
       <% end %>
-      <span id="score_review_star_<%= review.id %>"></span>
+      <span id="score_review_star_<%= review.id %>"></span><br>
       <script>
         // $('#star').empty();
             raty(document.querySelector('#score_review_star_<%= review.id %>'), {
               size     : 36,
               starOff:  '<%= asset_path('star-off.png') %>',
               starOn : '<%= asset_path('star-on.png') %>',
-
+      
               score: <%= review.star %>,
               readOnly: true
             });
-      </script>
+      </script><br>
     <% end %>
   </div>
 

@@ -14,12 +14,7 @@
   <div class="row mt-3">
     <div class="col-md-1"></div>
     <div class="col-md-2">
-      <% if @user.profile_image.attached? %>
-        <%= image_tag @user.profile_image, size: "150x100", class: "user-profile-image" %>
-      <% else %>
-        <%= image_tag "no_image.jpg", class: "user-profile-image" %> 
-      <% end %>
-      <%#= image_tag @user.profile_image, class: "user-profile-image" %>
+      <%= render "user_profile", user: @user %>
     </div>
       <div class="col-md-9 text-left">
       	<table align="left", cellspacing="5", class="user-info-table mb3 ">

@@ -6,22 +6,12 @@
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-2">
-        <%= image_tag @review.user.profile_image, size: "150x100", class: "user-profile-image" %><br>
+        <%= render "public/reviews/review_user_profile", review: @review %>
         ID <%= @review.user.id %>
       </div>
       <div class="col-md-6 mb-4">
         <div class="review_star mb-4">
-          <span id="score_review_star_<%= @review.id %>"></span><br>
-          <script>
-            // $('#star').empty();
-                raty(document.querySelector('#score_review_star_<%= @review.id %>'), {
-                  size     : 36,
-                  starOff:  '<%= asset_path('star-off.png') %>',
-                  starOn : '<%= asset_path('star-on.png') %>',
-                  score: <%= @review.star %>,
-                  readOnly: true
-                });
-          </script><br>
+          <%= render "public/reviews/review_show_star", review: @review %>
             <div class="mb-3">
               <span class="border border-info border-4 rounded-pill mr-2 p-2 bg-info font-weight-bold">レビュータイトル</span>
               <span class="text-primary font-weight-bold text-light"><%= @review.title %></span>

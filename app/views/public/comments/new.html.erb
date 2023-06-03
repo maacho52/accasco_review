@@ -2,12 +2,8 @@
   <h3 class="comments-new-heading">レビュー内容</h3>
   <div class="row mb-3">
     <div class="review_info col-md-3 text-center">
-      <% if @review.user.profile_image.attached? %>
-        <%= image_tag @review.user.profile_image, class: "user-profile-image-show" %><br>
-      <% else %>
-        <%= image_tag "no_image.jpg", class: "user-profile-image" %><br>
-      <% end %><br>
-        <%= @review.user.nickname %>
+      <%= render "public/reviews/review_user_profile", review: @review %>
+      <%= @review.user.nickname %>
     </div>
     <div class="col-md-9">
         <span id="score_review_star_<%= @review.id %>"></span><br>

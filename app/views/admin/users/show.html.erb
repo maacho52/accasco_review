@@ -9,11 +9,7 @@
       </div>
       <div class="row">
         <div class="col-md-2">
-          <% if @user.profile_image.attached? %>
-            <%= image_tag @user.profile_image, size: "150x100", class: "user-profile-image" %><br>
-          <% else %>
-            <%= image_tag "no_image.jpg", class: "user-profile-image" %><br>
-          <% end %>
+          <%= render "public/users/user_profile", user: @user %>
             <strong><span><%= @user.nickname %>さん</span><br>
             <span>ID：<%= @user.id %></span></strong>
         </div>

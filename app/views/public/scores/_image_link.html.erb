@@ -1,5 +1,4 @@
 
-<div class="score-image">
   <% if score.site.name == "アカペラ本舗" %>
     <%= link_to asset_url("https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG_omiYkNVym1Sd6g5T38MuTBDc4e9p3cTQ3M1cJm6kfTuitexCuBj1N0kIYMSiPh4uju4KrP8eZQfGEze7KR8YgXg4AX6ibGdJwAqBzN_V3fRpXI8zagw7M7s6pqkyURoNtEBa1uLar3vNFb-CCICfGNJ6g6aGJLt-uJqmg_oIyi94IFkUCLbBhPSFPWp5b4hmBt0ouQUyW-mBf9fuJvgo0ucZcnl9nFAaQx4uB5ICpl/6Xr1RAma_400x400.jpg?errorImage=false") do %>
       <%= image_tag "https://msp.c.yimg.jp/images/v2/FUTi93tXq405grZVGgDqG_omiYkNVym1Sd6g5T38MuTBDc4e9p3cTQ3M1cJm6kfTuitexCuBj1N0kIYMSiPh4uju4KrP8eZQfGEze7KR8YgXg4AX6ibGdJwAqBzN_V3fRpXI8zagw7M7s6pqkyURoNtEBa1uLar3vNFb-CCICfGNJ6g6aGJLt-uJqmg_oIyi94IFkUCLbBhPSFPWp5b4hmBt0ouQUyW-mBf9fuJvgo0ucZcnl9nFAaQx4uB5ICpl/6Xr1RAma_400x400.jpg?errorImage=false", class: "score-image" %>
@@ -15,4 +14,3 @@
   <% elsif %>
     <%= image_tag score.get_image(100,100), class: "score_image" %>
   <% end %>
-</div>  

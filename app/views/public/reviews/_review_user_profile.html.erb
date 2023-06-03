@@ -1,0 +1,5 @@
+<% if review.user.profile_image.attached? %>
+  <%= image_tag review.user.profile_image, class: "user-profile-image-admin-index" %><br>
+<% else %>
+  <%= image_tag "no_image.jpg", class: "user-profile-image" %><br>
+<% end %>

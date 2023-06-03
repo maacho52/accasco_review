@@ -1,0 +1,5 @@
+<% if user.profile_image.attached? %>
+  <%= image_tag user.profile_image, size: "150x100", class: "user-profile-image" %><br>
+<% else %>
+  <%= image_tag "no_image.jpg", class: "user-profile-image" %><br>
+<% end %>
