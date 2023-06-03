@@ -119,7 +119,19 @@ li {
 
 .user-profile-image {
  border-radius: 100px;
+ //width: 30%;
+}
+
+.user-profile-image-show {
+ border-radius: 100px;
+ width: 50%;
+ height: 100%;
+}
+
+.user-profile-image-admin-index {
+ border-radius: 100px;
  width: 30%;
+ height: 50%;
 }
 
 .user-show {

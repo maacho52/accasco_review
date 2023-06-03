@@ -4,7 +4,11 @@
     <div class="row">
       <% @reviews.each do |review| %>
         <div class="col-md-4">
-          <%= image_tag review.user.profile_image %><br>
+          <% if review.user.profile_image.attached? %>
+            <%= image_tag review.user.profile_image, class: "user-profile-image-admin-index" %><br>
+          <% else %>
+            <%= image_tag "no_image.jpg", class: "user-profile-image" %><br>
+          <% end %>
           ユーザーID <%= link_to admin_user_path(review.user.id) do %>
             <%= review.user_id %><br>
           <% end %>

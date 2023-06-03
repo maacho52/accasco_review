@@ -1,9 +1,9 @@
 <section class="comment-new container">
-  <h5 class="comments-new-heading">レビュー内容</h5>
-  <div class="row">
+  <h3 class="comments-new-heading">レビュー内容</h3>
+  <div class="row mb-3">
     <div class="review_info col-md-3 text-center">
       <% if @review.user.profile_image.attached? %>
-        <%= image_tag @review.user.profile_image, class: "user-profile-image" %><br>
+        <%= image_tag @review.user.profile_image, class: "user-profile-image-show" %><br>
       <% else %>
         <%= image_tag "no_image.jpg", class: "user-profile-image" %><br>
       <% end %><br>
@@ -32,7 +32,7 @@
     <div class="row">
       <div class="col-md-3 text-center">
         <% if current_user.profile_image.attached? %>
-          <%= image_tag current_user.profile_image, class: "user-profile-image mb-3" %>
+          <%= image_tag current_user.profile_image, class: "user-profile-image-show" %><br>
         <% else %>
           <%= image_tag "no_image.jpg", class: "user-profile-image" %><br>
         <% end %>
@@ -49,5 +49,5 @@
     </div>
   <div class="row d-flex justify-content-center">
     <strong class="text-danger"><%= flash[:notice] %></strong>
-  </div>  
+  </div>
 </section>
