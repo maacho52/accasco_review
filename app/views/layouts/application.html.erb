@@ -15,71 +15,73 @@
     <!-- コード追加　Bootstrap JavaScript読み込みコード-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4/js/bootstrap.min.js"></script>
   </head>
-  <header>
-  <!-- ナビゲーションバー -->
-    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-      <!-- タイトル -->
-      <h3 class="navbar-brand d-inline text-left mr-5 ml-2">
-        <%= link_to("AccascoReview", root_path, class: 'text-light') %>
-      </h3>
-      <!-- ハンバーガーメニュー -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <!-- ナビゲーションメニュー -->
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <% if user_signed_in? %>
-            <span class="text-light">ようこそ、<%= current_user.nickname %>さん</span>
-          <% end %>
-          
-          <% if admin_signed_in? %>
-            <li class="nav-item"><%= link_to "楽譜一覧", admin_scores_path, class: "btn btn-sm btn-outline-danger" %></li>
-            <li class="nav-item"><%= link_to "レビュー一覧", admin_score_reviews_path(:id, :score_id), class: "btn btn-sm btn-outline-danger" %></li>
-            <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: "btn btn-sm btn-outline-danger" %></li>
-            <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-sm btn-outline-danger" %></li>
-          <% elsif user_signed_in? %>
-            <li class="nav-item text-center ml-5">
-              <%= form_with url: search_scores_path, local: true, method: :get, class: "rootpageSearchForm" do |f| %>
-                <%= f.text_field :keyword, placeholder: "キーワードを入力", id: 'Search_Form', class: "rootpageSearchForm__content" %>
-                <%= f.submit "検索", class: "rootpageSearchForm__bottum" %>
-              <% end %>
-            </li>
-            <li class="nav-item ml-2"><%= link_to "マイページ", mypage_path, class: "btn btn-sm btn-outline-success" %></li>
-            <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-sm btn-outline-primary" %></li>
-          <% else %>
-            <li class="nav-item text-center">
-              <%= form_with url: search_scores_path, local: true, method: :get, class: "rootpageSearchForm" do |f| %>
-                <%= f.text_field :keyword, placeholder: "キーワードを入力", id: 'Search_Form', class: "rootpageSearchForm__content" %>
-                <%= f.submit "検索", class: "rootpageSearchForm__bottum mr-5" %>
-              <% end %>
-            </li>
-            <li class="nav-item-1 mr-2">
-              <%= link_to  users_guest_sign_in_path, method: :post, class: "btn btn-sm btn-outline-success" do %>
-                <i class="fa-solid fa-user">ゲストログイン</i>
-              <% end %>
-            </li>
-            <li class="nav-item mr-2">
-              <%= link_to user_session_path, class: "btn btn-sm btn-outline-info" do %>
-                <i class="fa-solid fa-right-to-bracket">ログイン</i>
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to  new_user_registration_path, class: "btn btn-sm btn-outline-primary" do %>
-                <i class="fa-solid fa-plus">新規登録</i>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </nav>
-  </header>
+  
+    <header>
+      <!-- ナビゲーションバー -->
+      <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+        <!-- タイトル -->
+        <h3 class="navbar-brand d-inline text-left mr-5 ml-2">
+          <%= link_to("AccascoReview", root_path, class: 'text-light') %>
+        </h3>
+        <!-- ハンバーガーメニュー -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- ナビゲーションメニュー -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <% if user_signed_in? %>
+              <span class="text-light">ようこそ、<%= current_user.nickname %>さん</span>
+            <% end %>
 
+            <% if admin_signed_in? %>
+              <li class="nav-item"><%= link_to "楽譜一覧", admin_scores_path, class: "btn btn-sm btn-outline-danger" %></li>
+              <li class="nav-item"><%= link_to "レビュー一覧", admin_score_reviews_path(:id, :score_id), class: "btn btn-sm btn-outline-danger" %></li>
+              <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: "btn btn-sm btn-outline-danger" %></li>
+              <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-sm btn-outline-danger" %></li>
+            <% elsif user_signed_in? %>
+              <li class="nav-item text-center ml-5">
+                <%= form_with url: search_scores_path, local: true, method: :get, class: "rootpageSearchForm" do |f| %>
+                  <%= f.text_field :keyword, placeholder: "キーワードを入力", id: 'Search_Form', class: "rootpageSearchForm__content" %>
+                  <%= f.submit "検索", class: "rootpageSearchForm__bottum" %>
+                <% end %>
+              </li>
+              <li class="nav-item ml-2"><%= link_to "マイページ", mypage_path, class: "btn btn-sm btn-outline-success" %></li>
+              <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-sm btn-outline-primary" %></li>
+            <% else %>
+              <li class="nav-item text-center">
+                <%= form_with url: search_scores_path, local: true, method: :get, class: "rootpageSearchForm" do |f| %>
+                  <%= f.text_field :keyword, placeholder: "キーワードを入力", id: 'Search_Form', class: "rootpageSearchForm__content" %>
+                  <%= f.submit "検索", class: "rootpageSearchForm__bottum mr-5" %>
+                <% end %>
+              </li>
+              <li class="nav-item-1 mr-2">
+                <%= link_to  users_guest_sign_in_path, method: :post, class: "btn btn-sm btn-outline-success" do %>
+                  <i class="fa-solid fa-user">ゲストログイン</i>
+                <% end %>
+              </li>
+              <li class="nav-item mr-2">
+                <%= link_to user_session_path, class: "btn btn-sm btn-outline-info" do %>
+                  <i class="fa-solid fa-right-to-bracket">ログイン</i>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to  new_user_registration_path, class: "btn btn-sm btn-outline-primary" do %>
+                  <i class="fa-solid fa-plus">新規登録</i>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+  <body class="text-light">
     <main>
       <%= yield %>
     </main>
   </body>
-  
+
   <footer>
     <p class="d-flex copylight justify-content-center">
         © 2023 Maho Osada
