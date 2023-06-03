@@ -19,10 +19,10 @@
       <% end %>
     </div>
   </div>
-  <div class="row">
+  <div class="row mb-5">
       <div class="review_info col-md-3 text-center">
           <% if @review.user.profile_image.attached? %>
-            <%= image_tag @review.user.profile_image, class: "user-profile-image" %><br>
+            <%= image_tag @review.user.profile_image, size: "50×50", class: "user-profile-image-show" %><br>
           <% else %>
             <%= image_tag "no_image.jpg", class: "user-profile-image" %><br>
           <% end %>
@@ -46,7 +46,7 @@
             <% end %>
               <%= @review.body %>
 
-          <% if @user.id == current_user.id %>
+          <% if @review.user_id == current_user.id %>
             <div class="button">
               <%= link_to "編集する", edit_score_review_path(@review.score_id, @review), class: "btn btn-sm btn-success" %>
             </div>
@@ -57,7 +57,11 @@
   <div class="d-flex row mb-5">
     <% @review.comments.each do |comment| %>
       <div class="col-md-4 mb-3">
-        <%= image_tag comment.user.profile_image, size: "150x100", class: "user-profile-image" %>
+        <% if comment.user.profile_image.attached? %>
+          <%= image_tag comment.user.profile_image, class: "user-profile-image" %>
+        <% else %>
+          <%= image_tag "no_image.jpg", class: "user-profile-image" %>
+        <% end %>  
         <%= comment.body %>
       </div>
     <% end %>
