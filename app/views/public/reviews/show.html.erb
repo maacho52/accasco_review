@@ -2,6 +2,9 @@
   <h3 class="review-show-heading">
     レビュー詳細
   </h3>
+  <div class="row d-flex justify-content-center">
+    <strong class="text-danger"><%= flash[:notice] %></strong>
+  </div>
   <div class="row score_info">
     <div class="col-md-3 d-flex justify-content-center mb-5">
       <%= render 'public/scores/image_link', score: @score %>
@@ -21,26 +24,11 @@
   </div>
   <div class="row mb-5">
       <div class="review_info col-md-3 text-center">
-          <% if @review.user.profile_image.attached? %>
-            <%= image_tag @review.user.profile_image, size: "50×50", class: "user-profile-image-show" %><br>
-          <% else %>
-            <%= image_tag "no_image.jpg", class: "user-profile-image" %><br>
-          <% end %>
-          <%= @review.user.nickname %>
+        <%= render "review_user_profile", review: @review %>
+        <%= @review.user.nickname %>
       </div>
         <div class="col-md-9">
-            <span id="score_review_star_<%= @review.id %>"></span><br>
-            <script>
-              // $('#star').empty();
-                  raty(document.querySelector('#score_review_star_<%= @review.id %>'), {
-                    size     : 36,
-                    starOff:  '<%= asset_path('star-off.png') %>',
-                    starOn : '<%= asset_path('star-on.png') %>',
-
-                    score: <%= @review.star %>,
-                    readOnly: true
-                  });
-            </script>
+            <%= render "public/reviews/review_show_star", review: @review %>
             <%= link_to score_review_path(@score, @review) do %>
               <%= @review.title %><br>
             <% end %>
@@ -58,7 +46,7 @@
     <% @review.comments.each do |comment| %>
       <div class="col-md-4 mb-3">
         <% if comment.user.profile_image.attached? %>
-          <%= image_tag comment.user.profile_image, class: "user-profile-image" %>
+          <%= image_tag comment.user.profile_image, class: "user-profile-image-show" %>
         <% else %>
           <%= image_tag "no_image.jpg", class: "user-profile-image" %>
         <% end %>  
