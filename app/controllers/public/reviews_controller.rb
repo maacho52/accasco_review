@@ -4,7 +4,8 @@ class Public::ReviewsController < ApplicationController
     @score = Score.find(params[:score_id])
     #@review.user_id = current_user.id
     @user = current_user
-    @review = @user.reviews.find_by(id: params[:id])
+    #@review = @user.reviews.find_by(id: params[:id])
+    @review = Review.find(params[:id])
   end
 
   def create
@@ -26,7 +27,7 @@ class Public::ReviewsController < ApplicationController
 
   def update
     @user = current_user
-    @review = @user.reviews.find(params[:id])
+    @review =Review.find(params[:id])
     if @review.update!(review_params)
       flash[:notice] = "レビューが更新されました"
       redirect_to score_review_path(@review.score, @review)
@@ -42,9 +43,9 @@ class Public::ReviewsController < ApplicationController
       redirect_to score_path(@review.score)
     else
       render :edit
-    end  
+    end
   end
-  
+
   def index
     @score = Score.find(params[:score_id])
     @reviews = @score.reviews
