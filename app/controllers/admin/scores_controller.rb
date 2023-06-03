@@ -18,6 +18,7 @@ class Admin::ScoresController < ApplicationController
     @score = Score.find(params[:id])
     @sites = Site.all
     if @score.update(score_params)
+      flash[:notice] = "楽譜情報を更新しました"
       redirect_to admin_score_path
     else
       render :edit

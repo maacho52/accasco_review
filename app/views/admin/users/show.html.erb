@@ -4,6 +4,9 @@
             <h4 class="user-heading"><strong>ユーザー情報詳細</strong></h4>
           </div>
       </div>
+      <div class="row d-flex justify-content-center">
+        <strong class="text-danger"><%= flash[:notice] %></strong>
+      </div>
       <div class="row">
         <div class="col-md-2">
           <% if @user.profile_image.attached? %>
