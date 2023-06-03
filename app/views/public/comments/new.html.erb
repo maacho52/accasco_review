@@ -2,7 +2,11 @@
   <h5 class="comments-new-heading">レビュー内容</h5>
   <div class="row">
     <div class="review_info col-md-3 text-center">
-        <%= image_tag @review.user.get_image(100,100), class: "user-profile-image" %><br>
+      <% if @review.user.profile_image.attached? %>
+        <%= image_tag @review.user.profile_image, class: "user-profile-image" %><br>
+      <% else %>
+        <%= image_tag "no_image.jpg", class: "user-profile-image" %><br>
+      <% end %><br>
         <%= @review.user.nickname %>
     </div>
     <div class="col-md-9">
@@ -27,7 +31,11 @@
   <div class="border border-info border-4 mr-2 p-2 w-75"><i class="fa-solid fa-comment ml-5"><span class="ml-2">新規コメント</span></i></h5>
     <div class="row">
       <div class="col-md-3 text-center">
-        <%= image_tag current_user.get_image(100,100), class: "user-profile-image mb-3" %>
+        <% if current_user.profile_image.attached? %>
+          <%= image_tag current_user.profile_image, class: "user-profile-image mb-3" %>
+        <% else %>
+          <%= image_tag "no_image.jpg", class: "user-profile-image" %><br>
+        <% end %>
       </div>
       <div class="col-md-9">
         <%=  form_with(model:[@score, @review, @comment], url: score_review_comments_path, method: :post) do |f| %>

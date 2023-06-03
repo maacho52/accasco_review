@@ -22,7 +22,7 @@
   <div class="row">
       <div class="review_info col-md-3 text-center">
           <% if @review.user.profile_image.attached? %>
-            <%= image_tag @review.user.profile_image, size: "50×100", class: "user-profile-image" %><br>
+            <%= image_tag @review.user.profile_image, class: "user-profile-image" %><br>
           <% else %>
             <%= image_tag "no_image.jpg", class: "user-profile-image" %><br>
           <% end %>

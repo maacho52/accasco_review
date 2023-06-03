@@ -1,8 +1,12 @@
 <section class="inner container">
   <h3 class="section-ttl">レビュー編集</h3>
   <div class="row">
-    <div class="col">
-      <%= image_tag @user.profile_image, size: "150x100", class: "user-profile-image" %>
+    <div class="col-md-3">
+      <% if @review.user.profile_image.attached? %>
+        <%= image_tag @review.user.profile_image, class: "user-profile-image" %><br>
+      <% else %>
+        <%= image_tag "no_image.jpg", class: "user-profile-image" %><br>
+      <% end %>
 
       <%= form_with(model:[@score, @review], url: score_review_path(@review.score.id, @review.id), method: :patch) do |f| %>
         <table class="review_edit">

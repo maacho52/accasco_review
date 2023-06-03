@@ -44,6 +44,10 @@ header {
  height: 50px;
 }
 
+.top-header {
+ font-size: 35px;
+}
+
 footer {
  border-top: 5px double #ffcc33;
  margin-top: 2vw;
@@ -115,6 +119,7 @@ li {
 
 .user-profile-image {
  border-radius: 100px;
+ width: 30%;
 }
 
 .user-show {
