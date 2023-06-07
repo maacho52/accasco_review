@@ -1,4 +1,6 @@
 class Admin::ScoresController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @scores = Score.all.page(params[:page]).per(8)
   end
