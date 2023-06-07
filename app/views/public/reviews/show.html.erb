@@ -11,14 +11,14 @@
     </div>
     <div class="col-md-9">
       <h4 class="ml-2 mb-5"><%= @score.name %> / <%= @score.artist %></h4>
-       <span class="border border-info border-4 rounded-pill mr-2 p-2 bg-info">購入サイト</span><%= @score.site.name %>
-      <span class="border border-info border-4 rounded-pill mr-2 p-2 bg-info">構成人数</span><%= @score.member_i18n %>
-      <span class="border border-info border-4 rounded-pill mr-2 p-2 bg-info">難易度</span><%= @score.difficulty_i18n %>
+       <span class="border border-info border-4 rounded-pill mr-2 p-2 bg-info text-light font-weight-bold">購入サイト</span><strong><%= @score.site.name %></strong>
+      <span class="border border-info border-4 rounded-pill mr-2 p-2 bg-info text-light font-weight-bold">構成人数</span><strong><%= @score.member_i18n %></strong>
+      <span class="border border-info border-4 rounded-pill mr-2 p-2 bg-info text-light font-weight-bold">難易度</span><strong><%= @score.difficulty_i18n %></strong>
       <% if @score.arranges.present? %>
-        <span class="border border-info border-4 rounded-pill mr-2 p-2 bg-info">アレンジ内容</span>
+        <span class="border border-info border-4 rounded-pill mr-2 p-2 bg-info text-light font-weight-bold">アレンジ内容</span>
       <% end %>
       <% @score.arranges.each do |arrange| %>
-        <%= arrange.body %>
+        <strong><%= arrange.body %></strong>
       <% end %>
     </div>
   </div>
