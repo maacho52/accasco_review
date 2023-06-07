@@ -1,4 +1,6 @@
 class Public::ScoresController < ApplicationController
+  before_action :correct_user, only: [:edit]
+
 
   def search
     @scores = Score.search(params[:keyword]).order(created_at: :desc).page(params[:page]).per(12)
@@ -83,7 +85,7 @@ class Public::ScoresController < ApplicationController
     @site = @score.site
     @score_arranges = @score.arranges
   end
-  
+
   def update
     @score = Score.find(params[:id])
     @sites = Site.all
@@ -94,6 +96,13 @@ class Public::ScoresController < ApplicationController
       render :edit
     end
   end
+
+  def correct_user
+    @score = Score.find(params[:id])
+    @user = @score.user
+    redirect_to score_path(@score) unless @user == current_user
+  end
+
 
   private
 

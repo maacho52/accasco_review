@@ -1,4 +1,5 @@
 class Public::ReviewsController < ApplicationController
+  before_action :correct_user, only: [:edit]
 
   def show
     @score = Score.find(params[:score_id])
@@ -49,6 +50,12 @@ class Public::ReviewsController < ApplicationController
   def index
     @score = Score.find(params[:score_id])
     @reviews = @score.reviews
+  end
+
+  def correct_user
+    @review = Review.find(params[:id])
+    @user = @review.user
+    redirect_to score_review_path(@review.score, @review) unless @user == current_user
   end
 
   private
