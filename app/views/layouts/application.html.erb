@@ -16,13 +16,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4/js/bootstrap.min.js"></script>
   </head>
 
-  <body class="text-light">
+  <body>
     <header>
       <!-- ナビゲーションバー -->
       <nav class="navbar navbar-expand-md navbar-light fixed-top">
         <!-- タイトル -->
         <h3 class="navbar-brand d-inline text-left mr-5 ml-2">
-          <%= link_to("AccascoReview", root_path, class: 'text-light top-header') %>
+          <%= link_to("AccascoReview", root_path, class: 'top-header') %>
         </h3>
         <!-- ハンバーガーメニュー -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +32,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <% if user_signed_in? %>
-              <span class="text-light">ようこそ、<%= current_user.nickname %>さん</span>
+              <span>ようこそ、<%= current_user.nickname %>さん</span>
             <% end %>
 
             <% if admin_signed_in? %>
