@@ -42,12 +42,12 @@
       </table>
     </div>
   </div>
-  
+
   <div class="row d-flex justify-content-center">
     <strong class="text-danger">
-      <% if @score.user_id == current_user.id %>
+      <% if @user == @score.user %>
         <%= link_to "編集する", edit_score_path(@score), class: "btn btn-sm btn-outline-success" %>
-      <% end %>  
+      <% end %>
     </strong>
   </div>
 
@@ -64,7 +64,6 @@
               size     : 36,
               starOff:  '<%= asset_path('star-off.png') %>',
               starOn : '<%= asset_path('star-on.png') %>',
-      
               score: <%= review.star %>,
               readOnly: true
             });
