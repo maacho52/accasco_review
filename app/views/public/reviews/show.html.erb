@@ -34,7 +34,7 @@
             <% end %>
               <%= @review.body %>
 
-          <% if @review.user_id == current_user.id %>
+          <% if @user == @review.user %>
             <div class="button">
               <%= link_to "編集する", edit_score_review_path(@review.score_id, @review), class: "btn btn-sm btn-success" %>
             </div>
