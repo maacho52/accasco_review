@@ -4,9 +4,6 @@
             <h4 class="user-heading"><strong>ユーザー情報詳細</strong></h4>
           </div>
       </div>
-      <div class="row d-flex justify-content-center">
-        <strong class="text-danger"><%= flash[:notice] %></strong>
-      </div>
       <div class="row">
         <div class="col-md-2">
           <%= render "public/users/user_profile", user: @user %>
@@ -14,7 +11,7 @@
             <span>ID：<%= @user.id %></span></strong>
         </div>
         <div class="col-md-9">
-          <table class="table text-light">
+          <table class="table">
 
             <tbody>
               <tr>
