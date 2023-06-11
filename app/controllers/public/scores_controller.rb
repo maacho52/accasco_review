@@ -67,8 +67,10 @@ class Public::ScoresController < ApplicationController
       flash[:notice] = "楽譜を投稿しました"
       redirect_to score_path(@score.id)
     else
-      @scores = Score.all.page(params[:page]).per(12)
-      render :index
+      @user = current_user
+      @score = Score.new
+      flash[:notice] = "楽譜の投稿に失敗しました。曲名と歌手を必ず入力してください。"
+      render :new
     end
   end
 
