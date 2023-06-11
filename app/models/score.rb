@@ -9,13 +9,18 @@ class Score < ApplicationRecord
   has_many :score_arranges, dependent: :destroy
   has_many :arranges, through: :score_arranges
 
+  validates :artist, presence: true
+  validates :name, presence: true
+
   enum member: { three: 0, four: 1, five: 2, six: 3, seven_or_more: 4, boys: 5, girls: 6 }
   enum difficulty: { introduction: 0, biginner: 1, intermediate: 2, advanced: 3, superlative: 4 }
 
   def save_arrange(arrange_ids)
-    arrange_ids.each do |arrange_id|
-      ScoreArrange.create(score_id: id, arrange_id: arrange_id)
-    end
+    if arrange_ids.present?
+      arrange_ids.each do |arrange_id|
+        ScoreArrange.create(score_id: id, arrange_id: arrange_id)
+      end
+    end  
   end
 
 
