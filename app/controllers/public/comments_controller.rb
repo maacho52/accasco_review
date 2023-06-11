@@ -11,11 +11,13 @@ class Public::CommentsController < ApplicationController
   def create
     @review = Review.find(params[:review_id])
     @comment = current_user.comments.new(comment_params)
-    if @comment.review.user_id != current_user.id
-      @comment.save
+    @comment.review.user_id != current_user.id
+    if @comment.save
       redirect_to score_review_path(@review.score, @review)
-    else
+    elsif @comment.review.user_id == current_user.id
       flash[:notice] = "自身が投稿したレビューにはできません。"
+      render :new
+    else
       render :new
     end
   end
