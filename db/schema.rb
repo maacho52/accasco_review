@@ -115,8 +115,8 @@ ActiveRecord::Schema.define(version: 2023_05_08_123156) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "part", default: "0", null: false
-    t.date "birthday", null: false
     t.integer "experience"
+    t.date "birthday"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["nickname"], name: "index_users_on_nickname"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

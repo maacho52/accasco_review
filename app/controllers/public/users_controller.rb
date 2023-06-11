@@ -3,7 +3,9 @@ class Public::UsersController < ApplicationController
   
   def show
     @user = current_user
-    @user.birthday = (Date.today.strftime('%Y%m%d').to_i - @user.birthday.strftime('%Y%m%d').to_i) / 10000
+    if @user.birthday != nil
+      @user.birthday = (Date.today.strftime('%Y%m%d').to_i - @user.birthday.strftime('%Y%m%d').to_i) / 10000
+    end  
   end
 
   def edit
@@ -13,6 +15,7 @@ class Public::UsersController < ApplicationController
   def update
     @user = current_user
     @user.update(user_params)
+    flash[:notice] = "ユーザー情報が更新されました"
     redirect_to mypage_path
   end
 
