@@ -1,8 +1,5 @@
 <section class="container">
   <h3 class="section-ttl center-block">アカウントをお持ちの方はこちらからログイン</h3>
-  <% if flash[:danger] %>
-    <p class="text-red"><%= flash[:danger] %></p>
-  <% end %>
 
     <div class="rogin-filed d-flex justify-content-center">
       <%= form_with model: @user, url: session_path(resource_name), local: true do |f| %>

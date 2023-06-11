@@ -102,6 +102,16 @@
     </header>
 
     <main>
+      <% if flash[:notice] %> 
+       <div class="flash text-danger ml-5 mb-3 font-weight-bold">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+      <% if flash[:danger] %> 
+       <div class="flash text-danger ml-5 mb-3 font-weight-bold">
+          <%= flash[:danger] %>
+        </div>
+      <% end %>  
       <%= yield %>
     </main>
 

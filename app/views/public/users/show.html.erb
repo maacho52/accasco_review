@@ -1,7 +1,4 @@
 <section class="inner container">
-  <% if flash[:notice] %>
-    <p class="text-active"><%= flash[:notice] %></p>
-  <% end %>
   <div class="col d-flex">
     <h3 class="section-ttl d-inline mr-5"><%= @user.nickname %>さんのマイページ</h3>
     <% if @user.email != 'guest@example.com' %>

@@ -30,6 +30,7 @@ class Admin::ScoresController < ApplicationController
   def destroy
     @score = Score.find(params[:id])
     if @score.destroy
+      flash[:notice] = "楽譜を削除しました"
       redirect_to admin_scores_path
     else
       render :edit
