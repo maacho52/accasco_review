@@ -4,7 +4,7 @@
       <div class="reviews row">
         <% @reviews.each do |review| %>
           <div class="score col-md-3 mb-3">
-            <h6 class="text-light"><%= review.score.name %>/<%= review.score.artist %></h6>
+            <h5 class="mt-3"><%= review.score.name %>/<%= review.score.artist %></h5>
             <span id="score_review_star_<%= review.id %>"></span><br>
             <script>
               // $('#star').empty();
@@ -18,8 +18,8 @@
                   });
             </script><br>            
             <%= link_to score_review_path(review.score_id, review.id) do %>
-              <span class="text-light">レビュータイトル：<%= review.title %></span><br>
-              <span class="text-light">レビュー内容：<%= review.body %></span>
+              <span>レビュータイトル：<%= review.title %></span><br>
+              <span>レビュー内容：<%= review.body %></span>
             <% end %>  
           </div>
         <% end %>
