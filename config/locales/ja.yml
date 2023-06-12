@@ -6,6 +6,46 @@
         next: ">"
         last: "≫"
 
+    activerecord:
+      attributes:
+        arrange:
+          body: アレンジ
+        comment:
+          body: コメント
+          user_id: ユーザーID
+          review_id: レビューID
+        review:
+          user_id: ユーザーID
+          score_id: 楽譜ID
+          title: レビュータイトル
+          body: レビュー内容
+          star: ★評価
+        score:
+          user_id: ユーザーID
+          name: 曲名
+          artist: 歌手名
+          member: 構成人数
+          difficulty: 難易度
+          site_id: 購入サイト
+        sites:
+          name: 名前
+        user:
+          nickname: ニックネーム
+          email: メール
+          encrypted_password: パスワード
+          sex: 性別
+          part: 担当パート
+          experience: 経験年数
+          birthday: 生年月日
+
+    views:
+      pagination:
+        first: 最初
+        last: 最後
+        previous: 前
+        next: 次
+        truncate: ...
+
     devise:
       confirmations:
         confirmed: 'アカウントを登録しました。'
