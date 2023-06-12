@@ -1,5 +1,14 @@
 <section class="comment-new container">
   <h3 class="comments-new-heading">レビュー内容</h3>
+<% if @comment.errors.any? %>
+  <div class="alert alert-warning">
+    <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
   <div class="row mb-3">
     <div class="review_info col-md-3 text-center">
       <%= render "public/reviews/review_user_profile", review: @review %>
