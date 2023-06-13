@@ -16,24 +16,28 @@
             <td class="font-weight-bold"><%= @score.artist %> / <%= @score.name %></td>
           </tr>
           <tr>
-            <td>楽譜購入サイト</td>
+            <th>楽譜購入サイト</th>
             <td><%= @score.site.name %></td>
           </tr>
           <tr>
-            <td>グループ構成人数</td>
+            <th>グループ構成人数</th>
             <td><%= @score.member_i18n %></td>
           </tr>
           <tr>
-            <td>難易度</td>
+            <th>難易度</th>
             <td><%= @score.difficulty_i18n %></td>
           </tr>
           <tr>
-            <td>アレンジ内容</td>
+            <th>アレンジ内容</th>
             <td>
               <% @score.arranges.each do |arrange| %>
                 <%= arrange.body %>
               <% end %>
             </td>
+          </tr>
+          <tr>
+            <th>投稿日</th>
+            <td><%= @score.created_at.strftime('%Y/%m/%d') %></td>
           </tr>
         </tbody>
       </table>
@@ -50,7 +54,7 @@
 
   <div>
     <% @score.reviews.each do |review| %>
-      ID <%= review.user_id %>
+      ID <%= review.user_id %> <span>投稿日▶<%= review.created_at.strftime('%Y/%m/%d') %></span>
       <%= link_to score_review_path(score_id: @score.id, id: review.id) do %><!--明示的な方法でpathに引数を渡す-->
         <%= simple_format(review.body) %>
       <% end %>

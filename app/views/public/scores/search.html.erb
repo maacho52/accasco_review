@@ -28,13 +28,14 @@
           <% end %>
           <!--アレンジ内容の表示 -->
           <% if score.arranges.present? %>
-            <p class="border border-info border-4 rounded-pill mr-2 p-2 bg-info d-inline">アレンジ内容</p><br>
+            <p class="border border-info border-4 rounded-pill mr-2 p-2 bg-info d-inline text-light font-weight-bold">アレンジ内容</p><br>
           <% end %>
           <div class="mt-3 ml-2">
             <% score.arranges.each do |arrange| %>
-              <%= arrange.body %>
+              <span class="font-weight-bold"><%= arrange.body %></span>
             <% end %>
           </div>
+          <p class="mt-2">投稿日▶<%= score.created_at.strftime('%Y/%m/%d') %></p>
         </div>
       <% end %>
     <% else %>
