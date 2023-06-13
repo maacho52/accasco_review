@@ -23,6 +23,7 @@
       <div class="review_info col-md-3 text-center">
         <%= render "review_user_profile", review: @review %>
         <%= @review.user.nickname %>
+        <p>投稿日▶<%= @review.created_at.strftime('%Y/%m/%d') %></p>
       </div>
         <div class="col-md-9">
             <%= render "public/reviews/review_show_star", review: @review %>
@@ -52,9 +53,12 @@
     <% end %>
   </div>
 
+
   <div class="row">
     <div class="col text-center">
-      <%= link_to "コメントを投稿する", new_score_review_comment_path(@score, @review), class: "btn btn-sm btn-outline-info" %>
+      <% if @review.user != current_user %>
+        <%= link_to "コメントを投稿する", new_score_review_comment_path(@score, @review), class: "btn btn-sm btn-outline-info" %>
+      <% end %>
     </div>
   </div>
 </section>
