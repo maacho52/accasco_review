@@ -46,7 +46,7 @@
 
   <div class="row d-flex justify-content-center">
     <strong class="text-danger">
-      <% if @user == @score.user %>
+      <% if @score.user == current_user %>
         <%= link_to "編集する", edit_score_path(@score), class: "btn btn-sm btn-outline-success" %>
       <% end %>
     </strong>
