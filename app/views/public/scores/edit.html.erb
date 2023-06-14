@@ -49,6 +49,7 @@
         </table>
         <div class="d-flex justify-content-center pl5 btn_submit btn_delete">
           <%= f.submit "変更を保存", class: "btn btn-sm btn-outline-success" %>
+          <span class="ml-3"><%= link_to "楽譜を削除", score_path(@score), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-sm btn-outline-danger" %></span>
         </div>
       </div>
     <% end %>

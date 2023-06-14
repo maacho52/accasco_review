@@ -99,6 +99,17 @@ class Public::ScoresController < ApplicationController
     end
   end
 
+  def destroy
+    @score = Score.find(params[:id])
+    @scores = current_user.scores
+    if @score.destroy
+      flash[:notice] = "楽譜が削除されました"
+      redirect_to user_scores_path
+    else
+      render :edit
+    end
+  end
+
   def correct_user
     @score = Score.find(params[:id])
     @user = @score.user
