@@ -18,6 +18,14 @@ class Public::CommentsController < ApplicationController
       render :new
     end
   end
+  
+  def destroy
+    @comment = Comment.find(params[:id])
+    if @comment.destroy
+      flash[:notice] = "コメントを削除しました"
+    end
+    redirect_to score_review_path(@comment.review.score, @comment.review)
+  end
 
   private
 

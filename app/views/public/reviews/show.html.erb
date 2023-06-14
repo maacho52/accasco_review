@@ -50,6 +50,9 @@
         <% end %>
         <%= comment.body %>
         <p>投稿日▶<%= comment.created_at.strftime('%Y/%m/%d') %></p>
+        <% if comment.user == current_user %>
+          <%= link_to "コメントを削除",  score_review_comment_path(comment.review.score, comment.review, comment), method: :delete, data: {confirm: "本当に削除しますか?"}, class: "btn btn-sm btn-danger" %>
+        <% end %>
       </div>
     <% end %>
   </div>
