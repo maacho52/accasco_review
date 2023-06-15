@@ -32,7 +32,7 @@
         user:
           nickname: ニックネーム
           email: メール
-          encrypted_password: パスワード
+          password: パスワード
           sex: 性別
           part: 担当パート
           experience: 経験年数
