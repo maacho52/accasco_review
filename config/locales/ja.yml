@@ -37,6 +37,7 @@
           part: 担当パート
           experience: 経験年数
           birthday: 生年月日
+          password_confirmation: 確認用パスワード
 
     views:
       pagination:
